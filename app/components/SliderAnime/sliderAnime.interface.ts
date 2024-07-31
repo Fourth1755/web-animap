@@ -7,5 +7,5 @@ export interface IAnime  {
 export interface ISliderAnime{
     tagAnime :string
     animeList:any[]
-    myAnimeList: any[]
+    myAnimeListId: number[]
 }
