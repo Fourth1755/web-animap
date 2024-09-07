@@ -8,9 +8,28 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import './sliderAnime.scss'
-import { IAnime,ISliderAnime } from "./sliderAnime.interface";
 // import AddAnimeModal from "../AddAnimeModal";
 
+type Anime = {
+    id: number;
+    name: String;
+    episodes:number
+    seasonal: String;
+    year: String;
+    image:String
+    score: String;
+  }
+
+interface IAnime  {
+    id:number
+    name: string
+    image: string
+}
+interface ISliderAnime{
+    tagAnime :string
+    animeList:any[]
+    myAnimeListId: number[]
+}
 const SliderAnime=({tagAnime,animeList,myAnimeListId}: ISliderAnime)=>{
     const [modalAnime,setModalAnime]=useState({})
 
@@ -34,7 +53,7 @@ const SliderAnime=({tagAnime,animeList,myAnimeListId}: ISliderAnime)=>{
                     className="mySwiper"
                     id="swiper-anime"
                     >
-                    {animeList.map((item :IAnime)=>
+                    {animeList?.map((item :IAnime)=>
                     <SwiperSlide key={item.id}  onClick={()=>handleOpen(item)}>
                         <Link href={`anime/${item.id}`}>
                         <div className='swiper-slide-anime' style={{backgroundImage:`url(${item.image})`}} >
