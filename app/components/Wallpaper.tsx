@@ -1,4 +1,4 @@
-import { Carousel, Typography, Button } from "../components/mtailwind";
+import { Carousel, Typography, Button } from "./mtailwind";
 
 export default function Wallpaper() {
   const animeShow = [

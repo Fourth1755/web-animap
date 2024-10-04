@@ -1,7 +1,7 @@
 import Image from "next/image";
 import SliderAnime from "./components/SliderAnime/sliderAnime";
 import anime from "./animeList.json"
-import Wallpaper from "./components/wallpaper";
+import Wallpaper from "./components/Wallpaper";
 import { AnimeSerivce } from "./service/animeService";
 
 export default async function Home() {

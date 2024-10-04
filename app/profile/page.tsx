@@ -1,21 +1,31 @@
 import { getSession } from '@auth0/nextjs-auth0';
+import Profile from './component/profile';
+import SliderMyAnime from './component/sliderMyAnime/sliderMyAnime';
+import { UserSerivce } from "../service/userService";
 
-type user = {
-    name: string
-    email:string
-    picture:string
+type User ={
+  name: string
+  picture: string
+  email: string
+  sid: string
 }
 
-export default async function Profile() {
+export default async function Page() {
   const session = await getSession();
-    const user = session?.user
+  const userSession = session?.user
+  const user: User={
+    name:userSession?.name,
+    picture:userSession?.picture,
+    email:userSession?.email,
+    sid :userSession?.sid,
+  }
+
+  const userSerivce = new UserSerivce()
+  const animes = await userSerivce.getAnimeByUserSid(user.sid)
   return (
-      user && (
-          <div>
-            <img src={user.picture} alt={user.name} />
-            <h2>{user.name}</h2>
-            <p>{user.email}</p>
-          </div>
-      )
-  );
+    <>
+      <Profile user={user}/>
+      <SliderMyAnime tag="My Anime List" animeList={animes} />
+    </>
+  )
 }

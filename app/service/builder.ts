@@ -34,4 +34,9 @@ export class ConnectAnimapService {
         const url = new URL("/category", this.url);
         return url.toString()
     }
+
+    public getUserUrl(){
+        const url = new URL("/user/anime-list", this.url);
+        return url.toString()
+    }
 }
