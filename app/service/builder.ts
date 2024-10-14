@@ -36,7 +36,12 @@ export class ConnectAnimapService {
     }
 
     public getUserUrl(){
-        const url = new URL("/user/anime-list", this.url);
+        const url = new URL("/user", this.url);
+        return url.toString()
+    }
+
+    public getLoginUrl(){
+        const url = new URL("/login", this.url);
         return url.toString()
     }
 }

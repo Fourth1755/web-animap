@@ -10,7 +10,6 @@ type PropProfileUser ={
     sid: string
 }
   
-
 export default async function Profile(props:PropProfile) {
     const user = props.user
 
