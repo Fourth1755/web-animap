@@ -5,6 +5,13 @@ type UserData = {
     email: string;
     password: string;
 }
+
+type AddAnimeToListRequest = {
+    user_uuid:string
+    anime_id: number
+    score: number
+    status: number
+}
 export class UserSerivce{
     private url:string
     private loginUrl:string
@@ -41,6 +48,14 @@ export class UserSerivce{
     public async getAnimeByUserUUID(uuid: string) {
         console.log("getAnimeByUserSid",uuid)
         const response = await axios.get(`${this.url}/anime-list/${uuid}`, {
+            headers: this.getConfigHeaders(),
+        })
+        return response.data
+    }
+
+    public async addAnimeToList(req: AddAnimeToListRequest) {
+        console.log("addAnimeToList",req)
+        const response = await axios.post(`${this.url}/anime-list`,req, {
             headers: this.getConfigHeaders(),
         })
         return response.data

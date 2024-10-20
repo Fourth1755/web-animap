@@ -41,7 +41,9 @@ type AnimeDetail = {
     description:string
     type:number
     duration:string
-    categories:AnimeDetailCategories[]
+    categories:AnimeDetailCategories[],
+    wallpaper: string
+    trailer: string
 }
 export class AnimeSerivce{
     private url:string
