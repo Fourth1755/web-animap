@@ -1,53 +1,57 @@
-import "./page.scss"
-async function getAnime(id:number){
-    const response = await fetch(`https://669630670312447373c173cf.mockapi.io/animap/animes/${id}`)
-    
-    if(!response.ok){
-        throw new Error('cannot fetch anime')
-    }
+import "./page.scss";
+import { getAnime, getUser } from "./action";
+import AddAnimeButton from "./component/buttonAddAnimeToList/button";
 
-    return response.json()
-}
-
-export default async function Page({params}:any){
-    //const anime = await getAnime(params.slug)
-    const anime = {
-        "id":1,
-        "name":"Sword art online",
-        "year":2012,
-        "studios":"A-1 Pictures",
-        "seasonal":"Summer",
-        "episodes":25,
-        "image":"https://cdn.myanimelist.net/images/anime/11/39717.jpg",
-        "trailer":"https://www.youtube.com/embed/6ohYYtxfDCg",
-        "trailer_start":"",
-        "wallpaper":"https://wallpaperaccess.com/full/1122002.jpg",
-        "duration":"23 min. per ep.",
-        "score":7.2
-    }
-    return (
-        <div>
-            <div className="wallpaper" style={{backgroundImage: `url(${anime.wallpaper})`}}>
-                <h1>{anime.name}</h1>
-                <div className="wallpaper-container">
-                <div  className="wallpaper-container-box">
-                    <img src={anime.image}/>
-                    <button>
-                        Add to List
-                    </button>
-                </div>
-                <div  className="wallpaper-container-box">
-                <iframe 
-                    width="560" 
-                    height="315" 
-                    id="player" 
-                    src={`${anime.trailer}`} 
-                    title="YouTube video player" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
-                </div>
-                </div>
+export default async function Page({ params }: any) {
+  const anime = await getAnime(params.slug);
+  const user = getUser()
+  return (
+    <>
+      <div className="container mx-auto md:px-30 px-5">
+        <div className="flex justify-between py-7">
+          <div>
+            <h1 className="mb-3 text-2xl font-extrabold leading-none tracking-tight md:text-2xl lg:text-3xl dark:text-white">
+              {anime.name}
+            </h1>
+            <p className="mb-6 text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400">
+              {anime.seasonal} {anime.year}, {anime.episodes} ep ,{" "}
+              {anime.duration}
+            </p>
+          </div>
+          <div>
+            <div className="flex justify-between">
+              <div className="pr-4">
+                <h1>Animap Score</h1>
+                <p>9/10</p>
+              </div>
+              <div>
+                <h1>My Score</h1>
+                <p>10/10</p>
+              </div>
             </div>
-           
+          </div>
         </div>
-    )
+          <div className="flex justify-between py-2">
+            <div>
+            <img
+                className="h-77 w-56 rounded-lg object-cover object-center shadow-xl shadow-gray-900/50"
+                src={anime.image}
+                alt="nature image"
+              />
+              <AddAnimeButton name="Add to List" isEdit={false} anime={anime} user={user}/>
+            </div>
+            <div>
+            <iframe
+                width="560"
+                height="315"
+                id="player"
+                src={`${anime.trailer}`}
+                title="YouTube video player"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              ></iframe>
+            </div>
+          </div>
+        </div>
+    </>
+  );
 }

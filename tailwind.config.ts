@@ -18,6 +18,14 @@ const config: Config =  withMT({
       },
     },
   },
+  colors: {
+    transparent: 'transparent',
+    current: 'currentColor',
+    'green-100': '#D8E9E4',
+    'green-300': '#2B5F44',
+    'pink-500': '#FF1493',
+    'pink-800': '#371037',
+  },
   plugins: [],
 });
 export default config;

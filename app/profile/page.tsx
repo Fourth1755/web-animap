@@ -1,8 +1,7 @@
-import { getSession } from '@auth0/nextjs-auth0';
 import Profile from './component/profile';
 import SliderMyAnime from './component/sliderMyAnime/sliderMyAnime';
 import { UserSerivce } from "../service/userService";
-import { getUserFormCookie } from './action';
+import { getUserFormCookie } from '../util/action';
 
 type User ={
   name: string
