@@ -1,5 +1,4 @@
 import { UserSerivce } from "@/app/service/userService";
-import { getUserFormCookie } from "../../../../util/action";
 
 type AddAnimeToListRequest = {
     user_uuid:string
