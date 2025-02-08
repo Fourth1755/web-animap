@@ -33,11 +33,11 @@ const ProgressBar = (props:PropProgressBar) => {
       setLevel(userLevel)
     },[level])
     return (
-      <div className='bg-black w-full rounded-2xl pb-8'>
-        <div className="p-6">
+      <div className='bg-black w-full rounded-2xl pb-3'>
+        <div className="px-6 py-3">
           <h1 className="font-semibold text-4xl pb-3">{levelOfGame[level].label}</h1>
-          <h2>Viewed {totalAnime} item</h2>
-          <div className="mt-6">
+          <h2 className="text-gray-500">Viewed {totalAnime} item</h2>
+          <div className="mt-4">
           <div style={{width:`${(totalAnime/10)*100}%`,backgroundColor: `${levelOfGame[level].color}`}} className="rounded-3xl text-center w-full h-12">
             <div className='pt-3 font-bold' >{`${ ((totalAnime/10)*100) }%`}</div>
           </div> 

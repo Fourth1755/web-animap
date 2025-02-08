@@ -1,0 +1,15 @@
+$colorPink:#FF1493;
+$colorBlack:#000000;
+$colorWhite:#FFFFFF;
+$colorDarkPink:#371037;
+$colorGray : #C3BBBE;
+.modalStyles{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 460px;
+    background-color: $colorBlack;
+    border: none;
+    border-radius: 15px;
+}

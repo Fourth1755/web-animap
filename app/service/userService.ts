@@ -44,20 +44,4 @@ export class UserSerivce{
         })
         return response.data
     }
-
-    public async getAnimeByUserUUID(uuid: string) {
-        console.log("getAnimeByUserSid",uuid)
-        const response = await axios.get(`${this.url}/anime-list/${uuid}`, {
-            headers: this.getConfigHeaders(),
-        })
-        return response.data
-    }
-
-    public async addAnimeToList(req: AddAnimeToListRequest) {
-        console.log("addAnimeToList",req)
-        const response = await axios.post(`${this.url}/anime-list`,req, {
-            headers: this.getConfigHeaders(),
-        })
-        return response.data
-    }
 }

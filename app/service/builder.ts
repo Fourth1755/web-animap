@@ -44,4 +44,9 @@ export class ConnectAnimapService {
         const url = new URL("/login", this.url);
         return url.toString()
     }
+    
+    public getMyAnimeUrl(){
+        const url = new URL("/my-anime", this.url);
+        return url.toString()
+    }
 }

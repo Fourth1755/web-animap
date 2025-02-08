@@ -1,6 +1,6 @@
 import Profile from './component/profile';
 import SliderMyAnime from './component/sliderMyAnime/sliderMyAnime';
-import { UserSerivce } from "../service/userService";
+import { MyAnimeService } from "../service/myAnimeService";
 import { getUserFormCookie } from '../util/action';
 
 type User ={
@@ -15,16 +15,16 @@ export default async function Page() {
   // get user detail form username
 
   const userId = getUserFormCookie();
-  const userSerivce = new UserSerivce();
+  const myAnimeService = new MyAnimeService();
   //const user = await userSerivce.getUserByUUID(userId)
 
   const user:User={
     name:"Fourth",
     picture:"https://i0.wp.com/www.animefeminist.com/wp-content/uploads/2024/07/Alya-in-Russian-1-scaled.jpg?fit=810%2C449&ssl=1",
     email:"",
-    uuid:""
+    uuid:userId
   }
-  const animes = await userSerivce.getAnimeByUserUUID(userId)
+  const animes = await myAnimeService.getMyAnimeByUserUUID(userId)
   return (
     <>
       <Profile user={user}/>
