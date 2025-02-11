@@ -6,7 +6,7 @@ import { Button } from "../../../../app/components/mtailwind";
 type PropEditTopAnimeButton ={
     name: string
     user:string
-    myAnimeList?:GetMyAnimeByUserUUIDResponse[]
+    myAnimeList:GetMyAnimeByUserUUIDResponse[]
 }
 
 type AnimeData = {

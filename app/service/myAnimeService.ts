@@ -39,8 +39,16 @@ export class MyAnimeService{
     }
 
     public async getMyTopAnimeByUserUUID(uuid: string):Promise<GetMyTopAnimeByUserUUIDResponse[]> {
-        console.log("getMyTopAnimeByUserSid",uuid)
+        console.log("getMyTopAnimeByUserUUID",uuid)
         const response = await axios.get(`${this.url}/top-anime/${uuid}`, {
+            headers: this.getConfigHeaders(),
+        })
+        return response.data
+    }
+
+    public async getMyAnimeYearByUserUUID(uuid: string):Promise<GetMyAnimeYearByUserUUIDResponse> {
+        console.log("getMyAnimeYearByUserUUID",uuid)
+        const response = await axios.get(`${this.url}/anime-year-list/${uuid}`, {
             headers: this.getConfigHeaders(),
         })
         return response.data

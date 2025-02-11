@@ -50,6 +50,7 @@ type AddAnimeToListRequest = {
   anime_id: number;
   score: number;
   status: number;
+  watched_year: string;
 };
 
 const scoreList = [
@@ -114,6 +115,7 @@ export default function AddAnimeModal(prop: PropsAddAnimeModal) {
       anime_id: animeData.id,
       score: +formData.score,
       status: 1,
+      watched_year: formData.year,
     };
     console.log(request)
     handleOpen();

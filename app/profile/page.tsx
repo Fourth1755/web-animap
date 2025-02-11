@@ -24,11 +24,19 @@ export default async function Page() {
     email:"",
     uuid:userId
   }
+  
   const animes = await myAnimeService.getMyAnimeByUserUUID(userId)
+  const animeYear = await myAnimeService.getMyAnimeYearByUserUUID(userId)
+
   return (
     <>
       <Profile user={user}/>
       <SliderMyAnime tag="My Anime List" animeList={animes} />
+      {
+        animeYear.anime_year.map((item,index)=>{
+          return <SliderMyAnime tag={"Watched in "+item.year} animeList={item.anime} key={index}/>
+        })
+      }
     </>
   )
 }
