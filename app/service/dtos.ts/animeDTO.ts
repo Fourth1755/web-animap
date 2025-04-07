@@ -1,4 +1,4 @@
-type AnimeList = {
+export type AnimeList = {
     id: number;
     name: String;
     episodes:number
@@ -8,7 +8,7 @@ type AnimeList = {
     score: String;
   }
 
-type CreateAnimeData = {
+export type CreateAnimeData = {
     id: number;
     name: string;
     name_english: string
@@ -21,12 +21,17 @@ type CreateAnimeData = {
     type: number
 };
 
-type AnimeDetailCategories = {
+type GetAnimeByIdResponseCategories = {
     id:number
     name:string
 }
 
-type AnimeDetail = {
+type GetAnimeByIdResponseStduio = {
+    id:string
+    name:string
+}
+
+export type GetAnimeByIdResponse = {
     id: number,
     name: string,
     name_english:string
@@ -38,7 +43,8 @@ type AnimeDetail = {
     description:string
     type:number
     duration:string
-    categories:AnimeDetailCategories[],
+    categories:GetAnimeByIdResponseCategories[],
+    studios: GetAnimeByIdResponseStduio[],
     wallpaper: string
     trailer: string
 }

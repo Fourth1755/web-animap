@@ -1,5 +1,6 @@
 import axios from "axios";
 import { ConnectAnimapService } from "./builder";
+import { AnimeList, CreateAnimeData, GetAnimeByIdResponse } from "./dtos.ts/animeDTO";
 
 export class AnimeSerivce{
     private url:string
@@ -32,7 +33,7 @@ export class AnimeSerivce{
         return response.data
     }
 
-    public async getAnime(id:number):Promise<AnimeDetail>{
+    public async getAnime(id:number):Promise<GetAnimeByIdResponse>{
         const response = await axios.get(`${this.url}/${id}`, {
             headers: this.getConfigHeaders(),
         })
