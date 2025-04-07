@@ -1,10 +1,10 @@
 import Link from "next/link";
-import getUser from "./action";
+import { getUser } from "./action";
 import ProfileMenu from "./profileMenu";
 import { UserSerivce } from "@/app/service/userService";
 
 export default async function Navbar() {
-  const userId = getUser();
+  const userId =await getUser();
   const userSerivce = new UserSerivce()
   const user = await userSerivce.getUserInfoByUUID(userId)
 
@@ -15,7 +15,8 @@ export default async function Navbar() {
           <div className="flex h-16 items-center justify-between">
             <div className="flex items-center">
               <div className="flex-shrink-0">
-                <Link href="/"><h1 className="font-medium text-pink-400 cursor-pointer text-xl">AniMap</h1></Link>
+                <Link href="/">
+                <h1 className="font-medium text-pink-400 cursor-pointer text-xl">AniMap</h1></Link>
               </div>
               <div className="hidden md:block">
                 {/* <div className="ml-10 flex items-baseline space-x-4">
@@ -31,7 +32,7 @@ export default async function Navbar() {
               </div>
             </div>
             <div>
-            {user ? (
+            {userId ? (
                     <ProfileMenu user={user}/>
                   ) : (
                     <Link

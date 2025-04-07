@@ -1,3 +1,4 @@
+
 import { cookies } from 'next/headers'
 import { UserSerivce } from "@/app/service/userService";
 
@@ -8,4 +9,9 @@ export function getUserFormCookie():string {
         return user_id?.value
     }
     return ""
+}
+
+export function deleteUserCookie() {
+    const cookieStore = cookies()
+    const user_id = cookieStore.delete('user_id')
 }

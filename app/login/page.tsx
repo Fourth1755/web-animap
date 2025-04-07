@@ -45,73 +45,26 @@ export default function Page() {
                     <h1>Sign In</h1>
                     <DialogBody className="space-y-4 pb-6">
                         <h3>Email</h3>
-                        <Input
+                            <Input
                                 label="Email"
                                 crossOrigin={undefined}
                                 value={formData.email}
                                 name="email"
                                 onChange={handleInputChange}
                             />
-                            <h3>Password</h3>
-                                                        <Input
+                        <h3>Password</h3>
+                            <Input
                                 label="Password"
+                                // type="password"
                                 crossOrigin={undefined}
                                 value={formData.password}
                                 name="password"
                                 onChange={handleInputChange}
                             />
                     </DialogBody>
-                    {/*<FormControl
-                        fullWidth
-                        sx={{
-                            color: 'white',
-                            mb: 3
-                        }}
-                        variant="standard"
-                    >
-                        
-                         <OutlinedInput
-                            id="outlined-adornment-password"
-                            className='textField'
-                            type={values.showPassword ? 'text' : 'password'}
-                            value={password}
-                            hiddenLabel
-                            required
-                            placeholder="password"
-                            onChange={handleChangePassword}
-                            endAdornment={
-                                <InputAdornment position="end">
-                                    <IconButton
-                                        aria-label="toggle password visibility"
-                                        onClick={handleClickShowPassword}
-                                        onMouseDown={handleMouseDownPassword}
-                                        edge="end"
-                                    >
-                                        {values.showPassword ? <VisibilityOff /> : <Visibility />}
-                                    </IconButton>
-                                </InputAdornment>
-                            }
-                        />
-                    </FormControl> */}
-                    <button className='login-button' onClick={handleSubmit}>Sign In</button>
-                    {/* <FormControlLabel
-                        label="Remember Me"
-                        sx={{
-                            '.MuiFormControlLabel-label': {
-                                color: 'white',
-                            },
-                        }}
-                        control={<Checkbox
-                            checked={checked}
-                            onChange={handleChangeChecked}
-                            sx={{
-                                color: pink[800],
-                                '&.Mui-checked': {
-                                    color: pink[600],
-                                },
-
-                            }}
-                        />} /> */}
+                    <Button 
+                        className='login-button' 
+                        onClick={handleSubmit}>Sign In</Button>
                     <div className='login-card-bottom'><p>New to animap?</p><Link href="/register">Sign Up now</Link></div>
                 </div>
             </div>
