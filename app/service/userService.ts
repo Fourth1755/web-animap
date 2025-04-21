@@ -38,14 +38,14 @@ export class UserSerivce{
         return response.data
     }
 
-    public async getUserByUUID(uuid:string){
+    public async getUserById(uuid:string){
         const response = await axios.get(`${this.url}/${uuid}`, {
             headers: this.getConfigHeaders(),
         })
         return response.data
     }
 
-    public async getUserInfoByUUID(userId:string):Promise<UserInfo> {
+    public async getUserInfoById(userId:string):Promise<UserInfo> {
         const user:UserInfo={
             name:"Fourth",
             picture:"https://i0.wp.com/www.animefeminist.com/wp-content/uploads/2024/07/Alya-in-Russian-1-scaled.jpg?fit=810%2C449&ssl=1",

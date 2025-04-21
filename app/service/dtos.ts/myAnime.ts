@@ -1,5 +1,5 @@
-type GetMyAnimeByUserUUIDResponse = {
-    id:number
+export type GetMyAnimeByUserUUIDResponse = {
+    id:string
     name: string;
     name_english: string
     episodes: number
@@ -12,14 +12,15 @@ type GetMyAnimeByUserUUIDResponse = {
     wallpaper: string;
 }
 
-type AddAnimeToListRequest = {
+export type AddAnimeToListRequest = {
     user_uuid:string
-    anime_id: number
+    anime_id: string
     score: number
     status: number
+    watched_year: string
 }
 
-type GetMyTopAnimeByUserUUIDResponse = {
+export type GetMyTopAnimeByUserUUIDResponse = {
     id:number
     anime_name: string;
     name_english: string
@@ -32,7 +33,8 @@ type GetMyTopAnimeByUserUUIDResponse = {
     type: number
     wallpaper: string;
 }
-type GetMyAnimeYearByUserUUIDResponseAnimeYearAnime = {
+
+export type GetMyAnimeYearByUserUUIDResponseAnimeYearAnime = {
     id:number
     name: string;
     name_english: string
@@ -51,7 +53,7 @@ type GetMyAnimeYearByUserUUIDResponseAnimeYear ={
     anime: GetMyAnimeYearByUserUUIDResponseAnimeYearAnime[]
 }
 
-type GetMyAnimeYearByUserUUIDResponse = {
+export type GetMyAnimeYearByUserUUIDResponse = {
     anime_year: GetMyAnimeYearByUserUUIDResponseAnimeYear[]
     total_year: number;
     total_anime: number;

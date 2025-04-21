@@ -1,5 +1,5 @@
 type GetSongsByAnimeIdResponseSongChannel = {
-    id: number
+    id: string
     channel: number
     type: number
     link: string
@@ -7,20 +7,20 @@ type GetSongsByAnimeIdResponseSongChannel = {
 }
 
 type GetSongsByAnimeIdResponseSongArtist = {
-    id: number
+    id: string
     name: string
     image: string
 }
 
 export type GetSongsByAnimeIdResponseSong = {
-    id: number
+    id: string
     name: string
     image: string
     description: string
     year: string
     type: number
     sequence: number
-    anime_id: number
+    anime_id: string
     song_channel: GetSongsByAnimeIdResponseSongChannel[]
     song_artist: GetSongsByAnimeIdResponseSongArtist[]
 }

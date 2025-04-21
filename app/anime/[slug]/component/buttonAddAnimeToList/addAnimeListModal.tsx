@@ -15,26 +15,13 @@ import "./addAnimeListModal.scss";
 import AddAnimeToList from "./action";
 import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
-
-type AnimeData = {
-  id: number;
-  name: string;
-  name_english: string;
-  episodes: number;
-  seasonal: string;
-  image: string;
-  description: string;
-  duration: string;
-  year: string;
-  type: number;
-  wallpaper: string;
-};
+import { CreateAnimeRequest } from "@/app/service/dtos.ts/anime";
 
 type PropsAddAnimeModal = {
   open: boolean;
   handler: () => void;
   isEdit: boolean;
-  anime: AnimeData;
+  anime: CreateAnimeRequest;
   user: string;
 };
 
@@ -43,14 +30,6 @@ type FormData = {
   anime_id: number;
   score: string;
   year: string;
-};
-
-type AddAnimeToListRequest = {
-  user_uuid: string;
-  anime_id: number;
-  score: number;
-  status: number;
-  watched_year: string;
 };
 
 const scoreList = [

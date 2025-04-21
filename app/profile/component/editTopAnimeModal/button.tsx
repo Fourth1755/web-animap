@@ -2,6 +2,7 @@
 import EditTopAnimeModal from "./editTopAnimeModal";
 import { useState } from "react";
 import { Button } from "../../../../app/components/mtailwind";
+import { GetMyAnimeByUserUUIDResponse } from "@/app/service/dtos.ts/myAnime";
 
 type PropEditTopAnimeButton ={
     name: string

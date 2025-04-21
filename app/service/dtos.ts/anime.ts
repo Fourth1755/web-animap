@@ -1,15 +1,39 @@
-export type AnimeList = {
-    id: number;
-    name: String;
+export type GetAnimeListResponse = {
+    id: string;
+    name: string;
     episodes:number
-    seasonal: String;
-    year: String;
-    image:String
-    score: String;
-  }
+    seasonal: string;
+    year: string;
+    image:string
+    score: string;
+}
 
-export type CreateAnimeData = {
-    id: number;
+export type GetAnimesByCategoryResponse = {
+    id: string;
+    name: string;
+    episodes:number
+    seasonal: string;
+    year: string;
+    image:string
+    score: string;
+}
+
+export type CreateAnimeRequest = {
+    id: string;
+    name: string;
+    name_english: string
+    episodes: number
+    seasonal: string;
+    image: string
+    description: string
+    duration: string
+    year: string;
+    type: number
+    wallpaper: string
+};
+
+export type UpdateAnimeRequest = {
+    id: string;
     name: string;
     name_english: string
     episodes: number
@@ -22,7 +46,7 @@ export type CreateAnimeData = {
 };
 
 type GetAnimeByIdResponseCategories = {
-    id:number
+    id:string
     name:string
 }
 
@@ -32,7 +56,7 @@ type GetAnimeByIdResponseStduio = {
 }
 
 export type GetAnimeByIdResponse = {
-    id: number,
+    id: string,
     name: string,
     name_english:string
     year: string,

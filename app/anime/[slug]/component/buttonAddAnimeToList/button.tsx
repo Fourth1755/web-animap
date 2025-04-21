@@ -2,26 +2,13 @@
 import AddAnimeModal from "./addAnimeListModal";
 import { useState } from "react";
 import { Button } from "../../../../components/mtailwind";
+import { CreateAnimeRequest } from "@/app/service/dtos.ts/anime";
 
 type PropAddAnimeButton ={
     name: string
     isEdit: boolean
-    anime:AnimeData
+    anime:CreateAnimeRequest
     user:string
-}
-
-type AnimeData = {
-    id:number
-    name: string;
-    name_english: string
-    episodes: number
-    seasonal: string;
-    image: string
-    description: string
-    duration: string
-    year: string;
-    type: number
-    wallpaper: string;
 }
 
 export default function AddAnimeButton(props:PropAddAnimeButton) {

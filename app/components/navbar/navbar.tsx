@@ -6,7 +6,7 @@ import { UserSerivce } from "@/app/service/userService";
 export default async function Navbar() {
   const userId =await getUser();
   const userSerivce = new UserSerivce()
-  const user = await userSerivce.getUserInfoByUUID(userId)
+  const user = await userSerivce.getUserInfoById(userId)
 
   return (
     <div className="min-h-full ">

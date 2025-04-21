@@ -11,7 +11,7 @@ export default async function Page() {
   const userId = getUserFormCookie();
   const myAnimeService = new MyAnimeService();
   const userSerivce = new UserSerivce();
-  const user = await userSerivce.getUserInfoByUUID(userId)
+  const user = await userSerivce.getUserInfoById(userId)
 
   const animes = await myAnimeService.getMyAnimeByUserUUID(userId)
   const animeYear = await myAnimeService.getMyAnimeYearByUserUUID(userId)

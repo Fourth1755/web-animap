@@ -19,7 +19,7 @@ export class SongSerivce{
         }
     }
 
-    public async getSongsByAnimeId(id: number):Promise<GetSongsByAnimeIdResponse> {
+    public async getSongsByAnimeId(id: string):Promise<GetSongsByAnimeIdResponse> {
         const response = await axios.get(`${this.url}/anime/${id}`, {
             headers: this.getConfigHeaders(),
         })

@@ -1,5 +1,6 @@
 import axios from "axios";
 import { ConnectAnimapService } from "./builder";
+import { AddAnimeToListRequest, GetMyAnimeByUserUUIDResponse, GetMyAnimeYearByUserUUIDResponse, GetMyTopAnimeByUserUUIDResponse } from "./dtos.ts/myAnime";
 
 
 

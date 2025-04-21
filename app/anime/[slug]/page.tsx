@@ -2,7 +2,7 @@ import "./page.scss";
 import { getUser } from "./action";
 import AddAnimeButton from "./component/buttonAddAnimeToList/button";
 import Link from "next/link";
-import { AnimeSerivce } from "@/app/service/animeService";
+import { AnimeService } from "@/app/service/animeService";
 import { SongSerivce } from "@/app/service/songService";
 import {
   GetSongsByAnimeIdResponse,
@@ -10,7 +10,7 @@ import {
 } from "@/app/service/dtos.ts/song";
 
 export default async function Page({ params }: any) {
-  const animeService = new AnimeSerivce();
+  const animeService = new AnimeService();
   const songSerivce = new SongSerivce();
   const anime = await animeService.getAnime(params.slug);
   const songs = await songSerivce.getSongsByAnimeId(anime.id);
