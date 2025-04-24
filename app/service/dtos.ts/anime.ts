@@ -71,4 +71,5 @@ export type GetAnimeByIdResponse = {
     studios: GetAnimeByIdResponseStduio[],
     wallpaper: string
     trailer: string
+    trailer_embed: string
 }

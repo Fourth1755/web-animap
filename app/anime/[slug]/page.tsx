@@ -122,7 +122,7 @@ export default async function Page({ params }: any) {
             <iframe
               className="trailer-iframe"
               id="player"
-              src={`${anime.trailer}`}
+              src={`${anime.trailer_embed}`}
               title="YouTube video player"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             ></iframe>
