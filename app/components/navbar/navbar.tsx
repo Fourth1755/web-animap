@@ -1,12 +1,12 @@
 import Link from "next/link";
 import { getUser } from "./action";
 import ProfileMenu from "./profileMenu";
-import { UserSerivce } from "@/app/service/userService";
+import { UserService } from "@/app/service/userService";
 
 export default async function Navbar() {
   const userId =await getUser();
-  const userSerivce = new UserSerivce()
-  const user = await userSerivce.getUserInfoById(userId)
+  const userService = new UserService()
+  const user = await userService.getUserInfoById(userId)
 
   return (
     <div className="min-h-full ">

@@ -44,7 +44,7 @@ export default async function Profile(props: PropProfile) {
                             myAnimeList={myAnime}/>   
                     </div>
                     <div className="grid grid-cols-2 gap-2 pt-4">
-                        {myTopAnimeList.map((item,index)=>(
+                        {myTopAnimeList?.map((item,index)=>(
                             <div key={index} className="bg-black flex rounded-lg">
                                 <div className="m-2 flex items-center">
                                     <h1 className="text-xl font-bold">{index+1}</h1></div>

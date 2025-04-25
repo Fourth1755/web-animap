@@ -1,5 +1,5 @@
 "use client";
-import { DialogBody, Input, Button } from "../components/mtailwind";
+import { Input } from "../components/mtailwind";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { login } from "./action";
@@ -25,12 +25,12 @@ export default function Page() {
         setFormData({ ...formData, [name]: value });
     }
 
-    const handleSubmit = async () => {
+    const handleSubmit = () => {
         const user: UserData = {
             email: formData.email,
             password: formData.password
         }
-        await login(user)
+        login(user)
     }
     return (
         <div>
@@ -43,7 +43,7 @@ export default function Page() {
             <div className='login-container'>
                 <div className='login-card'>
                     <h1>Sign In</h1>
-                    <DialogBody className="space-y-4 pb-6">
+                    <div className="space-y-4 pb-6">
                         <h3>Email</h3>
                             <Input
                                 label="Email"
@@ -61,10 +61,10 @@ export default function Page() {
                                 name="password"
                                 onChange={handleInputChange}
                             />
-                    </DialogBody>
-                    <Button 
+                    </div>
+                    <button 
                         className='login-button' 
-                        onClick={handleSubmit}>Sign In</Button>
+                        onClick={handleSubmit}>Sign In</button>
                     <div className='login-card-bottom'><p>New to animap?</p><Link href="/register">Sign Up now</Link></div>
                 </div>
             </div>

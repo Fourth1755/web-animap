@@ -2,7 +2,7 @@
 
 import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
-import { UserSerivce } from "@/app/service/userService";
+import { UserService } from "@/app/service/userService";
 import { cookies } from 'next/headers'
 
 type UserData = {
@@ -11,9 +11,9 @@ type UserData = {
 }
 
 export async function login(user: UserData) {
-  const userSerivce = new UserSerivce();
+  const userService = new UserService();
   try {
-    const res = await userSerivce.login(user)
+    const res = await userService.login(user)
     cookies().set('token', res.token)
     cookies().set('user_id', res.user_id)
   } catch (error) {

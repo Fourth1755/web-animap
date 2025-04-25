@@ -1,5 +1,6 @@
 import axios from "axios";
 import { ConnectAnimapService } from "./builder";
+import { UserInfo,RegisterRequest } from "./dtos.ts/user";
 
 type UserData = {
     email: string;
@@ -12,9 +13,10 @@ type AddAnimeToListRequest = {
     score: number
     status: number
 }
-export class UserSerivce{
+export class UserService{
     private url:string
     private loginUrl:string
+    private registerUrl:string
     private authorization: string
     
     constructor(){
@@ -22,6 +24,7 @@ export class UserSerivce{
         this.url = connectAnimap.getUserUrl()
         this.loginUrl = connectAnimap.getLoginUrl()
         this.authorization = connectAnimap.getAuthorization()
+        this.registerUrl = connectAnimap.getRegisterUrl()
     }
 
     private getConfigHeaders(){
@@ -33,6 +36,13 @@ export class UserSerivce{
 
     public async login(user: UserData){
         const response = await axios.post(this.loginUrl,user, {
+            headers: this.getConfigHeaders(),
+        })
+        return response.data
+    }
+
+    public async register(request: RegisterRequest){
+        const response = await axios.post(this.registerUrl,request, {
             headers: this.getConfigHeaders(),
         })
         return response.data

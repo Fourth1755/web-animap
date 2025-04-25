@@ -73,3 +73,48 @@ $colorDarkDarkPink :#371037;
     background-color: $colorWhite;
     border-radius: 4px;
 }
+
+.register-password{
+    margin-top: 10px;
+    width: 100%;
+    border-radius: 4px;
+    background-color: #151414;
+    h5{
+        color: rgba(255, 255, 255, 0.40);
+        padding: 10px;
+        font-size: 18px;
+        font-weight: 300;
+    }
+}
+.valid {
+    color: green;
+    padding: 8px;
+    display: flex;
+    p{
+        color: rgba(255, 255, 255, 0.60);
+    }
+}
+  
+.valid:before {
+    //position: relative;
+    left: -35px;
+    margin-right: 6px;
+    content: "✔";
+}
+  
+/* Add a red text color and an "x" when the requirements are wrong */
+.invalid {
+    color: red;
+    padding: 8px;
+    display: flex;
+    p{
+        color: rgba(255, 255, 255, 0.60);
+    }
+}
+  
+.invalid:before {
+    //position: relative;
+    left: -35px;
+    margin-right: 6px;
+    content: "✖";
+}
