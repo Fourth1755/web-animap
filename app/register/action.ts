@@ -15,13 +15,11 @@ export async function register(user: RegisterRequest) {
   const userService = new UserService();
   try {
     const responseRegister = await userService.register(user)
-    console.log(responseRegister.data);
     const loginRequest:UserData ={
         email: user.email,
         password:user.password
     }
     const responseLogin = await userService.login(loginRequest)
-    console.log(responseLogin.data);
     cookies().set('token', responseLogin.token)
     cookies().set('user_id', responseLogin.user_id)
   } catch (error) {

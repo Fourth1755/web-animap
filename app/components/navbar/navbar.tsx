@@ -1,10 +1,11 @@
 import Link from "next/link";
-import { getUser } from "./action";
+import { getUser, logIn } from "./action";
 import ProfileMenu from "./profileMenu";
 import { UserService } from "@/app/service/userService";
+import LoginButton from "./loginButton";
 
 export default async function Navbar() {
-  const userId =await getUser();
+  const userId = await getUser();
   const userService = new UserService()
   const user = await userService.getUserInfoById(userId)
 
@@ -35,12 +36,7 @@ export default async function Navbar() {
             {userId ? (
                     <ProfileMenu user={user}/>
                   ) : (
-                    <Link
-                      href="/login"
-                      className="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"
-                    >
-                      Login
-                    </Link>
+                    <LoginButton/>
                   )}
             </div>
           </div>

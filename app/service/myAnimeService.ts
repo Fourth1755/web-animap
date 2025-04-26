@@ -24,7 +24,6 @@ export class MyAnimeService{
     }
 
     public async getMyAnimeByUserUUID(uuid: string):Promise<GetMyAnimeByUserUUIDResponse[]> {
-        console.log("getAnimeByUserSid",uuid)
         const response = await axios.get(`${this.url}/${uuid}`, {
             headers: this.getConfigHeaders(),
         })
@@ -32,7 +31,6 @@ export class MyAnimeService{
     }
 
     public async addAnimeToList(req: AddAnimeToListRequest) {
-        console.log("addAnimeToList",req)
         const response = await axios.post(`${this.url}`,req, {
             headers: this.getConfigHeaders(),
         })
@@ -40,7 +38,6 @@ export class MyAnimeService{
     }
 
     public async getMyTopAnimeByUserUUID(uuid: string):Promise<GetMyTopAnimeByUserUUIDResponse[]> {
-        console.log("getMyTopAnimeByUserUUID",uuid)
         const response = await axios.get(`${this.url}/top-anime/${uuid}`, {
             headers: this.getConfigHeaders(),
         })
@@ -48,7 +45,6 @@ export class MyAnimeService{
     }
 
     public async getMyAnimeYearByUserUUID(uuid: string):Promise<GetMyAnimeYearByUserUUIDResponse> {
-        console.log("getMyAnimeYearByUserUUID",uuid)
         const response = await axios.get(`${this.url}/anime-year-list/${uuid}`, {
             headers: this.getConfigHeaders(),
         })
