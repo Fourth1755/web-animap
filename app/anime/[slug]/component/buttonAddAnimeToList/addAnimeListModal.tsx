@@ -34,10 +34,10 @@ type FormData = {
 };
 
 const scoreList = [
-  { id: "1", name: "Dislike" },
-  { id: "2", name: "Movie" },
-  { id: "3", name: "Movie" },
-  { id: "4", name: "Movie" },
+  // { id: "1", name: "Dislike" },
+  // { id: "2", name: "Movie" },
+  // { id: "3", name: "Movie" },
+  // { id: "4", name: "Movie" },
   { id: "5", name: "Normal" },
   { id: "6", name: "Movie" },
   { id: "7", name: "Like" },
@@ -45,17 +45,8 @@ const scoreList = [
   { id: "9", name: "Movie" },
   { id: "10", name: "Lover" },
 ];
-const yearAnimeList: string[] = [];
 
-function setYearAnimeDropDown(year: string) {
-  const yearNow = new Date().getFullYear();
-  for (let i = +year; i <= yearNow; i++) {
-    let yearString = i.toString();
-    if(yearAnimeList.indexOf(yearString) == -1){
-      yearAnimeList.push(yearString);
-    }
-  }
-}
+
 
 export default function AddAnimeModal(prop: PropsAddAnimeModal) {
   const open = prop.open;
@@ -79,6 +70,19 @@ export default function AddAnimeModal(prop: PropsAddAnimeModal) {
     score: "",
     year: "",
   });
+  const [yearAnimeList , setYearAnimeList] = useState<string[]>([])
+
+  function setYearAnimeDropDown(year: string) {
+    const yearNow = new Date().getFullYear();
+    let yearList = yearAnimeList;
+    for (let i = +year; i <= yearNow; i++) {
+      let yearString = i.toString();
+      if(yearList.indexOf(yearString) == -1){
+        yearList.push(yearString);
+      }
+    }
+    setYearAnimeList(yearList)
+  }
 
   const handleChangeScore = (val = "") => {
     setFormData({ ...formData, score: val });
@@ -97,7 +101,6 @@ export default function AddAnimeModal(prop: PropsAddAnimeModal) {
       status: 1,
       watched_year: formData.year,
     };
-    console.log(request)
     handleOpen();
     MySwal.fire({
       title: <p>Loading</p>,
@@ -116,13 +119,14 @@ export default function AddAnimeModal(prop: PropsAddAnimeModal) {
           });
       },
     });
+    // setYearAnimeList([])
   };
 
   useEffect(() => {
     if (animeData?.year) {
       setYearAnimeDropDown(animeData?.year);
     }
-  },[animeData]);
+  },[]);
   return (
     <>
       <Dialog
