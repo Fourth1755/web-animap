@@ -54,4 +54,9 @@ export class ConnectAnimapService {
         const url = new URL("/my-anime", this.url);
         return url.toString()
     }
+
+    public getCommoneUrl(){
+        const url = new URL("/common", this.url);
+        return url.toString()
+    }
 }

@@ -77,7 +77,12 @@ export default async function Page({ params }: any) {
               {anime.name}
             </h1>
             <p className="mb-3 text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400">
-              {anime.seasonal} {anime.year}, {anime.episodes} ep ,{" "}
+              <Link 
+                href={`/anime/season/${anime.seasonal}/${anime.year}`}
+                className="hover:underline">
+                  {anime.seasonal} {anime.year}
+              </Link>
+              , {anime.episodes} ep ,{" "}
               {anime.duration}
             </p>
           </div>
