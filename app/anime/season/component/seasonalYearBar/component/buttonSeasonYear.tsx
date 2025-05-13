@@ -11,7 +11,7 @@ type Props = {
 }
 
 let linkSeason = {
-    color:`#FFFFFF`
+    color:`#9e9e9e`
 }
 
 let linkSeasonNow={
@@ -27,7 +27,7 @@ export default function ButtonSeasonYear(props:Props) {
                 className='link-season'
                 >
             {item.seasonal} {item.year}
-        </div>
+            </div>
         </Link>
 
     )

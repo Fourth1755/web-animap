@@ -2,7 +2,7 @@ import { AnimeService } from "@/app/service/animeService";
 import { CommonService } from "@/app/service/commonService";
 import SeasonalYearBar from "../../component/seasonalYearBar/seasonalYearBar";
 import SeasonWallPaper from "../../component/seasonWallPaper";
-import SeasonalAnime from "../../component/seasonalAnime";
+import SeasonalAnime from "../../component/seasonalAnime/seasonalAnime";
 
 export default async function Page({ params }: any){
     const year = params.slug
@@ -11,9 +11,9 @@ export default async function Page({ params }: any){
     const seasonalAndYear = await commonService.getSeasonalAndYear();
     return(
         <>
-            <SeasonWallPaper season="fall" year={year} />
-            <SeasonalYearBar seasonalAndYear={seasonalAndYear} season="fall" year={year}/>
-            <SeasonalAnime/>
+            <SeasonWallPaper seasonal="fall" year={year} />
+            <SeasonalYearBar seasonalAndYear={seasonalAndYear} seasonal="fall" year={year}/>
+            <SeasonalAnime seasonal="fall" year={year}/>
         </>
     )
 }

@@ -14,7 +14,7 @@ import ButtonSeasonYear from './component/buttonSeasonYear';
 
 type Props = {
     seasonalAndYear: GetSeasonalAndYearResponse
-    season: string
+    seasonal: string
     year: string
 }
 
@@ -26,7 +26,7 @@ let linkSeasonNow={
   color:`#FF1493`
 }
 export default function SeasonalYearBar(props: Props) {
-    const { seasonalAndYear, season, year } = props
+    const { seasonalAndYear, seasonal, year } = props
 
     // Ref to store the Swiper instance
     const swiperRef = useRef<SwiperCore | null>(null);
@@ -34,7 +34,6 @@ export default function SeasonalYearBar(props: Props) {
     const findIndexOfSeasonlYear = (seasonalAndYear: GetSeasonalAndYearResponse, season:string, year:string) =>{
       for(let i =0; i<= seasonalAndYear.data.length; i++){
         if(seasonalAndYear.data[i].seasonal == season && seasonalAndYear.data[i].year == year) {
-          console.log(i)
           return i
         }
       }
@@ -42,9 +41,9 @@ export default function SeasonalYearBar(props: Props) {
     }
 
     useEffect(()=>{
-      let index = findIndexOfSeasonlYear(seasonalAndYear, season, year)
+      let index = findIndexOfSeasonlYear(seasonalAndYear, seasonal, year)
       swiperRef.current?.slideTo(index,0)
-    },[season, year])
+    },[seasonal, year])
     return(
       <div>
         <div className='select-season-bar'>
@@ -68,7 +67,7 @@ export default function SeasonalYearBar(props: Props) {
                     <ButtonSeasonYear 
                       item={item} 
                       year={year} 
-                      season={season}
+                      season={seasonal}
                       />
                   </SwiperSlide>
                 )}

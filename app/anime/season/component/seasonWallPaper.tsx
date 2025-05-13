@@ -1,13 +1,13 @@
 type Props = {
-    season: string
+    seasonal: string
     year: string
 }
 export default function SeasonWallPaper(props : Props) {
-    const { season , year} = props
+    const { seasonal , year} = props
     let seasonWallpaper = ""
 
-    const getSeasonWallpaper = (season:string) =>{
-        switch (season) {
+    const getSeasonWallpaper = (seasonal:string) =>{
+        switch (seasonal) {
             case "winter":
                 return 'https://wallpapercave.com/wp/wp14637278.jpg'
             case "spring":
@@ -22,7 +22,7 @@ export default function SeasonWallPaper(props : Props) {
     let dropzoneStyle = {
         width: `100%`,
         height: `330px`,
-        backgroundImage: `url(${getSeasonWallpaper(season)})`,
+        backgroundImage: `url(${getSeasonWallpaper(seasonal)})`,
         backgroundRepeat: `no-repeat`,
         backgroundPosition: `center center`,
         backgroundSize: `cover`
@@ -33,7 +33,7 @@ export default function SeasonWallPaper(props : Props) {
                 <div className="container mx-auto md:px-40 px-5">
                     <div className="py-7">
                         <h1 className="mb-3 text-2xl font-extrabold leading-none tracking-tight md:text-2xl lg:text-3xl dark:text-white capitalize">
-                                {season} {year}
+                                {seasonal} {year}
                         </h1>
                     </div>
                 </div>

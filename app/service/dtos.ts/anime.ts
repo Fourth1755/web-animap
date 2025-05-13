@@ -73,3 +73,38 @@ export type GetAnimeByIdResponse = {
     trailer: string
     trailer_embed: string
 }
+
+export type GetAnimesBySeasonalAndYearRequest = {
+    seasonal: string;
+    year: string;
+}
+
+type GetAnimesBySeasonalAndYearResponseStduio = {
+    id:string
+    name:string
+}
+
+type GetAnimesBySeasonalAndYearResponseUserAnime = {
+    user_watched: boolean
+    user_watched_year: string
+    user_score: string
+}
+
+type GetAnimesBySeasonalAndYearResponseAnimeList= {
+    id: string;
+    name: string;
+    episodes:number
+    seasonal: string;
+    year: string;
+    image:string
+    score: string;
+    duration: string;
+    studios: GetAnimesBySeasonalAndYearResponseStduio[],
+    // รอเอามาเพิ่ม ไว้เช็คว่าคนนี้ดูเรื่องนี้ยัง
+    user_anime: GetAnimesBySeasonalAndYearResponseUserAnime
+}
+export type GetAnimesBySeasonalAndYearResponse = {
+    year: string
+    seasonal: string
+    anime_list: GetAnimesBySeasonalAndYearResponseAnimeList[]
+}
