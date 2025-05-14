@@ -55,6 +55,11 @@ type GetAnimeByIdResponseStduio = {
     name:string
 }
 
+type GetAnimeByIdResponseUniverse = {
+    id:string
+    name:string
+}
+
 export type GetAnimeByIdResponse = {
     id: string,
     name: string,
@@ -72,6 +77,7 @@ export type GetAnimeByIdResponse = {
     wallpaper: string
     trailer: string
     trailer_embed: string
+    universe: 
 }
 
 export type GetAnimesBySeasonalAndYearRequest = {
