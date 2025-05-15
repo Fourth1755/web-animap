@@ -8,16 +8,6 @@ export type GetAnimeListResponse = {
     score: string;
 }
 
-export type GetAnimesByCategoryResponse = {
-    id: string;
-    name: string;
-    episodes:number
-    seasonal: string;
-    year: string;
-    image:string
-    score: string;
-}
-
 export type CreateAnimeRequest = {
     id: string;
     name: string;
@@ -77,7 +67,7 @@ export type GetAnimeByIdResponse = {
     wallpaper: string
     trailer: string
     trailer_embed: string
-    universe: 
+    universe: GetAnimeByIdResponseUniverse
 }
 
 export type GetAnimesBySeasonalAndYearRequest = {
@@ -109,8 +99,30 @@ type GetAnimesBySeasonalAndYearResponseAnimeList= {
     // รอเอามาเพิ่ม ไว้เช็คว่าคนนี้ดูเรื่องนี้ยัง
     user_anime: GetAnimesBySeasonalAndYearResponseUserAnime
 }
+
 export type GetAnimesBySeasonalAndYearResponse = {
     year: string
     seasonal: string
     anime_list: GetAnimesBySeasonalAndYearResponseAnimeList[]
+}
+
+type GetAnimesByCategoryResponseAnimeList= {
+    id: string;
+    name: string;
+    episodes:number
+    seasonal: string;
+    year: string;
+    image:string
+    score: string;
+    duration: string;
+    studios: GetAnimesBySeasonalAndYearResponseStduio[],
+    // รอเอามาเพิ่ม ไว้เช็คว่าคนนี้ดูเรื่องนี้ยัง
+    user_anime: GetAnimesBySeasonalAndYearResponseUserAnime
+}
+
+export type GetAnimesByCategoryResponse = {
+    id: string
+    name: string
+    wallpaper: string
+    anime_list: GetAnimesByCategoryResponseAnimeList[]
 }

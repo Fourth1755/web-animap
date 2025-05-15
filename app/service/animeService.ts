@@ -47,7 +47,7 @@ export class AnimeService{
         return response.data
     }
 
-    public async getAnimesByCategory(id:string):Promise<GetAnimesByCategoryResponse[]> {
+    public async getAnimesByCategory(id:string):Promise<GetAnimesByCategoryResponse> {
         const response = await axios.get(`${this.url}/category/${id}`, {
             headers: this.getConfigHeaders(),
         })

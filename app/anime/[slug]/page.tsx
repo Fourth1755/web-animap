@@ -139,9 +139,9 @@ export default async function Page({ params }: any) {
             ></iframe>
             <div className="pt-5">
               {anime.categories?.map((item) => (
-                <button key={item.id} className="anime-category-button">
-                  {item.name}
-                </button>
+                <Link href={`category/${item.id}`} key={item.id} >
+                    <button className="anime-category-button">{item.name}</button>
+                </Link>
               ))}
             </div>
           </div>

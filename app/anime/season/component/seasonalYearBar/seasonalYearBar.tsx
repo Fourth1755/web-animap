@@ -25,6 +25,7 @@ let linkSeason = {
 let linkSeasonNow={
   color:`#FF1493`
 }
+
 export default function SeasonalYearBar(props: Props) {
     const { seasonalAndYear, seasonal, year } = props
 
