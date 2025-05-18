@@ -67,7 +67,7 @@ export type GetAnimeByIdResponse = {
     wallpaper: string
     trailer: string
     trailer_embed: string
-    universe: GetAnimeByIdResponseUniverse
+    categoryUniverse: GetAnimeByIdResponseUniverse[]
 }
 
 export type GetAnimesBySeasonalAndYearRequest = {
@@ -125,4 +125,26 @@ export type GetAnimesByCategoryResponse = {
     name: string
     wallpaper: string
     anime_list: GetAnimesByCategoryResponseAnimeList[]
+}
+
+type GetAnimesByCategoryUniverseResponseAnimeList= {
+    id: string;
+    name: string;
+    episodes:number
+    seasonal: string;
+    year: string;
+    image:string
+    score: string;
+    duration: string;
+    description: string;
+    studios: GetAnimesBySeasonalAndYearResponseStduio[],
+    // รอเอามาเพิ่ม ไว้เช็คว่าคนนี้ดูเรื่องนี้ยัง
+    user_anime: GetAnimesBySeasonalAndYearResponseUserAnime
+}
+
+export type GetAnimesByCategoryUniverseResponse = {
+    id: string
+    name: string
+    wallpaper: string
+    anime_list: GetAnimesByCategoryUniverseResponseAnimeList[]
 }

@@ -1,0 +1,15 @@
+$colorPink:#FF1493;
+$colorBlack:#000000;
+$colorWhite:#FFFFFF;
+$colorDarkPink:#201020;
+$colorDarkDarkPink :#371037;
+.anime-universe-item-detail{
+    display: flex;
+    justify-items: end;
+    background-position: center center;
+    background-size: cover;
+    height: 220px;
+    width: 160px;
+    border-radius: 12px;
+    cursor: pointer;
+}

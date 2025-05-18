@@ -32,7 +32,7 @@ export default function ListAnimeBlockItem(props :Props) {
     return (
         <div className="flex justify-between m-2 p-1 bg-black">
             <div className="flex">
-                <Link href={`anime/${anime.id}`}>
+                <Link href={`/anime/${anime.id}`}>
                         <div className='anime-card-item' style={{backgroundImage:`url(${anime.image})`}} >
                             {anime.user_anime?<h5>Watched</h5>:<></>}
                         </div>
@@ -46,7 +46,7 @@ export default function ListAnimeBlockItem(props :Props) {
                         {anime.duration}</p>
                     <p className="text-m font-normal text-gray-600">Studio: 
                     {anime.studios?.map((item) => (
-                  <Link key={item.id} href={`studio/${item.id}`}>
+                  <Link key={item.id} href={`/studio/${item.id}`}>
                     <p className="pl-1 text-white">{item.name}</p>
                   </Link>
                 ))}

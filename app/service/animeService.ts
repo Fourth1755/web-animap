@@ -1,6 +1,6 @@
 import axios from "axios";
 import { ConnectAnimapService } from "./builder";
-import { GetAnimeListResponse, CreateAnimeRequest, GetAnimeByIdResponse, UpdateAnimeRequest, GetAnimesByCategoryResponse, GetAnimesBySeasonalAndYearResponse, GetAnimesBySeasonalAndYearRequest } from "./dtos.ts/anime";
+import { GetAnimeListResponse, CreateAnimeRequest, GetAnimeByIdResponse, UpdateAnimeRequest, GetAnimesByCategoryResponse, GetAnimesBySeasonalAndYearResponse, GetAnimesBySeasonalAndYearRequest, GetAnimesByCategoryUniverseResponse } from "./dtos.ts/anime";
 
 export class AnimeService{
     private url:string
@@ -49,6 +49,13 @@ export class AnimeService{
 
     public async getAnimesByCategory(id:string):Promise<GetAnimesByCategoryResponse> {
         const response = await axios.get(`${this.url}/category/${id}`, {
+            headers: this.getConfigHeaders(),
+        })
+        return response.data
+    }
+
+        public async getAnimesByCategoryUniverse(id:string):Promise<GetAnimesByCategoryUniverseResponse> {
+        const response = await axios.get(`${this.url}/category-universe/${id}`, {
             headers: this.getConfigHeaders(),
         })
         return response.data

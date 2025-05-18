@@ -121,12 +121,13 @@ export default async function Page({ params }: any) {
                   </Link>
                 ))}
               </span>
+              {anime.categoryUniverse?              
               <span className="flex pt-2 text-gray-500">
-                <p className="pr-2">Universe:</p>
-                  <Link href={`univers/${anime.universe.id}`}>
-                    <p className="pl-1 text-white">{anime.universe.name}</p>
+                <p className="pr-2">Timeline:</p>
+                  <Link href={`universe/${anime.categoryUniverse[0].id}`}>
+                    <p className="pl-1 text-white">{anime.categoryUniverse[0].name}</p>
                   </Link>
-              </span>
+              </span>:<></>}
             </div>
           </div>
           <div>
