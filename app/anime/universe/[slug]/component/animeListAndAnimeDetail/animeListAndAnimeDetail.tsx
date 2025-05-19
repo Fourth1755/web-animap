@@ -44,6 +44,7 @@ export default function AnimeListAndAnimeDetail(props:Props) {
         <div className="flex">
             <UniverseAnimeList animes={animes} handler={handleChange} />
             <UniverseAnimeDetail anime={animeShow}/>
+            <div>Footer</div>
         </div>
     )
 }

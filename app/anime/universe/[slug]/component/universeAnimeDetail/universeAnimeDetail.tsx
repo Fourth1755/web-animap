@@ -32,7 +32,7 @@ type Props = {
 export default function UniverseAnimeDetail(props : Props) {
     const { anime } = props
     return(
-        <div className="w-2/5 bg-black">
+        <div className="w-2/5 bg-black h-full pb-10">
             <div className="flex justify-center py-2">
                 <h1 className="font-medium text-2xl">{anime.name}</h1>
             </div>

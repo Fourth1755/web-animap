@@ -50,7 +50,7 @@ export default function UniverseAnimeList(props : Props){
         handleChange(id)
     }
     return(
-        <div className="container mx-auto md:px-40 px-5">
+        <div className='container mx-auto md:px-40 px-5 overscroll-contain overflow-y-scroll'>
             <div>
                 <button>เรียงลำดับ</button>
             </div>
@@ -87,7 +87,7 @@ export default function UniverseAnimeList(props : Props){
                                 <p className="text-m font-normal text-gray-600">Studio: 
                                 {anime.studios?.map((item) => (
                             <Link key={item.id} href={`studio/${item.id}`}>
-                                <p className="pl-1 text-white">{item.name}</p>
+                                <span className="pl-1 text-gray-600">{item.name}</span>
                             </Link>
                             ))}
                                 </p>
