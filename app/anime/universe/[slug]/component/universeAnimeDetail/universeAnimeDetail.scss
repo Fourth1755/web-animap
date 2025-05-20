@@ -13,3 +13,12 @@ $colorDarkDarkPink :#371037;
     border-radius: 12px;
     cursor: pointer;
 }
+
+.cutoff-test-content{
+   overflow: hidden;
+   display: -webkit-box;
+   -webkit-line-clamp: 12; /* number of lines to show */
+    line-clamp: 12; 
+   -webkit-box-orient: vertical;
+    
+}

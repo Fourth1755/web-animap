@@ -27,12 +27,18 @@ type AnimeItem = {
     description: string
     user_anime: UserAnime
 }
-
+type CategoryItem = {
+    id: string
+    wallpaper:string
+    name:string
+}
 type Props = {
     animes: AnimeItem[];
+    category:CategoryItem
 }
+
 export default function AnimeListAndAnimeDetail(props:Props) {
-    const { animes } = props
+    const { animes ,category } = props
     const [animeShow,setAnimeShow] = useState<AnimeItem>(animes[0])
     const [animeIdSelect, setAnimeIdSelect] = useState(animes[0].id);
     const handleChange = (id:string) => setAnimeIdSelect(id);
@@ -42,9 +48,8 @@ export default function AnimeListAndAnimeDetail(props:Props) {
     },[animeIdSelect])
     return(
         <div className="flex">
-            <UniverseAnimeList animes={animes} handler={handleChange} />
+            <UniverseAnimeList animes={animes} handler={handleChange} category={category} />
             <UniverseAnimeDetail anime={animeShow}/>
-            <div>Footer</div>
         </div>
     )
 }
