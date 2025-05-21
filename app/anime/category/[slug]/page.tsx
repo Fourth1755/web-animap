@@ -6,7 +6,7 @@ export default async function Page({ params }: any) {
     const animeService = new AnimeService();
     const category = await animeService.getAnimesByCategory(params.slug);
     return (
-        <div>
+        <div className="pt-16">
             <WallpaperAnime link={category.wallpaper} name={category.name}/>
             <ListAnimeBlock animes={category.anime_list}/>
         </div>

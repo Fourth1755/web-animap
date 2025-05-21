@@ -17,7 +17,7 @@ export default async function Page() {
   const animeYear = await myAnimeService.getMyAnimeYearByUserUUID(userId)
 
   return (
-    <>
+    <div className='pt-16'>
       <Profile user={user}/>
       <SliderMyAnime tag="My Anime List" animeList={animes} />
       {
@@ -25,6 +25,6 @@ export default async function Page() {
           return <SliderMyAnime tag={"Watched in "+item.year} animeList={item.anime} key={index}/>
         })
       }
-    </>
+    </div>
   )
 }

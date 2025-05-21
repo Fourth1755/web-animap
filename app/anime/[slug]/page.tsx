@@ -70,7 +70,7 @@ export default async function Page({ params }: any) {
   };
   return (
     <>
-      <div className="container mx-auto md:px-40 px-5">
+      <div className="container mx-auto md:px-40 px-5 pt-16">
         <div className="flex justify-between py-7">
           <div>
             <h1 className="mb-3 text-2xl font-extrabold leading-none tracking-tight md:text-2xl lg:text-3xl dark:text-white">
@@ -88,10 +88,6 @@ export default async function Page({ params }: any) {
           </div>
           <div>
             <div className="flex justify-between">
-              <div className="pr-4">
-                <h1>Animap Score</h1>
-                <p>9/10</p>
-              </div>
               <div>
                 <h1>My Score</h1>
                 <p>10/10</p>
@@ -115,9 +111,9 @@ export default async function Page({ params }: any) {
             <div className="pt-4">
               <span className="flex pt-2 text-gray-500">
                 <p className="pr-2">Studio:</p>
-                {anime.studios.map((item) => (
+                {anime.studios.map((item,index) => (
                   <Link key={item.id} href={`studio/${item.id}`}>
-                    <p className="pl-1 text-white">{item.name}</p>
+                    <p className="pl-1 text-white">{item.name} {anime.studios.length-1==index?<></>:<>,</>}</p>
                   </Link>
                 ))}
               </span>

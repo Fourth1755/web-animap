@@ -28,7 +28,7 @@ export default function SeasonWallPaper(props : Props) {
         backgroundSize: `cover`
       };
     return (
-        <div>
+        <div className="pt-16">
             <div style={dropzoneStyle}>
                 <div className="container mx-auto md:px-40 px-5">
                     <div className="py-7">

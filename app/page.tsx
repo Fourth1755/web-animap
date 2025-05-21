@@ -1,22 +1,25 @@
 import Image from "next/image";
-import SliderAnime from "./components/SliderAnime/sliderAnime";
+import SliderAnime from "./components/sliderAnime/sliderAnime";
 import anime from "./animeList.json"
 import Wallpaper from "./components/Wallpaper";
 import { AnimeService } from "./service/animeService";
+import WallpaperAnimeMain from "./components/wallpaperAnimeMain/wallpapeerAnimeMain";
 
 export default async function Home() {
   const myAnimeList:number[] = [1,2,6,8,10]
   
   const animeSerivce = new AnimeService()
   const animes = await animeSerivce.getAnimes();
+  const animesSwordArtOnline = await animeSerivce.getAnimesByCategoryUniverse('0196cf20-c309-7911-b85d-d06bd970e9c0')
+  const animeSchool = await animeSerivce.getAnimesByCategory('0196446e-4f2a-73be-823e-53f7363d2deb')
   // const animeByTagSchool = await animeSerivce.getAnimesByCategory(1);
   // const animeByTagnePiece = await animeSerivce.getAnimesByCategory(4);
   return (
     <div>
-      <Wallpaper/>
+      <WallpaperAnimeMain name="Welcome To Anime Map" link="https://images7.alphacoders.com/737/737400.jpg"/>
       <SliderAnime tagAnime="All" animeList={animes} myAnimeListId={myAnimeList}/>
-      {/* <SliderAnime tagAnime="School" animeList={animeByTagSchool} myAnimeListId={myAnimeList}/>
-      <SliderAnime tagAnime="One Piece" animeList={animeByTagnePiece} myAnimeListId={myAnimeList}/> */}
+      <SliderAnime tagAnime="Sword Art Online" animeList={animesSwordArtOnline.anime_list} myAnimeListId={myAnimeList}/>
+      <SliderAnime tagAnime="School" animeList={animeSchool.anime_list} myAnimeListId={myAnimeList}/>
     </div>
   );
 }

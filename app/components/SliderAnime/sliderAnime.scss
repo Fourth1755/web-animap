@@ -7,7 +7,7 @@ $colorGreen: #1EC602;
 #swiper-anime {
     width: 90%;
     height: 100%;
-    padding: 40px;
+    padding: 20px 40px 40px 40px;
   }
   
 .swiper-slide-anime {
@@ -51,9 +51,4 @@ $colorGreen: #1EC602;
         border-bottom-right-radius: 15px;
         font-size: 14px;
       }
-}
-.slide-anime-header h2{
-    padding: 20px 90px 0px 90px;
-    color: $colorWhite;
-    font-weight: 500;
 }

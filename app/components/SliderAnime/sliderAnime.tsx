@@ -21,7 +21,7 @@ type Anime = {
   }
 
 interface IAnime  {
-    id:number
+    id: string
     name: string
     image: string
 }
@@ -43,7 +43,9 @@ const SliderAnime=({tagAnime,animeList,myAnimeListId}: ISliderAnime)=>{
     return(
         <>
             <div className="slide-anime-header">
-                <h2>{tagAnime}</h2>
+                <div className='container mx-auto md:px-5 pt-5 bg'>
+                    <h2 className='font-medium text-xl'>{tagAnime}</h2>
+                </div>
                 <Swiper
                     slidesPerView={7}
                     spaceBetween={20}
@@ -57,7 +59,7 @@ const SliderAnime=({tagAnime,animeList,myAnimeListId}: ISliderAnime)=>{
                     <SwiperSlide key={item.id}  onClick={()=>handleOpen(item)}>
                         <Link href={`anime/${item.id}`}>
                         <div className='swiper-slide-anime' style={{backgroundImage:`url(${item.image})`}} >
-                            {myAnimeListId.includes(item.id)?<h5>Watched</h5>:<></>}
+                            {/* {myAnimeListId.includes(item.id)?<h5>Watched</h5>:<></>} */}
                         </div>
                         </Link>
                     </SwiperSlide>
