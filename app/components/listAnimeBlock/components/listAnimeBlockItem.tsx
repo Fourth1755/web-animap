@@ -41,16 +41,16 @@ export default function ListAnimeBlockItem(props :Props) {
             <div className="flex flex-col justify-between w-full ml-3">
                 <div className="flex flex-col">
                     <h1 className="font-medium">{anime.name}</h1>
-                    <p className="text-m font-normal text-gray-600">
+                    <span className="text-m font-normal text-gray-600">
                         {anime.episodes} ep ,{" "}
-                        {anime.duration}</p>
-                    <p className="text-m font-normal text-gray-600">Studio: 
+                        {anime.duration}</span>
+                    <span className="text-m font-normal text-gray-600">Studio: 
                     {anime.studios?.map((item) => (
                   <Link key={item.id} href={`/studio/${item.id}`}>
                     <p className="pl-1 text-white">{item.name}</p>
                   </Link>
                 ))}
-                    </p>
+                    </span>
                 </div>
                 <div className="flex">
                     <button className="bg-pink-500 rounded-md px-3 py-2 text-sm font-medium w-full">ADD TO LIST</button>

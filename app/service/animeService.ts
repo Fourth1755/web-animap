@@ -1,6 +1,14 @@
 import axios from "axios";
 import { ConnectAnimapService } from "./builder";
-import { GetAnimeListResponse, CreateAnimeRequest, GetAnimeByIdResponse, UpdateAnimeRequest, GetAnimesByCategoryResponse, GetAnimesBySeasonalAndYearResponse, GetAnimesBySeasonalAndYearRequest, GetAnimesByCategoryUniverseResponse } from "./dtos.ts/anime";
+import { GetAnimeListResponse, 
+    CreateAnimeRequest, 
+    GetAnimeByIdResponse, 
+    UpdateAnimeRequest, 
+    GetAnimesByCategoryResponse, 
+    GetAnimesBySeasonalAndYearResponse, 
+    GetAnimesBySeasonalAndYearRequest, 
+    GetAnimesByCategoryUniverseResponse, 
+    GetAnimesByStudioResponse } from "./dtos.ts/anime";
 
 export class AnimeService{
     private url:string
@@ -63,6 +71,13 @@ export class AnimeService{
 
     public async getAnimesBySeasonalAndYear(request:GetAnimesBySeasonalAndYearRequest):Promise<GetAnimesBySeasonalAndYearResponse> {
         const response = await axios.post(`${this.url}/seasonal-year`,request , {
+            headers: this.getConfigHeaders(),
+        })
+        return response.data
+    }
+
+    public async getAnimesByStudio(id:string):Promise<GetAnimesByStudioResponse> {
+        const response = await axios.get(`${this.url}/studio/${id}`, {
             headers: this.getConfigHeaders(),
         })
         return response.data

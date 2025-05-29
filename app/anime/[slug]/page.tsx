@@ -112,7 +112,7 @@ export default async function Page({ params }: any) {
               <span className="flex pt-2 text-gray-500">
                 <p className="pr-2">Studio:</p>
                 {anime.studios.map((item,index) => (
-                  <Link key={item.id} href={`studio/${item.id}`}>
+                  <Link key={item.id} href={`/studio/${item.id}`}>
                     <p className="pl-1 text-white">{item.name} {anime.studios.length-1==index?<></>:<>,</>}</p>
                   </Link>
                 ))}

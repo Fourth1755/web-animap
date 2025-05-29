@@ -12,6 +12,7 @@ export default async function Home() {
   const animes = await animeSerivce.getAnimes();
   const animesSwordArtOnline = await animeSerivce.getAnimesByCategoryUniverse('0196cf20-c309-7911-b85d-d06bd970e9c0')
   const animeSchool = await animeSerivce.getAnimesByCategory('0196446e-4f2a-73be-823e-53f7363d2deb')
+  const animeOnePiece = await animeSerivce.getAnimesByCategoryUniverse('0196cf34-338a-7651-b248-69383e5be551')
   // const animeByTagSchool = await animeSerivce.getAnimesByCategory(1);
   // const animeByTagnePiece = await animeSerivce.getAnimesByCategory(4);
   return (
@@ -20,6 +21,7 @@ export default async function Home() {
       <SliderAnime tagAnime="All" animeList={animes} myAnimeListId={myAnimeList}/>
       <SliderAnime tagAnime="Sword Art Online" animeList={animesSwordArtOnline.anime_list} myAnimeListId={myAnimeList}/>
       <SliderAnime tagAnime="School" animeList={animeSchool.anime_list} myAnimeListId={myAnimeList}/>
+      <SliderAnime tagAnime="One Piece" animeList={animeOnePiece.anime_list} myAnimeListId={myAnimeList}/>
     </div>
   );
 }
