@@ -1,5 +1,6 @@
 import Link from "next/link";
 import "./listAnimeBlockItem.scss"
+import AddAnimeButton from "./buttonAddAnimeToList/button";
 type UserAnime = {
     user_watched: boolean
     user_watched_year: string
@@ -21,14 +22,17 @@ type AnimeItem = {
     duration: string
     studios: Studio[]
     user_anime: UserAnime
+    wallpaper: string
 }
 
 type Props = {
     anime: AnimeItem;
+    user:string
 }
 
 export default function ListAnimeBlockItem(props :Props) {
-    const { anime } = props
+    const { anime , user } = props
+    
     return (
         <div className="flex justify-between m-2 p-1 bg-black">
             <div className="flex">
@@ -53,7 +57,7 @@ export default function ListAnimeBlockItem(props :Props) {
                     </span>
                 </div>
                 <div className="flex">
-                    <button className="bg-pink-500 rounded-md px-3 py-2 text-sm font-medium w-full">ADD TO LIST</button>
+                    <AddAnimeButton name="ADD TO LIST" isEdit={false} anime={anime} user={user}/>
                 </div>
             </div>
         </div>

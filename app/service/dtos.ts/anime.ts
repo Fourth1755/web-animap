@@ -95,7 +95,8 @@ type GetAnimesBySeasonalAndYearResponseAnimeList= {
     image:string
     score: string;
     duration: string;
-    studios: Stduio[],
+    wallpaper: string;
+    studios: Stduio[]
     // รอเอามาเพิ่ม ไว้เช็คว่าคนนี้ดูเรื่องนี้ยัง
     user_anime: UserAnime
 }
@@ -115,6 +116,7 @@ type GetAnimesByCategoryResponseAnimeList= {
     image:string
     score: string;
     duration: string;
+    wallpaper: string
     studios: Stduio[],
     // รอเอามาเพิ่ม ไว้เช็คว่าคนนี้ดูเรื่องนี้ยัง
     user_anime: UserAnime
@@ -159,6 +161,7 @@ type GetAnimesByStudioResponseAnimeList = {
     score: string;
     duration: string;
     description: string;
+    wallpaper: string
     studios: Stduio[],
     // รอเอามาเพิ่ม ไว้เช็คว่าคนนี้ดูเรื่องนี้ยัง
     user_anime: UserAnime
