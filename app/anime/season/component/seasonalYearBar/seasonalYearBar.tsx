@@ -1,6 +1,6 @@
 'use client'
 import './seasonalYearBar.scss'
-import { GetSeasonalAndYearResponse } from "@/app/service/dtos.ts/common"
+import { GetSeasonalAndYearResponse } from "@/app/service/dtos/common"
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Virtual } from 'swiper/modules';
 import SwiperCore from 'swiper';

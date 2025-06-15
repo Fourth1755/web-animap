@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Prompt } from "next/font/google";
 import "./globals.css";
 import ShowNavbar from "./components/navbar/showNavbar";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Prompt({ subsets: ["latin"], weight: ["400"] });
 
 export const metadata: Metadata = {
   title: "Anime Map",

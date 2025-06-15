@@ -8,7 +8,7 @@ import { GetAnimeListResponse,
     GetAnimesBySeasonalAndYearResponse, 
     GetAnimesBySeasonalAndYearRequest, 
     GetAnimesByCategoryUniverseResponse, 
-    GetAnimesByStudioResponse } from "./dtos.ts/anime";
+    GetAnimesByStudioResponse } from "./dtos/anime";
 
 export class AnimeService{
     private url:string

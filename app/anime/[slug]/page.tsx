@@ -7,13 +7,17 @@ import { SongSerivce } from "@/app/service/songService";
 import {
   GetSongsByAnimeIdResponse,
   GetSongsByAnimeIdResponseSong,
-} from "@/app/service/dtos.ts/song";
+} from "@/app/service/dtos/song";
+import { EpisodeService } from "@/app/service/episodeService";
 
 export default async function Page({ params }: any) {
   const animeService = new AnimeService();
   const songSerivce = new SongSerivce();
+  const episodeService = new EpisodeService();
+
   const anime = await animeService.getAnime(params.slug);
   const songs = await songSerivce.getSongsByAnimeId(anime.id);
+  const episodeResponse = await episodeService.getEpisode(anime.id,"FIRST_APPEARANCE");
   const user = getUser();
 
   const showAnimeSongItem = (
@@ -142,6 +146,24 @@ export default async function Page({ params }: any) {
               ))}
             </div>
           </div>
+        </div>
+        <div className='pt-5'>
+          <p className="text-gray-500">{anime.description}</p>
+        </div>
+        <div className="mt-5 bg-black p-8 rounded-2xl h-96 overflow-y-auto">
+          <h1 className="text-pink-500 font-medium text-2xl">Episodes</h1>
+              {episodeResponse?.episodes?.map((item)=>(
+                <div key={item.id} className="flex my-1 py-3 hover:bg-blue-gray-900 cursor-pointer">
+                  <div className="w-16 h-16 items-center justify-center flex">
+                    <h1 className="font-semibold text-2xl">{item.number}</h1>
+                  </div>
+                  <div>
+                    <div className="flex">
+                      <p>{item.name_thai}&nbsp;|&nbsp;</p><p className="text-gray-500">{item.name_english} ({item.name_japan})</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
         </div>
         <div>
           {showAnimeSongItem(songs.opening_song,"Opening")}

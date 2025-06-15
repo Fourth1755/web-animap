@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { register } from "./action";
 import './layout.scss'
-import { RegisterRequest } from "../service/dtos.ts/user";
+import { RegisterRequest } from "../service/dtos/user";
 
 type FormData = {
     username: string;

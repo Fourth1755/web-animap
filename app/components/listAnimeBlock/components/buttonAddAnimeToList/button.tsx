@@ -2,7 +2,7 @@
 import AddAnimeModal from "./addAnimeListModal";
 import { useState } from "react";
 import { Button } from "../../../../components/mtailwind";
-import { CreateAnimeRequest } from "@/app/service/dtos.ts/anime";
+import { CreateAnimeRequest } from "@/app/service/dtos/anime";
 
 type AnimeItem = {
     id: string;

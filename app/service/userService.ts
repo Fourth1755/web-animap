@@ -1,6 +1,6 @@
 import axios from "axios";
 import { ConnectAnimapService } from "./builder";
-import { UserInfo,RegisterRequest } from "./dtos.ts/user";
+import { UserInfo,RegisterRequest } from "./dtos/user";
 
 type UserData = {
     email: string;

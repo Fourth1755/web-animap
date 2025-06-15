@@ -1,7 +1,7 @@
 
 import { cookies } from 'next/headers'
 import { UserService } from "@/app/service/userService";
-import { UserInfo } from '../service/dtos.ts/user';
+import { UserInfo } from '../service/dtos/user';
 
 export function getUserFormCookie():string {
     const cookieStore = cookies()

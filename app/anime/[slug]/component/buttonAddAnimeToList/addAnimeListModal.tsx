@@ -15,8 +15,8 @@ import "./addAnimeListModal.scss";
 import AddAnimeToList from "./action";
 import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
-import { CreateAnimeRequest } from "@/app/service/dtos.ts/anime";
-import { AddAnimeToListRequest } from "@/app/service/dtos.ts/myAnime";
+import { CreateAnimeRequest } from "@/app/service/dtos/anime";
+import { AddAnimeToListRequest } from "@/app/service/dtos/myAnime";
 
 type PropsAddAnimeModal = {
   open: boolean;

@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { getUserFormCookie, deleteUserCookie } from "../../util/action";
 import { UserService } from "@/app/service/userService";
-import { UserInfo } from "@/app/service/dtos.ts/user";
+import { UserInfo } from "@/app/service/dtos/user";
 export async function getUser(){
     const user = getUserFormCookie()
     return user

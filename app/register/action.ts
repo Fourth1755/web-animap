@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { UserService } from "@/app/service/userService";
 import { cookies } from 'next/headers'
-import { RegisterRequest } from "../service/dtos.ts/user";
+import { RegisterRequest } from "../service/dtos/user";
 
 type UserData = {
     email: string;

@@ -11,7 +11,7 @@ import {
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { logOut } from "./action";
-import { UserInfo } from "@/app/service/dtos.ts/user";
+import { UserInfo } from "@/app/service/dtos/user";
 // profile menu component
 const profileMenuItems = [
   {

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { ConnectAnimapService } from "./builder";
-import { GetAnimeListResponse, CreateAnimeRequest, GetAnimeByIdResponse, UpdateAnimeRequest, GetAnimesByCategoryResponse } from "./dtos.ts/anime";
-import { GetSeasonalAndYearRequest, GetSeasonalAndYearResponse } from "./dtos.ts/common";
+import { GetAnimeListResponse, CreateAnimeRequest, GetAnimeByIdResponse, UpdateAnimeRequest, GetAnimesByCategoryResponse } from "./dtos/anime";
+import { GetSeasonalAndYearRequest, GetSeasonalAndYearResponse } from "./dtos/common";
 
 export class CommonService{
     private url:string

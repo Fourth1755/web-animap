@@ -1,4 +1,4 @@
-import { AddAnimeToListRequest } from "@/app/service/dtos.ts/myAnime";
+import { AddAnimeToListRequest } from "@/app/service/dtos/myAnime";
 import { MyAnimeService } from "@/app/service/myAnimeService";
 
 export default async function AddAnimeToList(req:AddAnimeToListRequest){
