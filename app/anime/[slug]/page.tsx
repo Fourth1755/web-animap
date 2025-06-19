@@ -29,16 +29,16 @@ export default async function Page({ params }: any) {
     }
     return (
       <div>
-        <h1 className="content-header">{title}</h1>
+        <h1 className="text-pink-400 font-medium text-2xl">{title}</h1>
         <div className="pt-2">
           {animeSong.map((song, index) => (
             <div 
               key={song.id}
-              className="flex my-2">
+              className="flex my-1">
               <div className="flex items-center">
                 <h1 className="font-bold text-white text-3xl px-4">{index + 1}</h1>
               </div>
-              <div>
+              {/* <div>
                 {song.song_channel?.map((item, index) => {
                   if (item.is_main == 1) {
                     return (
@@ -56,8 +56,8 @@ export default async function Page({ params }: any) {
                     );
                   }
                 })}
-              </div>
-              <div className="p-8">
+              </div> */}
+              <div className="p-4">
                 <h2 className="font-medium text-white text-xl">{song.name}</h2>
                 <div>
                   {song.song_artist?.map((item)=>(
@@ -151,21 +151,30 @@ export default async function Page({ params }: any) {
           <p className="text-gray-500">{anime.description}</p>
         </div>
         <div className="mt-5 bg-black p-8 rounded-2xl h-96 overflow-y-auto">
-          <h1 className="text-pink-500 font-medium text-2xl">Episodes</h1>
+          <h1 className="text-pink-400 font-medium text-2xl">Episodes</h1>
               {episodeResponse?.episodes?.map((item)=>(
                 <div key={item.id} className="flex my-1 py-3 hover:bg-blue-gray-900 cursor-pointer">
-                  <div className="w-16 h-16 items-center justify-center flex">
+                  <div className="w-16 items-center justify-center flex">
                     <h1 className="font-semibold text-2xl">{item.number}</h1>
                   </div>
+                  
                   <div>
                     <div className="flex">
                       <p>{item.name_thai}&nbsp;|&nbsp;</p><p className="text-gray-500">{item.name_english} ({item.name_japan})</p>
+                    </div>
+                    <div className="flex pt-2">
+                      {item?.characters?.map((character)=>(
+                        <span className="ml-2">
+                          <img 
+                            src={character.image}
+                            className="w-10 h-10 rounded-full object-cover"/>
+                      </span>))}
                     </div>
                   </div>
                 </div>
               ))}
         </div>
-        <div>
+        <div className="mt-5 bg-black p-8 rounded-2xl overflow-y-auto">
           {showAnimeSongItem(songs.opening_song,"Opening")}
           {showAnimeSongItem(songs.ending_song,"Ending")}
           {showAnimeSongItem(songs.soundtrack_song,"Soundtrack")}

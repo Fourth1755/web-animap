@@ -16,9 +16,11 @@ export default async function Home() {
   const animeStudioGibi = await animeSerivce.getAnimesByStudio('019566fd-0842-7206-b22f-2b9b89ea46b4')
   // const animeByTagSchool = await animeSerivce.getAnimesByCategory(1);
   // const animeByTagnePiece = await animeSerivce.getAnimesByCategory(4);
+  // https://wallpapercave.com/dwp2x/wp13207813.png
+  // https://images7.alphacoders.com/737/737400.jpg
   return (
     <div>
-      <WallpaperAnimeMain name="Welcome To Anime Map" link="https://images7.alphacoders.com/737/737400.jpg"/>
+      <WallpaperAnimeMain name="Welcome To Anime Map" link="https://wallpapercg.com/download/kusuriya-no-hitorigoto-the-apothecary-diaries--23099.jpg"/>
       <SliderAnime tagAnime="All" animeList={animes} myAnimeListId={myAnimeList}/>
       <SliderAnime tagAnime="Sword Art Online" animeList={animesSwordArtOnline.anime_list} myAnimeListId={myAnimeList}/>
       <SliderAnime tagAnime="School" animeList={animeSchool.anime_list} myAnimeListId={myAnimeList}/>
