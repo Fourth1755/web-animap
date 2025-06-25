@@ -61,9 +61,10 @@ export default async function Page({ params }: any) {
                 <h2 className="font-medium text-white text-xl">{song.name}</h2>
                 <div>
                   {song.song_artist?.map((item)=>(
-                    <p 
-                      key={item.id}
-                      className="text-gray-600 font-medium">{item.name}</p>))}
+                    <Link href={`/artist/${item.id}`} key={item.id}>
+                      <p className="text-gray-600 font-medium">{item.name}</p>
+                    </Link>
+                  ))}
                 </div>
               </div>
             </div>
@@ -101,23 +102,25 @@ export default async function Page({ params }: any) {
         </div>
         <div className="flex md:flex-row justify-between py-1 flex-col">
           <div>
-            <img
-              className="h-92 w-68 rounded-lg object-cover object-center shadow-xl shadow-gray-900/50"
-              src={anime.image}
-              alt="nature image"
-            />
-            <AddAnimeButton
-              name="Add to List"
-              isEdit={false}
-              anime={anime}
-              user={user}
-            />
+            <div className="w-64">
+              <img
+                className="h-96 w-64 rounded-lg object-cover object-center shadow-xl shadow-gray-900/50"
+                src={anime.image}
+                alt="nature image"
+              />
+              <AddAnimeButton
+                name="Add to List"
+                isEdit={false}
+                anime={anime}
+                user={user}
+              />
+            </div>
             <div className="pt-4">
               <span className="flex pt-2 text-gray-500">
                 <p className="pr-2">Studio:</p>
                 {anime.studios.map((item,index) => (
                   <Link key={item.id} href={`/studio/${item.id}`}>
-                    <p className="pl-1 text-white">{item.name} {anime.studios.length-1==index?<></>:<>,</>}</p>
+                    <p className="pl-1 text-white w-full">{item.name} {anime.studios.length-1==index?<></>:<>,</>}</p>
                   </Link>
                 ))}
               </span>
@@ -164,7 +167,7 @@ export default async function Page({ params }: any) {
                     </div>
                     <div className="flex pt-2">
                       {item?.characters?.map((character)=>(
-                        <span className="ml-2">
+                        <span className="ml-2" key={item.id}>
                           <img 
                             src={character.image}
                             className="w-10 h-10 rounded-full object-cover"/>

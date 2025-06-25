@@ -1,6 +1,6 @@
 import axios from "axios";
 import { ConnectAnimapService } from "./builder";
-import { GetSongsByAnimeIdResponse } from "./dtos/song";
+import { GetSongsByAnimeIdResponse, GetSongsByArtistResponse } from "./dtos/song";
 
 export class SongSerivce{
     private url:string
@@ -21,6 +21,13 @@ export class SongSerivce{
 
     public async getSongsByAnimeId(id: string):Promise<GetSongsByAnimeIdResponse> {
         const response = await axios.get(`${this.url}/anime/${id}`, {
+            headers: this.getConfigHeaders(),
+        })
+        return response.data
+    }
+
+    public async getSongsByArtistId(id: string):Promise<GetSongsByArtistResponse> {
+        const response = await axios.get(`${this.url}/artist/${id}`, {
             headers: this.getConfigHeaders(),
         })
         return response.data
