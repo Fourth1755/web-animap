@@ -1,0 +1,33 @@
+$colorPink:#FF1493;
+$colorBlack:#000000;
+$colorWhite:#FFFFFF;
+$colorDarkPink:#201020;
+$colorDarkDarkPink :#371037;
+$colorGreen: #1EC602;
+#swiper-anime {
+    width: 90%;
+    height: 100%;
+    padding: 20px 40px 40px 40px;
+  }
+  
+.swiper-slide-map{
+    display: flex;
+    justify-items: end;
+    background-position: center center;
+    background-size: cover;
+    height: 229px;
+    width: 400px;
+    border-radius: 15px;
+    transition: transform .3s ease;
+    cursor: pointer;
+    &:hover{
+      transform: scale(1.08);
+    }
+}
+
+@media (max-width: 800px) {
+    .swiper-slide-map{
+        height: 310px;
+        width: 536px;
+    }
+}

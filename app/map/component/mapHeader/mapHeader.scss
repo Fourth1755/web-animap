@@ -1,0 +1,17 @@
+$colorPink:#FF1493;
+.chevron-left{
+    width: 40px;
+    height: 40px;
+    color: $colorPink;
+}
+.volume{
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+.text-header{
+    color: white;
+    font-size: 32px;
+    font-weight: 900;
+    // -webkit-text-stroke: 0.1px black
+}
