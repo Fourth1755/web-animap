@@ -3,7 +3,7 @@ import Navbar from "./navbar";
 import NavbarMap from "./navbarMap";
 
 export default async function ShowNavbar() {
-  const headerList = headers();
+  const headerList = await headers();
   const pathname = headerList.get("x-current-path");
   const listOfAnimeMap = ['/map/spring_school','/map/cave_fantacy','/map/nigth_in_tokyo']
   const hideNavbarRoutes = ['/login','/register']
@@ -15,10 +15,10 @@ export default async function ShowNavbar() {
     showNavbarMap = listOfAnimeMap.includes(pathname)
   }
   return (
+    // <Navbar/>
     <>
       {showNavbar && <Navbar />}
       {showNavbarMap && <NavbarMap />}
     </>
-    // <Navbar/>
-  )
+  );
 }

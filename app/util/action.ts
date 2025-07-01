@@ -1,10 +1,10 @@
 
-import { cookies } from 'next/headers'
+import { cookies, type UnsafeUnwrappedCookies } from 'next/headers';
 import { UserService } from "@/app/service/userService";
 import { UserInfo } from '../service/dtos/user';
 
 export function getUserFormCookie():string {
-    const cookieStore = cookies()
+    const cookieStore = (cookies() as unknown as UnsafeUnwrappedCookies)
     const user_id = cookieStore.get('user_id')
     if(user_id !== undefined){
         return user_id?.value
@@ -31,6 +31,6 @@ export function getUserFormCookie():string {
 // }
 
 export function deleteUserCookie() {
-    const cookieStore = cookies()
+    const cookieStore = (cookies() as unknown as UnsafeUnwrappedCookies)
     const user_id = cookieStore.delete('user_id')
 }

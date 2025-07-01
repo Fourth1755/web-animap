@@ -1,6 +1,4 @@
-import Image from "next/image";
-import SliderAnime from "./components/sliderAnime/sliderAnime";
-import anime from "./animeList.json"
+import SliderAnime from "./components/SliderAnime/sliderAnime";
 import Wallpaper from "./components/Wallpaper";
 import { AnimeService } from "./service/animeService";
 import WallpaperAnimeMain from "./components/wallpaperAnimeMain/wallpapeerAnimeMain";

@@ -3,7 +3,8 @@ import WallpaperStudio from "@/app/components/wallpaperStudio/wallpaperStudio";
 import { AnimeService } from "@/app/service/animeService";
 import { getUser } from "./action";
 
-export default async function Page({ params }: any) {
+export default async function Page(props: any) {
+    const params = await props.params;
     const animeService = new AnimeService();
     const studio = await animeService.getAnimesByStudio(params.slug);
     const user = getUser();

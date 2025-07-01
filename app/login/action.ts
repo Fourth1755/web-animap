@@ -14,8 +14,6 @@ export async function login(user: UserData) {
   const userService = new UserService();
   try {
     const res = await userService.login(user)
-    cookies().set('token', res.token)
-    cookies().set('user_id', res.user_id)
   } catch (error) {
     // Handle errors
     console.error(error);

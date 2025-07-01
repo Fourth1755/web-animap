@@ -9,7 +9,8 @@ type CategoryItem = {
     name:string;
 }
 
-export default async function Page({ params }: any) {
+export default async function Page(props: any) {
+    const params = await props.params;
     const animeService = new AnimeService();
     const category = await animeService.getAnimesByCategoryUniverse(params.slug);
     const categoryUniverse:CategoryItem = {

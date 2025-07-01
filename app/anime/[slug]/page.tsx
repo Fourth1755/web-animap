@@ -11,7 +11,8 @@ import {
 import { EpisodeService } from "@/app/service/episodeService";
 import Image from "next/image";
 
-export default async function Page({ params }: any) {
+export default async function Page(props: any) {
+  const params = await props.params;
   const animeService = new AnimeService();
   const songSerivce = new SongSerivce();
   const episodeService = new EpisodeService();

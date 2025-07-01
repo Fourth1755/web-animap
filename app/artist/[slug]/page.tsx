@@ -4,10 +4,11 @@ import SongListAndSongDetail from "./component/songListAndSongDetail/songListAnd
 
 
 type Props = {
-    params: { slug: string }
+    params: Promise<{ slug: string }>
 }
 
-export default async function Page({ params }: Props){
+export default async function Page(props: Props) {
+    const params = await props.params;
     const songService = new SongSerivce();
     const songListResponse = await songService.getSongsByArtistId(params.slug)
 

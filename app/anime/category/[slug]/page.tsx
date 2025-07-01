@@ -3,7 +3,8 @@ import WallpaperAnime from "@/app/components/wallpaperAnime/wallpaperAnime";
 import { AnimeService } from "@/app/service/animeService";
 import { getUser } from "./action";
 
-export default async function Page({ params }: any) {
+export default async function Page(props: any) {
+    const params = await props.params;
     const animeService = new AnimeService();
     const category = await animeService.getAnimesByCategory(params.slug);
     const user = getUser();
