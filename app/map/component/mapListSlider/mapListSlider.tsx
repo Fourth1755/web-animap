@@ -44,9 +44,7 @@ export default function MapListSlider(props: Props) {
                     </SwiperSlide>
                     )}
                 </Swiper>
-                
             </div>
         </>
-        
     )
 }

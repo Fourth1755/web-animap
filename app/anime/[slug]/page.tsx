@@ -9,6 +9,7 @@ import {
   GetSongsByAnimeIdResponseSong,
 } from "@/app/service/dtos/song";
 import { EpisodeService } from "@/app/service/episodeService";
+import Image from "next/image";
 
 export default async function Page({ params }: any) {
   const animeService = new AnimeService();
@@ -103,10 +104,12 @@ export default async function Page({ params }: any) {
         <div className="flex md:flex-row justify-between py-1 flex-col">
           <div>
             <div className="w-64">
-              <img
-                className="h-96 w-64 rounded-lg object-cover object-center shadow-xl shadow-gray-900/50"
-                src={anime.image}
+              <Image
+                className="rounded-lg shadow-xl shadow-gray-900/50"
+                src={anime.image}                
                 alt="nature image"
+                width={256}
+                height={384}
               />
               <AddAnimeButton
                 name="Add to List"

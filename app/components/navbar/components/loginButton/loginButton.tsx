@@ -1,5 +1,5 @@
 "use client";
-import { getUser, logIn } from "../../action";
+import { logIn } from "./action";
 
 export default function LoginButton() {
     const onLogIn = () => {

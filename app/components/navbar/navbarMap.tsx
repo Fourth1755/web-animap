@@ -1,13 +1,12 @@
 import Link from "next/link";
-import { getUser } from "./action";
 import ProfileMenu from "./profileMenu";
 import { UserService } from "@/app/service/userService";
 import LoginButton from "./components/loginButton/loginButton";
 
 export default async function NavbarMap() {
-  const userId = await getUser();
-  const userService = new UserService()
-  const user = await userService.getUserInfoById(userId)
+  // const userId = await getUser();
+  // const userService = new UserService()
+  // const user = await userService.getUserInfoById(userId)
 
   return (
     <div className="w-full top-0 overflow-hidden left-0 -z-1 absolute">
@@ -25,11 +24,11 @@ export default async function NavbarMap() {
               </div>
             </div>
             <div>
-            {userId ? (
+            {/* {userId ? (
                     <ProfileMenu user={user}/>
                   ) : (
                     <LoginButton/>
-                  )}
+                  )} */}
             </div>
           </div>
         </div>

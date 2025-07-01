@@ -5,10 +5,6 @@ import { revalidatePath } from "next/cache";
 import { getUserFormCookie, deleteUserCookie } from "../../util/action";
 import { UserService } from "@/app/service/userService";
 import { UserInfo } from "@/app/service/dtos/user";
-export async function getUser(){
-    const user = getUserFormCookie()
-    return user
-}
 
 export async function logOut() {
     deleteUserCookie()
@@ -16,10 +12,7 @@ export async function logOut() {
     redirect(`/`); // Navigate to the new post page
 }
 
-export async function logIn() {
-    revalidatePath("/login"); // Update cached posts
-    redirect(`/login`); // Navigate to the new post page
-}
+
 
 // export async function getUserInfo():Promise<UserInfo> {
 //     const userId =await getUser();
