@@ -20,8 +20,7 @@ export async function register(user: RegisterRequest) {
         password:user.password
     }
     const responseLogin = await userService.login(loginRequest)
-    (await cookies()).set('token', responseLogin.token)
-    (await cookies()).set('user_id', responseLogin.user_id)
+
   } catch (error) {
     // Handle errors
     console.error(error);

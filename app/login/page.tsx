@@ -47,7 +47,6 @@ export default function Page() {
                         <h3>Email</h3>
                             <Input
                                 label="Email"
-                                crossOrigin={undefined}
                                 value={formData.email}
                                 name="email"
                                 onChange={handleInputChange}
@@ -55,8 +54,7 @@ export default function Page() {
                         <h3>Password</h3>
                             <Input
                                 label="Password"
-                                // type="password"
-                                crossOrigin={undefined}
+                                type="password"
                                 value={formData.password}
                                 name="password"
                                 onChange={handleInputChange}

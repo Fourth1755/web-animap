@@ -1,3 +1,4 @@
+"use server"
 import { getUserFormCookie } from "@/app/util/action";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
@@ -7,7 +8,7 @@ export async function logIn() {
     redirect(`/login`); // Navigate to the new post page
 }
 
-export async function getUser(){
-    const user = getUserFormCookie()
-    return user
-}
+// export async function getUser(){
+//     const user = getUserFormCookie()
+//     return user
+// }

@@ -119,7 +119,6 @@ export default function Page() {
                         <h3>Username</h3>
                             <Input
                                 label="Username"
-                                crossOrigin={undefined}
                                 value={formData.username}
                                 name="username"
                                 onChange={handleInputChange}
@@ -127,7 +126,6 @@ export default function Page() {
                         <h3>Email</h3>
                             <Input
                                 label="Email"
-                                crossOrigin={undefined}
                                 value={email}
                                 name="email"
                                 onChange={handleChangeEmail}
@@ -137,7 +135,6 @@ export default function Page() {
                             <Input
                                 label="Password"
                                 type="password"
-                                crossOrigin={undefined}
                                 value={password}
                                 name="password"
                                 onChange={handleChangePassword}
@@ -153,7 +150,6 @@ export default function Page() {
                             <Input
                                 label="Password"
                                 type="password"
-                                crossOrigin={undefined}
                                 value={confirmPassword}
                                 name="confirmPassword"
                                 onChange={handleChangeConfirmPassword}
