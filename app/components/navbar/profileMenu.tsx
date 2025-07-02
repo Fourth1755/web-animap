@@ -11,7 +11,9 @@ import {
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { logOut } from "./action";
-import { UserInfo } from "@/app/service/dtos/user";
+import { useUser } from "../../context/userContext";
+import LoginButton from "./components/loginButton/loginButton";
+
 // profile menu component
 const profileMenuItems = [
   {
@@ -25,16 +27,23 @@ const profileMenuItems = [
     link: "",
   },
 ];
-type ProfileMenuProps = {
-  user: UserInfo;
-};
-export default function ProfileMenu(props: ProfileMenuProps) {
-  const user = props.user;
+
+export default function ProfileMenu() {
+  const { user, loading, logout } = useUser();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const closeMenu = () => setIsMenuOpen(false);
-  const onLogOut = () =>{
-    logOut()
+
+  if (loading) {
+    return (
+      <div className="flex items-center gap-1 rounded-full py-0.5 pr-2 pl-0.5 lg:ml-auto">
+        <div className="h-10 w-10 animate-pulse rounded-full bg-gray-300"></div>
+      </div>
+    );
+  }
+
+  if (!user) {
+    return <LoginButton />;
   }
   return (
     <Menu open={isMenuOpen} handler={setIsMenuOpen} placement="bottom-end">
@@ -49,18 +58,18 @@ export default function ProfileMenu(props: ProfileMenuProps) {
             size="md"
             alt="tania andrew"
             className="border border-gray-900 p-0.5"
-            src={user.picture}
+            src={user.profile_image}
           />
         </Button>
       </MenuHandler>
       <MenuList className="p-1">
-        <>
-          {" "}
-          {profileMenuItems.map(({ label, icon, link }) => {
+        <div>
+          {profileMenuItems.map((item, index) => {
             return (
-              <Link href={link}>
+              <div key={index}>
+              <Link href={item.link}>
                 <MenuItem
-                  key={label}
+                  key={item.label}
                   onClick={closeMenu}
                   className="flex items-center gap-2 rounded"
                 >
@@ -70,16 +79,18 @@ export default function ProfileMenu(props: ProfileMenuProps) {
                     className="text-sm font-medium"
                     color="inherit"
                   >
-                    {label}
+                    {item.label}
                   </Typography>
                 </MenuItem>
               </Link>
+              </div>
+
             );
           })}
-        </>
+        </div>
         <MenuItem 
           className="flex items-center gap-2 rounded hover:bg-red-500/10 focus:bg-red-500/10 active:bg-red-500/10"
-          onClick={onLogOut}
+          onClick={logout}
           >
             <Typography
               as="span"

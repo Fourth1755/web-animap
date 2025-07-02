@@ -2,7 +2,7 @@
 import { Input } from "../components/mtailwind";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { login } from "./action";
+import { navigateToHomePage } from "./action";
 import './layout.scss'
 
 type FormData = {
@@ -14,7 +14,13 @@ type UserData = {
     password: string;
 }
 
+import { useUser } from "../context/userContext";
+import { useRouter } from 'next/navigation';
+import axios from "axios";
+
 export default function Page() {
+  const { fetchUser } = useUser();
+  const router = useRouter();
 
     const [formData, setFormData] = useState<FormData>({
         email: "",
@@ -30,7 +36,12 @@ export default function Page() {
             email: formData.email,
             password: formData.password
         }
-        login(user)
+        const api = axios.create({
+            withCredentials:true
+        })
+        const response = api.post('http://localhost:8080/login',user)
+        response.then((res)=>console.log(res.data.message))
+        navigateToHomePage()
     }
     return (
         <div>

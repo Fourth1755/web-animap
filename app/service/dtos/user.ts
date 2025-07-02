@@ -1,6 +1,6 @@
 export type UserInfo ={
     name: string
-    picture: string
+    profile_image: string
     email: string
     uuid: string
   }

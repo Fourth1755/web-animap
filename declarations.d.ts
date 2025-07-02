@@ -3,6 +3,9 @@ import type {
   ButtonProps,
   InputProps,
   TypographyProps,
+  AvatarProps,
+  MenuListProps,
+  MenuItemProps,
 } from "@material-tailwind/react";
 import type {
   ForwardRefExoticComponent,
@@ -20,4 +23,14 @@ declare module "@material-tailwind/react" {
   export const Typography: ForwardRefExoticComponent<
     PropsWithoutRef<TypographyProps> & RefAttributes<HTMLParagraphElement>
   >;
+  export const Avatar: ForwardRefExoticComponent<
+    PropsWithoutRef<AvatarProps> & RefAttributes<HTMLParagraphElement>
+    >;
+  export const MenuList: ForwardRefExoticComponent<
+    PropsWithoutRef<MenuListProps> & RefAttributes<HTMLParagraphElement>
+    >;
+  export const MenuItem: ForwardRefExoticComponent<
+    PropsWithoutRef<MenuItemProps> & RefAttributes<HTMLParagraphElement>
+    >;
+
 }

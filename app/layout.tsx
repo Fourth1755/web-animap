@@ -7,6 +7,8 @@ import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 config.autoAddCss = false
 
+import { UserProvider } from "./context/userContext";
+
 const inter = Prompt({ subsets: ["latin"], weight: ["400"] });
 
 export const metadata: Metadata = {
@@ -23,8 +25,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ShowNavbar/>
-          {children}
+        <UserProvider>
+          <ShowNavbar/>
+            {children}
+        </UserProvider>
       </body>
     </html>
   );

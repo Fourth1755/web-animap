@@ -25,17 +25,21 @@ export class UserService{
         this.loginUrl = connectAnimap.getLoginUrl()
         this.authorization = connectAnimap.getAuthorization()
         this.registerUrl = connectAnimap.getRegisterUrl()
+        
     }
 
     private getConfigHeaders(){
         return{
             "Content-Type": "application/json",
-            "Authorization": this.authorization
+            // "Authorization": this.authorization
         }
     }
 
     public async login(user: UserData){
-        const response = await axios.post(this.loginUrl,user, {
+        const api = axios.create({
+            withCredentials:true
+        })
+        const response = await api.post(this.loginUrl,user, {
             headers: this.getConfigHeaders(),
         })
         return response.data
@@ -55,13 +59,13 @@ export class UserService{
         return response.data
     }
 
-    public async getUserInfoById(userId:string):Promise<UserInfo> {
-        const user:UserInfo={
-            name:"Fourth",
-            picture:"https://i0.wp.com/www.animefeminist.com/wp-content/uploads/2024/07/Alya-in-Russian-1-scaled.jpg?fit=810%2C449&ssl=1",
-            email:"",
-            uuid:userId
-          }
-        return user
+    public async getUserInfo():Promise<UserInfo> {
+        const api = axios.create({
+            withCredentials:true
+        })
+        const response = await api.get(`${this.url}/user-info`, {
+            headers: this.getConfigHeaders(),
+        })
+        return response.data
     }
 }
