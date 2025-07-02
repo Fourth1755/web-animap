@@ -171,7 +171,7 @@ export default async function Page(props: any) {
                     </div>
                     <div className="flex pt-2">
                       {item?.characters?.map((character)=>(
-                        <span className="ml-2" key={item.id}>
+                        <span className="ml-2" key={character.id}>
                           <img 
                             src={character.image}
                             className="w-10 h-10 rounded-full object-cover"/>

@@ -4,11 +4,7 @@ import { UserService } from "@/app/service/userService";
 import { UserInfo } from '../service/dtos/user';
 
 export function getUserFormCookie():string {
-    const cookieStore = (cookies() as unknown as UnsafeUnwrappedCookies)
-    const user_id = cookieStore.get('user_id')
-    if(user_id !== undefined){
-        return user_id?.value
-    }
+
     return ""
 }
 
