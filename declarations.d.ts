@@ -6,6 +6,7 @@ import type {
   AvatarProps,
   MenuListProps,
   MenuItemProps,
+  DialogProps,
 } from "@material-tailwind/react";
 import type {
   ForwardRefExoticComponent,
@@ -31,6 +32,9 @@ declare module "@material-tailwind/react" {
     >;
   export const MenuItem: ForwardRefExoticComponent<
     PropsWithoutRef<MenuItemProps> & RefAttributes<HTMLParagraphElement>
+    >;
+  export const Dialog: ForwardRefExoticComponent<
+    PropsWithoutRef<DialogProps> & RefAttributes<HTMLParagraphElement>
     >;
 
 }

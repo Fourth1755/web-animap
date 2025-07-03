@@ -11,7 +11,7 @@ import './sliderAnime.scss'
 // import AddAnimeModal from "../AddAnimeModal";
 
 type Anime = {
-    id: number;
+    id: string;
     name: String;
     episodes:number
     seasonal: String;

@@ -28,7 +28,7 @@ type PropsAddAnimeModal = {
 
 type FormData = {
   user_uuid: string;
-  anime_id: number;
+  anime_id: string;
   score: string;
   year: string;
 };

@@ -35,7 +35,7 @@ export type GetMyTopAnimeByUserUUIDResponse = {
 }
 
 export type GetMyAnimeYearByUserUUIDResponseAnimeYearAnime = {
-    id:number
+    id:string
     name: string;
     name_english: string
     episodes: number
@@ -49,7 +49,7 @@ export type GetMyAnimeYearByUserUUIDResponseAnimeYearAnime = {
 }
 
 type GetMyAnimeYearByUserUUIDResponseAnimeYear ={
-    year:string;
+    year: string;
     anime: GetMyAnimeYearByUserUUIDResponseAnimeYearAnime[]
 }
 

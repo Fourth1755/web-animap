@@ -19,10 +19,14 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   const userService = new UserService();
 
   const fetchUser = useCallback(() => {
+
     setLoading(true);
     const userInfo = userService.getUserInfo();
     userInfo.then((res)=>{
       setUser(res);
+      if (res && res.uuid) {
+        localStorage.setItem('userId', res.uuid);
+      }
     }).catch((error)=>{
       console.error('Failed to fetch user info:', error);
       setUser(null);
@@ -30,7 +34,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   const logout = () => {
-    localStorage.removeItem('token');
+    localStorage.removeItem('userId');
     setUser(null);
   };
 

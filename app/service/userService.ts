@@ -52,18 +52,25 @@ export class UserService{
         return response.data
     }
 
-    public async getUserById(uuid:string){
-        const response = await axios.get(`${this.url}/${uuid}`, {
-            headers: this.getConfigHeaders(),
-        })
-        return response.data
-    }
+    // public async getUserById(uuid:string){
+    //     const response = await axios.get(`${this.url}/${uuid}`, {
+    //         headers: this.getConfigHeaders(),
+    //     })
+    //     return response.data
+    // }
 
     public async getUserInfo():Promise<UserInfo> {
         const api = axios.create({
             withCredentials:true
         })
         const response = await api.get(`${this.url}/user-info`, {
+            headers: this.getConfigHeaders(),
+        })
+        return response.data
+    }
+
+    public async getUserInfoByUserId(uuid:string):Promise<UserInfo> {
+        const response = await axios.get(`${this.url}/user-info/${uuid}`, {
             headers: this.getConfigHeaders(),
         })
         return response.data

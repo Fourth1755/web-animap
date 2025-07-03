@@ -40,14 +40,14 @@ type PropsEditTopAnimeModal = {
 
 type FormData = {
   user_uuid: string;
-  anime_id: number;
+  anime_id: string;
   score: string;
   year: string;
 };
 
 type AddAnimeToListRequest = {
   user_uuid: string;
-  anime_id: number;
+  anime_id: string;
   score: number;
   status: number;
 };
@@ -121,7 +121,6 @@ export default function EditTopAnimeModal(prop: PropsEditTopAnimeModal) {
             <div className="py-4">
                         <Input
                                 label="Find a anime"
-                                crossOrigin={undefined}
                                 value={formData}
                                 name="search"
                                 onChange={handleInputChange}

@@ -10,34 +10,36 @@ import "swiper/css/navigation";
 import './sliderMyAnime.scss'
 // import AddAnimeModal from "../AddAnimeModal";
 
-type Anime = {
-    id: number;
-    name: String;
-    episodes:number
-    seasonal: String;
-    year: String;
-    image:String
-    score: String;
-  }
+import { GetMyAnimeByUserUUIDResponse } from "../../../../service/dtos/myAnime";
 
-interface IAnime  {
-    anime_id:number
-    name: string
-    image: string
-}
-interface ISliderMyAnime{
+type SliderMyAnime ={
     tag :string
-    animeList:any[]
+    animeList: AnimeDataItem[]
 }
-const SliderMyAnime=({tag,animeList}: ISliderMyAnime)=>{
-    const [modalAnime,setModalAnime]=useState({})
 
-    const [open, setOpen] = useState(false);
-    const handleOpen = (item :IAnime) => {
-        //setModalAnime(item)
-        //setOpen(true);
-    }
-    const handleClose = () =>setOpen(false);
+type AnimeDataItem = {
+    id: string;
+    name: string;
+    name_english: string;
+    episodes: number;
+    seasonal: string;
+    image: string;
+    description: string;
+    duration: string;
+    year: string;
+    type: number;
+    wallpaper: string;
+}
+
+const SliderMyAnime=({tag,animeList}: SliderMyAnime)=>{
+    // const [modalAnime,setModalAnime]=useState({})
+
+    // const [open, setOpen] = useState(false);
+    // const handleOpen = (item :IAnime) => {
+    //     //setModalAnime(item)
+    //     //setOpen(true);
+    // }
+    // const handleClose = () =>setOpen(false);
 
     return(
         <>
@@ -52,9 +54,12 @@ const SliderMyAnime=({tag,animeList}: ISliderMyAnime)=>{
                     className="mySwiper"
                     id="swiper-anime"
                     >
-                    {animeList?.map((item :IAnime)=>
-                    <SwiperSlide key={item.anime_id}  onClick={()=>handleOpen(item)}>
-                        <Link href={`anime/${item.anime_id}`}>
+                    {animeList?.map((item :AnimeDataItem)=>
+                    <SwiperSlide 
+                        key={item.id}  
+                        // onClick={()=>handleOpen(item)}
+                        >
+                        <Link href={`anime/${item.id}`}>
                         <div className='swiper-slide-anime' style={{backgroundImage:`url(${item.image})`}} >
                             
                         </div>

@@ -45,6 +45,10 @@ export default function ProfileMenu() {
   if (!user) {
     return <LoginButton />;
   }
+
+  const navigateToMyProfile = () => {
+
+  }
   return (
     <Menu open={isMenuOpen} handler={setIsMenuOpen} placement="bottom-end">
       <MenuHandler>
@@ -53,17 +57,24 @@ export default function ProfileMenu() {
           color="blue-gray"
           className="flex items-center gap-1 rounded-full py-0.5 pr-2 pl-0.5 lg:ml-auto"
         >
+          {user.profile_image!=""?
           <Avatar
             variant="circular"
             size="md"
             alt="tania andrew"
             className="border border-gray-900 p-0.5"
             src={user.profile_image}
-          />
+          />:          
+          <Avatar
+            variant="circular"
+            size="md"
+            alt="tania andrew"
+            className="border border-gray-900 p-0.5"
+          />}
         </Button>
       </MenuHandler>
       <MenuList className="p-1">
-        <div>
+        {/* <div>
           {profileMenuItems.map((item, index) => {
             return (
               <div key={index}>
@@ -87,7 +98,21 @@ export default function ProfileMenu() {
 
             );
           })}
-        </div>
+        </div> */}
+        <Link href={`/profile/${user.uuid}`}>
+        <MenuItem 
+          className="flex items-center gap-2 rounded hover:bg-red-500/10 focus:bg-red-500/10 active:bg-red-500/10"
+          >
+            <Typography
+              as="span"
+              variant="small"
+              className="text-sm font-medium"
+              color="red"
+            >
+              My Profile
+            </Typography>
+        </MenuItem>
+        </Link>
         <MenuItem 
           className="flex items-center gap-2 rounded hover:bg-red-500/10 focus:bg-red-500/10 active:bg-red-500/10"
           onClick={logout}

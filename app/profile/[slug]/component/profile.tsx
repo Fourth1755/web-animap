@@ -1,5 +1,5 @@
 import { MyAnimeService } from "@/app/service/myAnimeService";
-import { Button } from "../../components/mtailwind";
+import { Button } from "../../../components/mtailwind";
 import EditTopAnimeButton from "./editTopAnimeModal/button";
 import ProgressBar from "./progressbar/progressbar"
 
@@ -9,7 +9,7 @@ type PropProfile = {
 
 type PropProfileUser = {
     name: string
-    picture: string
+    profile_image: string
     email: string
     uuid: string
 }
@@ -24,12 +24,12 @@ export default async function Profile(props: PropProfile) {
             <div className="w-96 pt-2 mx-10 flex">
                 <div className="mx-auto">
                     <img 
-                        src={user.picture} 
+                        src={user.profile_image} 
                         alt={user.name}
                         className="relative inline-block h-72 w-72 !rounded-full object-cover object-center" />
                             <h1 className="mt-4 text-xl font-semibold lg:text-2xl ">{user.name}</h1>
-                            <Button className="border-spacing-1 w-full mt-6 mb-4">
-                            Edit Profile</Button>
+                            {/* <Button className="border-spacing-1 w-full mt-6 mb-4">
+                            Edit Profile</Button> */}
                             <p className="text-gray-500">Hello my name is Forger, Anya nice to meet you </p>
                 </div>
             </div>
