@@ -1,6 +1,6 @@
 import axios from "axios";
 import { ConnectAnimapService } from "./builder";
-import { UserInfo,RegisterRequest } from "./dtos/user";
+import { UserInfo,RegisterRequest, UpdateUserInfoRequest } from "./dtos/user";
 
 type UserData = {
     email: string;
@@ -67,6 +67,18 @@ export class UserService{
             headers: this.getConfigHeaders(),
         })
         return response.data
+    }
+
+    public async updateUserInfo(request: UpdateUserInfoRequest) {
+        const api = axios.create({
+            withCredentials:true
+        })
+        const response = await api.patch(`${this.url}/user-info`, request, {
+            headers: {
+                ...this.getConfigHeaders(),
+            },
+        })
+        return response
     }
 
     public async getUserInfoByUserId(uuid:string):Promise<UserInfo> {

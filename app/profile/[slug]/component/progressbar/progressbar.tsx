@@ -38,9 +38,11 @@ const ProgressBar = (props:PropProgressBar) => {
           <h1 className="font-semibold text-4xl pb-3">{levelOfGame[level].label}</h1>
           <h2 className="text-gray-500">Viewed {totalAnime} item</h2>
           <div className="mt-4">
-          <div style={{width:`${(totalAnime/10)*100}%`,backgroundColor: `${levelOfGame[level].color}`}} className="rounded-3xl text-center w-full h-12">
-            <div className='pt-3 font-bold' >{`${ ((totalAnime/10)*100) }%`}</div>
-          </div> 
+            <div className='bg-gray-900 rounded-3xl'>
+              <div style={{width:`${(totalAnime/10)*100}%`}} className="rounded-3xl text-center w-full h-12 bg-pink-500">
+                <div className='pt-3 font-bold' >{`${ ((totalAnime/10)*100) }%`}</div>
+              </div> 
+            </div>
         </div>
         </div>
       </div>
