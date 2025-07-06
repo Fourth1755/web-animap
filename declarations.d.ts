@@ -7,6 +7,10 @@ import type {
   MenuListProps,
   MenuItemProps,
   DialogProps,
+  SelectProps,
+  DialogBodyProps,
+  DialogFooterProps,
+  DialogHeaderProps,
 } from "@material-tailwind/react";
 import type {
   ForwardRefExoticComponent,
@@ -35,6 +39,18 @@ declare module "@material-tailwind/react" {
     >;
   export const Dialog: ForwardRefExoticComponent<
     PropsWithoutRef<DialogProps> & RefAttributes<HTMLParagraphElement>
+    >;
+  export const Select: ForwardRefExoticComponent<
+    PropsWithoutRef<SelectProps> & RefAttributes<HTMLParagraphElement>
+    >;
+  export const DialogBody: ForwardRefExoticComponent<
+    PropsWithoutRef<DialogBodyProps> & RefAttributes<HTMLParagraphElement>
+    >;
+  export const DialogFooter: ForwardRefExoticComponent<
+    PropsWithoutRef<DialogFooterProps> & RefAttributes<HTMLParagraphElement>
+    >;
+  export const DialogHeader: ForwardRefExoticComponent<
+    PropsWithoutRef<DialogHeaderProps> & RefAttributes<HTMLParagraphElement>
     >;
 
 }

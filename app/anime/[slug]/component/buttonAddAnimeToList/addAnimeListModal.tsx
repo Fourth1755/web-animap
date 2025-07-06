@@ -17,20 +17,23 @@ import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
 import { CreateAnimeRequest } from "@/app/service/dtos/anime";
 import { AddAnimeToListRequest } from "@/app/service/dtos/myAnime";
+import { MyAnimeService } from "@/app/service/myAnimeService";
+import { useUser } from "@/app/context/userContext";
 
 type PropsAddAnimeModal = {
-  open: boolean;
-  handler: () => void;
-  isEdit: boolean;
-  anime: CreateAnimeRequest;
-  user: string;
+    open: boolean;
+    handler: () => void;
+    isEdit: boolean;
+    anime: CreateAnimeRequest;
+    userId: string;
+    handlerResponseMessage: (message:string) => void
 };
 
 type FormData = {
-  user_uuid: string;
-  anime_id: string;
-  score: string;
-  year: string;
+    user_uuid: string;
+    anime_id: string;
+    score: string;
+    year: string;
 };
 
 const scoreList = [
@@ -49,24 +52,24 @@ const scoreList = [
 
 
 export default function AddAnimeModal(prop: PropsAddAnimeModal) {
-  const open = prop.open;
+  const {open, isEdit, anime, userId } = prop;
   const handleOpen = prop.handler;
-  const isEdit = prop.isEdit;
-  const animeData = prop.anime;
-  const userId = prop.user
+  const handlerResponseMessage = prop.handlerResponseMessage
+
   let dropzoneModalStyle = {
     width: `100%`,
     height: `420px`,
-    backgroundImage: `url(${animeData?.wallpaper})`,
+    backgroundImage: `url(${anime?.wallpaper})`,
     backgroundRepeat: `no-repeat`,
     backgroundPosition: `center center`,
     backgroundSize: `cover`,
     borderTopLeftRadius: `15px`,
     borderTopRightRadius: `15px`,
   };
+
   const [formData, setFormData] = useState<FormData>({
     user_uuid: "",
-    anime_id: 0,
+    anime_id: "",
     score: "",
     year: "",
   });
@@ -92,39 +95,27 @@ export default function AddAnimeModal(prop: PropsAddAnimeModal) {
   };
 
   const handleSubmit = async () => {
-    const MySwal = withReactContent(Swal);
+      const MySwal = withReactContent(Swal);
 
-    const request: AddAnimeToListRequest = {
-      user_uuid: userId,
-      anime_id: animeData.id,
-      score: +formData.score,
-      status: 1,
-      watched_year: formData.year,
-    };
+      const request: AddAnimeToListRequest = {
+        user_uuid: userId,
+        anime_id: anime.id,
+        score: +formData.score,
+        status: 1,
+        watched_year: formData.year,
+      };
     handleOpen();
-    MySwal.fire({
-      title: <p>Loading</p>,
-      didOpen: () => {
-        MySwal.showLoading();
-        AddAnimeToList(request)
-          .then((response) => {
-            MySwal.fire({
-              title: <strong>Good job!</strong>,
-              html: <i>Successfully added to list</i>,
-              icon: "success",
-            });
-          })
-          .catch((error) => {
-            MySwal.fire("Alert", error, "error");
-          });
-      },
-    });
-    // setYearAnimeList([])
+    const myAnimeService = new MyAnimeService();
+    const response = myAnimeService.addAnimeToList(request)
+      response.then((response) => {
+        console.log(response)
+        handlerResponseMessage("Add anime to list success.")
+      })
   };
 
   useEffect(() => {
-    if (animeData?.year) {
-      setYearAnimeDropDown(animeData?.year);
+    if (anime?.year) {
+      setYearAnimeDropDown(anime?.year);
     }
   },[]);
   return (

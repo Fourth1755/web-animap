@@ -9,7 +9,7 @@ export default async function Page(props: any) {
     const myAnimeService = new MyAnimeService();
     const userService = new UserService();
     const user = await userService.getUserInfoByUserId(userId)
-    if(userId == null){
+    if(userId == null){ 
         return (<div className='pt-16'>
         <h1>User Not Found</h1>
         </div>)

@@ -1,9 +1,10 @@
-
-import { cookies, type UnsafeUnwrappedCookies } from 'next/headers';
+import { cookies } from 'next/headers'
 import { UserService } from "@/app/service/userService";
 import { UserInfo } from '../service/dtos/user';
 
-export function getUserFormCookie():string {
+export async function getUserFormCookie():Promise<string> {
+    // const cookie = (await cookies()).get('session')?.value
+    // const session = await decrypt(cookie)
 
     return ""
 }

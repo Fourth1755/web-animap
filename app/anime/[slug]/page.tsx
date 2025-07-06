@@ -1,5 +1,4 @@
 import "./page.scss";
-import { getUser } from "./action";
 import AddAnimeButton from "./component/buttonAddAnimeToList/button";
 import Link from "next/link";
 import { AnimeService } from "@/app/service/animeService";
@@ -20,7 +19,6 @@ export default async function Page(props: any) {
   const anime = await animeService.getAnime(params.slug);
   const songs = await songSerivce.getSongsByAnimeId(anime.id);
   const episodeResponse = await episodeService.getEpisode(anime.id,"FIRST_APPEARANCE");
-  const user = getUser();
 
   const showAnimeSongItem = (
     animeSong: GetSongsByAnimeIdResponseSong[],
@@ -116,7 +114,6 @@ export default async function Page(props: any) {
                 name="Add to List"
                 isEdit={false}
                 anime={anime}
-                user={user}
               />
             </div>
             <div className="pt-4">
