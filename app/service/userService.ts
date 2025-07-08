@@ -15,13 +15,15 @@ type AddAnimeToListRequest = {
 }
 export class UserService{
     private url:string
+    private userUrl:string
     private loginUrl:string
     private registerUrl:string
     private authorization: string
     
     constructor(){
         const connectAnimap = new ConnectAnimapService()
-        this.url = connectAnimap.getUserUrl()
+        this.url = connectAnimap.getUrl()
+        this.userUrl = connectAnimap.getUserUrl()
         this.loginUrl = connectAnimap.getLoginUrl()
         this.authorization = connectAnimap.getAuthorization()
         this.registerUrl = connectAnimap.getRegisterUrl()
@@ -45,6 +47,16 @@ export class UserService{
         return response.data
     }
 
+    public async logout(){
+        const api = axios.create({
+            withCredentials:true
+        })
+        const response = await api.post(`${this.url}/logout`, {
+            headers: this.getConfigHeaders(),
+        })
+        return response.data
+    }
+
     public async register(request: RegisterRequest){
         const response = await axios.post(this.registerUrl,request, {
             headers: this.getConfigHeaders(),
@@ -63,7 +75,7 @@ export class UserService{
         const api = axios.create({
             withCredentials:true
         })
-        const response = await api.get(`${this.url}/user-info`, {
+        const response = await api.get(`${this.userUrl}/user-info`, {
             headers: this.getConfigHeaders(),
         })
         return response.data
@@ -73,7 +85,7 @@ export class UserService{
         const api = axios.create({
             withCredentials:true
         })
-        const response = await api.patch(`${this.url}/user-info`, request, {
+        const response = await api.patch(`${this.userUrl}/user-info`, request, {
             headers: {
                 ...this.getConfigHeaders(),
             },
@@ -82,7 +94,7 @@ export class UserService{
     }
 
     public async getUserInfoByUserId(uuid:string):Promise<UserInfo> {
-        const response = await axios.get(`${this.url}/user-info/${uuid}`, {
+        const response = await axios.get(`${this.userUrl}/user-info/${uuid}`, {
             headers: this.getConfigHeaders(),
         })
         return response.data

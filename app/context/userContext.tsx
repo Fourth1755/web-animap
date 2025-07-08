@@ -24,17 +24,19 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     const userInfo = userService.getUserInfo();
     userInfo.then((res)=>{
       setUser(res);
+      console.log("Error")
       if (res && res.uuid) {
         localStorage.setItem('userId', res.uuid);
       }
     }).catch((error)=>{
-      console.error('Failed to fetch user info:', error);
+      console.log('Failed to fetch user info:', error);
       setUser(null);
     }).finally(()=>setLoading(false))
   }, []);
 
   const logout = () => {
     localStorage.removeItem('userId');
+    
     setUser(null);
   };
 

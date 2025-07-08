@@ -4,11 +4,20 @@ type PropsAlertModal = {
     open: boolean;
     handler: () => void;
     message: string
+    handleNextAction?: () => void
 };
 
 export default function AlertModal(props:PropsAlertModal){
     const { open ,message } = props
     const handleOpen = props.handler;
+    const handleNextAction = props.handleNextAction;
+    const onSubmitButton = () => {
+        handleOpen()
+        if(handleNextAction){
+            handleNextAction()
+        }
+        
+    }
     return (
         <>
             <Dialog
@@ -30,7 +39,7 @@ export default function AlertModal(props:PropsAlertModal){
                     <Button
                         variant="gradient"
                         color="green"
-                        onClick={handleOpen}
+                        onClick={onSubmitButton}
                         className="m-auto"
                     >
                         <span>OK</span>

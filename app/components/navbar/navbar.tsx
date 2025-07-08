@@ -1,7 +1,5 @@
 import Link from "next/link";
-import ProfileMenu from "./profileMenu";
-import { UserService } from "@/app/service/userService";
-import LoginButton from "./components/loginButton/loginButton";
+import ProfileMenu from "./components/profileMenu/profileMenu";
 
 export default async function Navbar() {
 

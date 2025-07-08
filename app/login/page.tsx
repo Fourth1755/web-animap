@@ -17,15 +17,25 @@ type UserData = {
 import { useUser } from "../context/userContext";
 import { useRouter } from 'next/navigation';
 import axios from "axios";
+import AlertModal from "../components/alertModal/alertModal";
+import { error } from "console";
 
 export default function Page() {
-  const { fetchUser } = useUser();
-  const router = useRouter();
+    const { fetchUser } = useUser();
 
     const [formData, setFormData] = useState<FormData>({
         email: "",
         password: "",
     });
+
+    const [openModalAlert, setOpenModalAlert] = useState(false);
+    const [message, setMessage] = useState("");
+
+    const handleOpenAlert = () => setOpenModalAlert(!openModalAlert);
+    const handlerResponseMessage = (message:string) => {
+        setMessage(message)
+        handleOpenAlert()
+    }
     const handleInputChange = (event: React.ChangeEvent<HTMLInputElement> | any) => {
         const { name, value } = event.target;
         setFormData({ ...formData, [name]: value });
@@ -39,9 +49,14 @@ export default function Page() {
         const api = axios.create({
             withCredentials:true
         })
-        const response = api.post('http://localhost:8080/login',user)
-        response.then((res)=>console.log(res.data.message))
-        navigateToHomePage()
+        api.post('http://localhost:8080/login',user)
+            .then((res)=>{
+                
+                navigateToHomePage()
+            })
+            .catch((error)=>{
+                handlerResponseMessage(error.response.data.message)
+            })
     }
     return (
         <div>
@@ -77,5 +92,10 @@ export default function Page() {
                     <div className='login-card-bottom'><p>New to animap?</p><Link href="/register">Sign Up now</Link></div>
                 </div>
             </div>
+            <AlertModal
+                open={openModalAlert}
+                handler={handleOpenAlert}
+                message={message}
+            />
         </div>);
 }
