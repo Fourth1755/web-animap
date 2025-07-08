@@ -3,6 +3,7 @@ import './mapHeader.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faVolumeXmark, faVolumeHigh, faChevronLeft } from '@fortawesome/free-solid-svg-icons'
 import { useState } from 'react'
+import Link from 'next/link'
 
 type Props = {
     map_name: string
@@ -15,11 +16,11 @@ export default function MapHeader(props :Props) {
     }
 
     return (
-        <div className="pt-16 pl-16 flex items-center h-36">
-            <div
+        <div className="pl-16 flex items-center top-14 left-0 absolute">
+            <Link href={'/'}
                 className='px-2 cursor-pointer'>
                 <FontAwesomeIcon icon={faChevronLeft} className='chevron-left'/>
-            </div>
+            </Link>
             <h1 className='text-header'>{props.map_name}</h1>
             <div 
                 onClick={onChangeSound}

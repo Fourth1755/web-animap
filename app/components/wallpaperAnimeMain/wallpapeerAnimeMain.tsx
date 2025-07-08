@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 type Props = {
     name: string
     link: string
@@ -21,6 +23,9 @@ export default function WallpaperAnimeMain(props:Props) {
                         <h1 className="mb-3 text-2xl font-extrabold leading-none tracking-tight md:text-2xl lg:text-3xl dark:text-white capitalize">
                                 {name}
                         </h1>
+                        <Link href={`/map`}>
+                            Go to Map
+                        </Link>
                     </div>
                 </div>
             </div>

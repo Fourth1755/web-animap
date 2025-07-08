@@ -1,0 +1,17 @@
+.map-position-point-inside{
+    width: 14px;
+    height: 14px;
+    background-color: white;
+    border-radius: 100%;
+    //--tw-bg-opacity: 0.25;
+    // --tw-border-spacing-x: 0.01rem /* 4px */;
+    // --tw-border-spacing-y: 0.01rem /* 4px */;
+    // border-spacing: var(--tw-border-spacing-x) var(--tw-border-spacing-y);
+    transition: transform .3s ease;
+    cursor: pointer;
+    &:hover{
+        //transform: scale(1.1);
+        width: 9px;
+        height: 9px;
+    }
+}

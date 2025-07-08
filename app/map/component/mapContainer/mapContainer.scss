@@ -1,0 +1,11 @@
+.map-container{
+    display: flex;
+    width: 100vw;
+    justify-content: space-between;
+}
+
+@media (max-width: 1200px) {
+    .map-container{
+        flex-direction: column;
+    }
+}
