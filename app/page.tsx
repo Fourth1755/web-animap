@@ -1,5 +1,4 @@
 import SliderAnime from "./components/sliderAnime/sliderAnime";
-import Wallpaper from "./components/Wallpaper";
 import { AnimeService } from "./service/animeService";
 import WallpaperAnimeMain from "./components/wallpaperAnimeMain/wallpapeerAnimeMain";
 

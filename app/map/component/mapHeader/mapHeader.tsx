@@ -6,22 +6,23 @@ import { useState } from 'react'
 import Link from 'next/link'
 
 type Props = {
-    map_name: string
+    mapName: string
+    locationUrl?: string
 }
 
 export default function MapHeader(props :Props) {
     const [openSound,setOpenSound] = useState(false)
-    const onChangeSound = () => {
+    const onChangeSound = () =>{
         setOpenSound(!openSound)
     }
 
     return (
         <div className="pl-16 flex items-center top-14 left-0 absolute">
-            <Link href={'/'}
+            <Link href={props.locationUrl?`/map/${props.locationUrl}`:'/'}
                 className='px-2 cursor-pointer'>
                 <FontAwesomeIcon icon={faChevronLeft} className='chevron-left'/>
             </Link>
-            <h1 className='text-header'>{props.map_name}</h1>
+            <h1 className='text-header'>{props.mapName}</h1>
             <div 
                 onClick={onChangeSound}
                 className='px-4'>

@@ -1,11 +1,11 @@
-.map-container{
+.location-container{
     display: flex;
     width: 100%;
     justify-content: space-between;
 }
 
 @media (max-width: 1200px) {
-    .map-container{
+    .location-container{
         flex-direction: column;
     }
 }

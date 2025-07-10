@@ -50,7 +50,7 @@ const SliderAnime=({tagAnime,animeList,myAnimeListId}: ISliderAnime)=>{
                     slidesPerView={7}
                     spaceBetween={20}
                     slidesPerGroup={7}
-                    navigation={true}
+                    navigation={{nextEl:'',prevEl:''}}
                     modules={[Pagination, Navigation]}
                     className="mySwiper"
                     id="swiper-anime"

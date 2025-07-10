@@ -20,12 +20,11 @@
 
 /* Tooltip text */
 .tooltip .tooltiptext {
-    width: 180px;
+    width: 280px;
+    height: 180px;
     margin-top: 5px;
     visibility: hidden;
-    background-color: black;
-    color: #fff;
-    padding: 10px 10px 10px 10px;
+    background-color: white;
     border-radius: 6px;
     cursor: pointer;
     

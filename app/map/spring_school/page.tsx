@@ -7,7 +7,7 @@ export default function SpringSchool() {
 
     return (
         <div className="map-background">
-            <MapHeader map_name="Spring School"/>
+            <MapHeader mapName="Spring School"/>
             <MapContainer>
                 <MapPosition/>
                 <MapShowUser/>
