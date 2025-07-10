@@ -8,7 +8,7 @@ export default function MapPosition(){
                 <MapPositionPoint 
                     link='building_rooftop' 
                     locationName='building rooftop' 
-                    locationImage='' />
+                    locationImage='https://wallpapers.com/images/high/anime-school-background-1kxla08umytrwgnk.webp' />
             </div>
             <div className='map-position-club-room'>
                 <MapPositionPoint 
@@ -25,8 +25,14 @@ export default function MapPosition(){
             <div className='map-position-student-council'>
                 <MapPositionPoint 
                     link='student_council' 
-                    locationName='student council' 
-                    locationImage=''/>
+                    locationName='student council (ห้องสภานักเรียน)' 
+                    locationImage='https://wallpapers.com/images/high/school-background-ehbb8cnmvnzsp7l1.webp'/>
+            </div>
+            <div className='map-position-meeting-room'>
+                <MapPositionPoint 
+                    link='meeting_room' 
+                    locationName='meeting room (ห้องประชุม)' 
+                    locationImage='https://wallpapers.com/images/high/anime-school-background-htdwf4q6ihnr4cwe.webp'/>
             </div>
         </div>
     )

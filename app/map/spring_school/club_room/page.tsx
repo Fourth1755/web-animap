@@ -1,6 +1,7 @@
 import { LocationContainer } from "../../component/locationContainer/locationContainer";
 import LocationLiveChat from "../../component/locationLiveChat/locationLiveChat";
 import MapHeader from "../../component/mapHeader/mapHeader";
+import LocationPosition from "./components/locationPosition/locationPosition";
 
 
 export default function Page() {
@@ -16,9 +17,8 @@ export default function Page() {
     <div style={dropzoneStyle}>
       <MapHeader mapName="Club room" locationUrl="spring_school"/>
       <LocationContainer>
-        <div></div>
+        <LocationPosition/>
         <LocationLiveChat/>
       </LocationContainer>
-      
     </div>)
 }
