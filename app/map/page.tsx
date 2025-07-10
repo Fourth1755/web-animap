@@ -1,4 +1,8 @@
+'use client'
+import { useEffect, useState } from 'react';
 import MapListSlider from "./component/mapListSlider/mapListSlider";
+import AlertLoginModal from '../components/alertModal/alertLoginModal';
+import { useUser } from '../context/userContext';
 
 const mapList = [
     {
@@ -22,8 +26,23 @@ const mapList = [
 ]
 
 export default function Page() {
+    const [open, setOpen] = useState(false);
+    const { user, loading } = useUser();
+
+    useEffect(() => {
+        if (!loading && !user) {
+            setOpen(true);
+        }
+    }, [user, loading]);
+
+    const handleOpen = () => {
+        setOpen(!open);
+    };
+
     return (
         <div className="pt-48">
-            <MapListSlider mapList={mapList}/>
-        </div>)
+            <MapListSlider mapList={mapList} user={user} loading={loading} handleOpen={handleOpen}/>
+            <AlertLoginModal open={open} handler={handleOpen} />
+        </div>
+    );
 }

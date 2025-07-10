@@ -10,7 +10,7 @@ export default async function ShowNavbar() {
   const isAuthPage = pathname ? ['/login', '/register'].includes(pathname) : false;
 
   const showNavbar = !isMapPage && !isAuthPage;
-  const showNavbarMap = isMapPage;
+  const showNavbarMap = isMapPage && !isAuthPage;
   return (
     // <Navbar/>
     <>

@@ -10,6 +10,8 @@ import "swiper/css/navigation";
 import './mapListSlider.scss'
 import ChagePageAnimeMap from "./action";
 
+import { UserInfo } from "@/app/service/dtos/user";
+
 type MapItem = {
     id: string
     name: string
@@ -18,10 +20,22 @@ type MapItem = {
 }
 
 type Props = {
-    mapList: MapItem[]
+    mapList: MapItem[],
+    user: UserInfo | null,
+    loading: boolean,
+    handleOpen: () => void;
 }
 export default function MapListSlider(props: Props) {
-    const { mapList } = props
+    const { mapList, user, loading, handleOpen } = props
+
+    const handleChagePageAnimeMap = (mapPath:string) => {
+        if (!loading && !user) {
+            handleOpen()
+        } else {
+            ChagePageAnimeMap(mapPath)
+        }
+    }
+
     return(
         <>
             <div className="slide-anime-header">
@@ -36,7 +50,7 @@ export default function MapListSlider(props: Props) {
                     >
                     {mapList?.map((item :MapItem)=>
                     <SwiperSlide key={item.id}>
-                        <div onClick={()=>ChagePageAnimeMap(item.map_path)}>
+                        <div onClick={()=>handleChagePageAnimeMap(item.map_path)}>
                             <h1 className="text-center py-5">{item.name}</h1>
                             <div className='swiper-slide-map' style={{backgroundImage:`url(${item.image})`}} >
                             </div>
@@ -47,4 +61,3 @@ export default function MapListSlider(props: Props) {
             </div>
         </>
     )
-}
