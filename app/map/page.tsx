@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react';
 import MapListSlider from "./component/mapListSlider/mapListSlider";
-import AlertLoginModal from '../components/alertModal/alertLoginModal';
+import AlertLoginModal from '../components/alertModalLogin/alertLoginModal';
 import { useUser } from '../context/userContext';
 
 const mapList = [

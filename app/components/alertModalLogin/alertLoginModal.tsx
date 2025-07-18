@@ -7,6 +7,7 @@ import {
   DialogHeader,
 } from "@material-tailwind/react";
 import { useRouter } from "next/navigation";
+import { navigateToLoginPage } from "./action";
 
 type PropsAlertLoginModal = {
     open: boolean;
@@ -19,7 +20,7 @@ export default function AlertLoginModal(prop: PropsAlertLoginModal) {
   const router = useRouter()
 
   const handleLogin = () => {
-    router.push('/login')
+    navigateToLoginPage()
   }
 
   return (
