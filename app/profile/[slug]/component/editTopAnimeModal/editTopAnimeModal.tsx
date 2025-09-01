@@ -70,7 +70,9 @@ export default function EditTopAnimeModal(prop: PropsEditTopAnimeModal) {
                         onChange={handleInputChange}
                     /> 
 
-
+                <div>
+                  
+                </div>
             </div>
           </div>
         </div>

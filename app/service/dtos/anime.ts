@@ -54,6 +54,7 @@ export type GetAnimeByIdResponse = {
     id: string,
     name: string,
     name_english:string
+    name_thai: string
     year: string,
     score: string,
     seasonal: string
@@ -67,7 +68,9 @@ export type GetAnimeByIdResponse = {
     wallpaper: string
     trailer: string
     trailer_embed: string
-    categoryUniverse: GetAnimeByIdResponseUniverse[]
+    category_universe: GetAnimeByIdResponseUniverse[]
+    my_anime_list_score: number
+    source: string   
 }
 
 export type GetAnimesBySeasonalAndYearRequest = {

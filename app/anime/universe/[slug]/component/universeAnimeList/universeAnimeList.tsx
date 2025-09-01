@@ -41,11 +41,16 @@ type Props = {
 }
 
 let buttonAnime = {
-  backgroundColor:`#FFFFFF`
+  backgroundColor:`#6F6B6B`
 }
 
 let buttonAnimeSelect={
   backgroundColor:`#FF1493`
+}
+
+let lineStyle={
+  backgroundColor:`#D9D9D9`,
+  padding:`2px`
 }
 
 export default function UniverseAnimeList(props : Props){
@@ -69,16 +74,20 @@ export default function UniverseAnimeList(props : Props){
                         key={index} 
                         className="flex cursor-pointer hover:bg-black 0 rounded-lg"
                         onClick={()=>onClieckChangeAnime(anime.id)}>
-                        <div className="flex flex-col justify-center pl-10">
-                            <div className="flex flex-row justify-center h-full">
-                                {index!=0?<span className="bg-white p-1 w-3"></span>:<span></span>}
+                        <div className="w-28 pt-4 pl-5">
+                            <h1>{anime.year}</h1>
+                            <h1>{anime.seasonal}</h1>
+                        </div>
+                        <div className="flex flex-col justify-center pl-5">
+                            <div className="flex flex-row justify-center h-5">
+                                {index!=0?<span style={lineStyle}></span>:<span></span>}
                             </div>
                             <button
-                                className="rounded-full p-4 m-1"
+                                className="rounded-full p-4"
                                 style={anime.id==animeIdSelect?buttonAnimeSelect:buttonAnime}
                                 ></button>
                             <div className="flex flex-row justify-center h-full">
-                                {index!=animes.length-1?<span className="bg-white p-1 w-3"></span>:<span></span>}
+                                {index!=animes.length-1?<span style={lineStyle}></span>:<span></span>}
                             </div>
                         </div>
                         <div className="flex w-full ml-16 my-3">
@@ -91,7 +100,6 @@ export default function UniverseAnimeList(props : Props){
                             <div className="flex flex-col">
                                 <h1 className="font-medium">{anime.name}</h1>
                                 <p className="text-m font-normal text-gray-600">
-                                    {anime.year} {anime.seasonal} ,{" "}
                                     {anime.episodes} ep ,{" "}
                                     {anime.duration}</p>
                                 <p className="text-m font-normal text-gray-600">Studio: 

@@ -79,7 +79,7 @@ export default async function Page(props: any) {
         <div className="flex justify-between py-7">
           <div>
             <h1 className="mb-3 text-2xl font-extrabold leading-none tracking-tight md:text-2xl lg:text-3xl dark:text-white">
-              {anime.name}
+              {anime.name_thai == ""?anime.name:anime.name_thai}
             </h1>
             <p className="mb-3 text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400">
               <Link 
@@ -93,17 +93,20 @@ export default async function Page(props: any) {
           </div>
           <div>
             <div className="flex justify-between">
+              {anime.my_anime_list_score != 0?              
               <div>
-                <h1>My Score</h1>
-                <p>10/10</p>
+                <h1>MAL Score</h1>
+                <p>{anime.my_anime_list_score} / 10</p>
               </div>
+              :<></>
+              }
             </div>
           </div>
         </div>
         <div className="flex md:flex-row justify-between py-1 flex-col">
           <div>
             <div className="w-64">
-              <Image
+              <img
                 className="rounded-lg shadow-xl shadow-gray-900/50"
                 src={anime.image}                
                 alt="nature image"
@@ -125,23 +128,26 @@ export default async function Page(props: any) {
                   </Link>
                 ))}
               </span>
-              {anime.categoryUniverse?              
+              {anime.category_universe?              
               <span className="flex pt-2 text-gray-500">
                 <p className="pr-2">Timeline:</p>
-                  <Link href={`universe/${anime.categoryUniverse[0].id}`}>
-                    <p className="pl-1 text-white">{anime.categoryUniverse[0].name}</p>
+                  <Link href={`universe/${anime.category_universe[0].id}`}>
+                    <p className="pl-1 text-white">{anime.category_universe[0].name}</p>
                   </Link>
               </span>:<></>}
             </div>
           </div>
           <div>
-            <iframe
-              className="trailer-iframe"
-              id="player"
-              src={`${anime.trailer_embed}`}
-              title="YouTube video player"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            ></iframe>
+            {anime.trailer_embed?
+              <iframe
+                className="trailer-iframe"
+                id="player"
+                src={`${anime.trailer_embed}`}
+                title="YouTube video player"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              ></iframe>
+              :<></>
+            }
             <div className="pt-5">
               {anime.categories?.map((item) => (
                 <Link href={`category/${item.id}`} key={item.id} >
