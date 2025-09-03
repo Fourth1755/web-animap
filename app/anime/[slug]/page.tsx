@@ -9,16 +9,19 @@ import {
 } from "@/app/service/dtos/song";
 import { EpisodeService } from "@/app/service/episodeService";
 import Image from "next/image";
+import { CommentService } from "@/app/service/commentService";
 
 export default async function Page(props: any) {
   const params = await props.params;
   const animeService = new AnimeService();
   const songSerivce = new SongSerivce();
   const episodeService = new EpisodeService();
+  const commentService = new CommentService();
 
   const anime = await animeService.getAnime(params.slug);
   const songs = await songSerivce.getSongsByAnimeId(anime.id);
   const episodeResponse = await episodeService.getEpisode(anime.id,"FIRST_APPEARANCE");
+  const commentAnime = await commentService.getCommentAnime(anime.id)
 
   const showAnimeSongItem = (
     animeSong: GetSongsByAnimeIdResponseSong[],
@@ -29,7 +32,7 @@ export default async function Page(props: any) {
     }
     return (
       <div>
-        <h1 className="text-pink-400 font-medium text-2xl">{title}</h1>
+        <h1 className="text-white font-medium text-2xl">{title}</h1>
         <div className="pt-2">
           {animeSong.map((song, index) => (
             <div 
@@ -160,8 +163,8 @@ export default async function Page(props: any) {
         <div className='pt-5'>
           <p className="text-gray-500">{anime.description}</p>
         </div>
-        <div className="mt-5 bg-black p-8 rounded-2xl h-96 overflow-y-auto">
-          <h1 className="text-pink-400 font-medium text-2xl">Episodes</h1>
+        {episodeResponse?.episodes!=null?        <div className="mt-5 bg-black p-8 rounded-2xl h-96 overflow-y-auto">
+          <h1 className="text-white font-medium text-2xl">Episodes</h1>
               {episodeResponse?.episodes?.map((item)=>(
                 <div key={item.id} className="flex my-1 py-3 hover:bg-blue-gray-900 cursor-pointer">
                   <div className="w-16 items-center justify-center flex">
@@ -183,11 +186,50 @@ export default async function Page(props: any) {
                   </div>
                 </div>
               ))}
-        </div>
-        <div className="mt-5 bg-black p-8 rounded-2xl overflow-y-auto">
+        </div>:<></>
+        }
+        {songs.opening_song!=null||songs.ending_song!=null||songs.soundtrack_song!=null?
+        <div className="mt-5 bg-black px-8 py-3 rounded-2xl overflow-y-auto">
           {showAnimeSongItem(songs.opening_song,"Opening")}
           {showAnimeSongItem(songs.ending_song,"Ending")}
           {showAnimeSongItem(songs.soundtrack_song,"Soundtrack")}
+        </div>:<></>
+        }
+
+        <div className="pt-6">
+          <h1 className="text-white font-medium text-2xl">Characters & Voice Actors</h1>
+          <div className="flex pt-5">
+            <button className="px-5 py-2 bg-white rounded-2xl mr-3 text-black">Original</button>
+            <button className="px-5 py-2 bg-gray-600 rounded-2xl">Thai</button>
+          </div>
+          <div>
+
+          </div>
+        </div>
+        <div className="pt-6">
+          <h1>ความคิดเห็น {commentAnime.pagination.total_items} รายการ</h1>
+          <div className="flex pt-5">
+            <button className="px-5 py-2 bg-white rounded-2xl mr-3 text-black">Comment</button>
+            <button className="px-5 py-2 bg-gray-600 rounded-2xl">Spoiler</button>
+          </div>
+          <div className="flex pt-5">
+            {/* <img/><input/> */}
+            {commentAnime.data.map((item)=>(
+              <div className="flex" key={item.id}>
+                <img
+                  className="w-12 h-12 rounded-full object-cover" 
+                  src={item.author_image}/>
+                <div className="pl-4">
+                  <div className="flex">
+                    <h1 className="font-semibold">{item.author_name}</h1>
+                    <span className="pl-3 text-gray-700">{item.created_at}</span>
+                  </div>
+                  <h2 className="pt-1">{item.message}</h2>
+                  
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </>

@@ -10,3 +10,10 @@ type GetSeasonalAndYearResponseData = {
 export type GetSeasonalAndYearResponse = {
     data: GetSeasonalAndYearResponseData[]
 }
+
+export type PaginationResponse = {
+    page: number
+    limit: number
+    total_pages: number
+    total_items:number
+}
