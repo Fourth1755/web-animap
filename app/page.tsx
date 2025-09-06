@@ -17,7 +17,8 @@ export default async function Home() {
   const drama = await animeSerivce.getAnimesByCategory('0198e19b-e8fc-7bcb-85db-ca1e9b0fcaed')
   const adventure = await animeSerivce.getAnimesByCategory('0198e19b-e581-76a2-8009-786f45f6b22d')
   const ufotable = await animeSerivce.getAnimesByStudio('019566fa-dc59-7258-bc3f-f3d9f0f6c182')
-   const fate = await animeSerivce.getAnimesByCategoryUniverse('0196cf24-771e-768e-91c8-8395498f90e4')
+  const fate = await animeSerivce.getAnimesByCategoryUniverse('0196cf24-771e-768e-91c8-8395498f90e4')
+  const action = await animeSerivce.getAnimesByCategory('0198e19b-f5a7-745a-a8db-845a56f830bd')
 
   // const animeByTagSchool = await animeSerivce.getAnimesByCategory(1);
   // const animeByTagnePiece = await animeSerivce.getAnimesByCategory(4);
@@ -38,6 +39,7 @@ export default async function Home() {
       <SliderAnime tagAnime={"From "+animeStudioA1.name} animeList={animeStudioA1.anime_list} myAnimeListId={myAnimeList}/>
       <SliderAnime tagAnime="Drama" animeList={drama.anime_list} myAnimeListId={myAnimeList}/>
       <SliderAnime tagAnime={"From "+ufotable.name} animeList={ufotable.anime_list} myAnimeListId={myAnimeList}/>
+      <SliderAnime tagAnime="Action" animeList={action.anime_list} myAnimeListId={myAnimeList}/>
     </div>
   );
 }

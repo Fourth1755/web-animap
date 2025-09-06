@@ -48,15 +48,20 @@ $colorFadedPink:#F169B2;
         }
     }
 }
-.anime-category-button{
-    padding: 2px 14px 4px 14px;
-    border-radius: 18px;
-    border-width: 3px;
-    border-color: #736A6A;
-    color: $colorWhite;
-    // -webkit-text-stroke: 1px black;
-    margin-right: 5px;
-}
+// .anime-category-button{
+//     padding: 4px 14px 4px 14px;
+//     border-radius: 18px;
+//     border-width: 3px;
+//     border-color: #736A6A;
+//     color: $colorWhite;
+//     margin-right: 5px;
+//     margin-bottom: 4px;
+//     &:hover{
+//         cursor: pointer;
+//         background-color:#bab3b3;
+//         opacity: 0.8;
+//     }
+// }
 
 .content-header{
     font-size: 24px;
@@ -69,10 +74,37 @@ $colorFadedPink:#F169B2;
     height: 378px;   
 }
 
+.trailer-container{
+    width: 672px;
+}
+
+.trailer-slider{
+    padding-top: 4px;
+    display: flex;
+    width: 672px;
+    gap: 3px;
+    overflow-x: auto;        /* เปิด scrollbar แนวนอน */
+    scroll-behavior: smooth; /* เลื่อนนุ่มนวล */
+}
+
+.trailer-slider-item{
+    width: 133px;
+    height: 77px;
+}
+
 @media (max-width: 900px) {
     .trailer-iframe{
         width: 560px;
         height: 315px;   
+    }
+
+    .trailer-slider{
+        width: 560px;
+    }
+
+    .trailer-slider-item{
+        width: 135px;
+        height: 77px; 
     }
 }
 

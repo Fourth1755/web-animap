@@ -81,7 +81,7 @@ export default async function Page(props: any) {
       <div className="container mx-auto md:px-40 px-5 pt-16">
         <div className="flex justify-between py-7">
           <div>
-            <h1 className="mb-3 text-2xl font-extrabold leading-none tracking-tight md:text-2xl lg:text-3xl dark:text-white">
+            <h1 className="mb-3 text-2xl font-extrabold leading-none tracking-tight md:text-2xl lg:text-4xl dark:text-white">
               {anime.name_thai == ""?anime.name:anime.name_thai}
             </h1>
             <p className="mb-3 text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400">
@@ -107,8 +107,8 @@ export default async function Page(props: any) {
           </div>
         </div>
         <div className="flex md:flex-row justify-between py-1 flex-col">
-          <div>
-            <div className="w-64">
+          <div className="w-64">
+            <div className="w-full">
               <img
                 className="rounded-lg shadow-xl shadow-gray-900/50"
                 src={anime.image}                
@@ -140,21 +140,44 @@ export default async function Page(props: any) {
               </span>:<></>}
             </div>
           </div>
-          <div>
+          <div className="trailer-container">
             {anime.trailer_embed?
-              <iframe
-                className="trailer-iframe"
-                id="player"
-                src={`${anime.trailer_embed}`}
-                title="YouTube video player"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              ></iframe>
+              <div>
+                <iframe
+                  className="trailer-iframe"
+                  id="player"
+                  src={`${anime.trailer_embed}`}
+                  title="YouTube video player"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                ></iframe>
+                  {/* <div className="trailer-slider">
+                    <img 
+                      className="trailer-slider-item"
+                      src="https://a.storyblok.com/f/178900/960x540/1e492935d2/roshidere-teasaer-pv.jpg/m/filters:quality(95)format(webp)"/>
+                                          <img 
+                      className="trailer-slider-item"
+                      src="https://a.storyblok.com/f/178900/960x540/1e492935d2/roshidere-teasaer-pv.jpg/m/filters:quality(95)format(webp)"/>
+                                          <img 
+                      className="trailer-slider-item"
+                      src="https://a.storyblok.com/f/178900/960x540/1e492935d2/roshidere-teasaer-pv.jpg/m/filters:quality(95)format(webp)"/>
+                                          <img 
+                      className="trailer-slider-item"
+                      src="https://a.storyblok.com/f/178900/960x540/1e492935d2/roshidere-teasaer-pv.jpg/m/filters:quality(95)format(webp)"/>
+                                          <img 
+                      className="trailer-slider-item"
+                      src="https://a.storyblok.com/f/178900/960x540/1e492935d2/roshidere-teasaer-pv.jpg/m/filters:quality(95)format(webp)"/>
+                      <img 
+                      className="trailer-slider-item"
+                      src="https://a.storyblok.com/f/178900/960x540/1e492935d2/roshidere-teasaer-pv.jpg/m/filters:quality(95)format(webp)"/>
+                  </div> */}
+                  
+              </div>
               :<></>
             }
             <div className="pt-5">
               {anime.categories?.map((item) => (
                 <Link href={`category/${item.id}`} key={item.id} >
-                    <button className="anime-category-button">{item.name}</button>
+                    <button className="px-4 py-0.5 rounded-2xl border-2 border-gray-100 mb-1 ml-1.5 hover:cursor-pointer hover:bg-opacity-80 hover:bg-gray-300">{item.name}</button>
                 </Link>
               ))}
             </div>
@@ -163,7 +186,8 @@ export default async function Page(props: any) {
         <div className='pt-5'>
           <p className="text-gray-500">{anime.description}</p>
         </div>
-        {episodeResponse?.episodes!=null?        <div className="mt-5 bg-black p-8 rounded-2xl h-96 overflow-y-auto">
+        {episodeResponse?.episodes!=null?        
+        <div className="mt-5 bg-black p-8 rounded-2xl h-96 overflow-y-auto">
           <h1 className="text-white font-medium text-2xl">Episodes</h1>
               {episodeResponse?.episodes?.map((item)=>(
                 <div key={item.id} className="flex my-1 py-3 hover:bg-blue-gray-900 cursor-pointer">
