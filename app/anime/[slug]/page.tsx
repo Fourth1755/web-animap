@@ -10,6 +10,7 @@ import {
 import { EpisodeService } from "@/app/service/episodeService";
 import Image from "next/image";
 import { CommentService } from "@/app/service/commentService";
+import MediaBlock from "./component/mediaBlock/mediaBlock";
 
 export default async function Page(props: any) {
   const params = await props.params;
@@ -19,6 +20,7 @@ export default async function Page(props: any) {
   const commentService = new CommentService();
 
   const anime = await animeService.getAnime(params.slug);
+  const animeMedia = await animeService.getMediaAnimeByAnimeId(params.slug)
   const songs = await songSerivce.getSongsByAnimeId(anime.id);
   const episodeResponse = await episodeService.getEpisode(anime.id,"FIRST_APPEARANCE");
   const commentAnime = await commentService.getCommentAnime(anime.id)
@@ -133,6 +135,7 @@ export default async function Page(props: any) {
                             ))}
                         </div>
                     </div>
+
               {anime.category_universe?              
               <span className="flex pt-2 text-gray-500">
                 <p className="pr-2">Timeline:</p>
@@ -143,39 +146,7 @@ export default async function Page(props: any) {
             </div>
           </div>
           <div className="trailer-container">
-            {anime.trailer_embed?
-              <div>
-                <iframe
-                  className="trailer-iframe"
-                  id="player"
-                  src={`${anime.trailer_embed}`}
-                  title="YouTube video player"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                ></iframe>
-                  {/* <div className="trailer-slider">
-                    <img 
-                      className="trailer-slider-item"
-                      src="https://a.storyblok.com/f/178900/960x540/1e492935d2/roshidere-teasaer-pv.jpg/m/filters:quality(95)format(webp)"/>
-                                          <img 
-                      className="trailer-slider-item"
-                      src="https://a.storyblok.com/f/178900/960x540/1e492935d2/roshidere-teasaer-pv.jpg/m/filters:quality(95)format(webp)"/>
-                                          <img 
-                      className="trailer-slider-item"
-                      src="https://a.storyblok.com/f/178900/960x540/1e492935d2/roshidere-teasaer-pv.jpg/m/filters:quality(95)format(webp)"/>
-                                          <img 
-                      className="trailer-slider-item"
-                      src="https://a.storyblok.com/f/178900/960x540/1e492935d2/roshidere-teasaer-pv.jpg/m/filters:quality(95)format(webp)"/>
-                                          <img 
-                      className="trailer-slider-item"
-                      src="https://a.storyblok.com/f/178900/960x540/1e492935d2/roshidere-teasaer-pv.jpg/m/filters:quality(95)format(webp)"/>
-                      <img 
-                      className="trailer-slider-item"
-                      src="https://a.storyblok.com/f/178900/960x540/1e492935d2/roshidere-teasaer-pv.jpg/m/filters:quality(95)format(webp)"/>
-                  </div> */}
-                  
-              </div>
-              :<></>
-            }
+            <MediaBlock trailer_embed={anime.trailer_embed} anime_media={animeMedia.data}/>
             <div className="pt-5">
               {anime.categories?.map((item) => (
                 <Link href={`category/${item.id}`} key={item.id} >

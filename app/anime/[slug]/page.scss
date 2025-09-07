@@ -4,7 +4,6 @@ $colorWhite:#FFFFFF;
 $colorDarkPink:#201020;
 $colorDarkDarkPink :#371037;
 $colorGreen: #1EC602;
-$colorFadedPink:#F169B2;
 .wallpaper{
     width: 100%;
     height: 660px;
@@ -69,48 +68,6 @@ $colorFadedPink:#F169B2;
     font-weight: 600;
 }
 
-.trailer-iframe{
-    width: 672px;
-    height: 378px;   
-}
-
 .trailer-container{
     width: 672px;
-}
-
-.trailer-slider{
-    padding-top: 4px;
-    display: flex;
-    width: 672px;
-    gap: 3px;
-    overflow-x: auto;        /* เปิด scrollbar แนวนอน */
-    scroll-behavior: smooth; /* เลื่อนนุ่มนวล */
-}
-
-.trailer-slider-item{
-    width: 133px;
-    height: 77px;
-}
-
-@media (max-width: 900px) {
-    .trailer-iframe{
-        width: 560px;
-        height: 315px;   
-    }
-
-    .trailer-slider{
-        width: 560px;
-    }
-
-    .trailer-slider-item{
-        width: 135px;
-        height: 77px; 
-    }
-}
-
-@media (max-width: 800px) {
-    .trailer-iframe{
-        width: 280px;
-        height: 158px;   
-    }
 }

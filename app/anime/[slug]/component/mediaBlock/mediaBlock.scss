@@ -1,0 +1,60 @@
+
+.trailer-iframe{
+    width: 672px;
+    height: 378px;   
+}
+
+.trailer-container{
+    width: 672px;
+}
+
+.trailer-slider{
+    padding-top: 4px;
+    display: flex;
+    width: 672px;
+    gap: 3px;
+    overflow-x:scroll;        /* เปิด scrollbar แนวนอน */
+    scroll-behavior: smooth; /* เลื่อนนุ่มนวล */
+}
+
+.trailer-slider-item{
+    width: 133px;
+    height: 77px;
+    padding-bottom: 3px;
+    &:hover{
+        cursor: pointer;
+    }
+}
+
+.trailer-slider-item-video{
+    display: block;
+    width: 133px;
+    height: 77px;
+    padding-bottom: 3px;
+    &:hover{
+        cursor: pointer;
+    }
+}
+
+@media (max-width: 900px) {
+    .trailer-iframe{
+        width: 560px;
+        height: 315px;   
+    }
+
+    .trailer-slider{
+        width: 560px;
+    }
+
+    .trailer-slider-item{
+        width: 135px;
+        height: 77px; 
+    }
+}
+
+@media (max-width: 800px) {
+    .trailer-iframe{
+        width: 280px;
+        height: 158px;   
+    }
+}

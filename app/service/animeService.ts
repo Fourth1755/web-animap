@@ -8,7 +8,8 @@ import { GetAnimeListResponse,
     GetAnimesBySeasonalAndYearResponse, 
     GetAnimesBySeasonalAndYearRequest, 
     GetAnimesByCategoryUniverseResponse, 
-    GetAnimesByStudioResponse } from "./dtos/anime";
+    GetAnimesByStudioResponse, 
+    GetAnimePictureResponse} from "./dtos/anime";
 
 export class AnimeService{
     private url:string
@@ -78,6 +79,13 @@ export class AnimeService{
 
     public async getAnimesByStudio(id:string):Promise<GetAnimesByStudioResponse> {
         const response = await axios.get(`${this.url}/studio/${id}`, {
+            headers: this.getConfigHeaders(),
+        })
+        return response.data
+    }
+
+    public async getMediaAnimeByAnimeId(id:string):Promise<GetAnimePictureResponse> {
+        const response = await axios.get(`${this.url}/media/${id}`, {
             headers: this.getConfigHeaders(),
         })
         return response.data

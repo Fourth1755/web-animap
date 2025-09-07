@@ -177,3 +177,12 @@ export type GetAnimesByStudioResponse = {
     main_color: string
     anime_list: GetAnimesByStudioResponseAnimeList[]
 }
+
+type GetAnimePictureDataResponse = {
+    id:string
+    type: string
+    picture_url: string
+}
+export type GetAnimePictureResponse = {
+    data: GetAnimePictureDataResponse[]
+}
