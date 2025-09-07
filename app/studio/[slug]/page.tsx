@@ -7,13 +7,13 @@ export default async function Page(props: any) {
     const params = await props.params;
     const animeService = new AnimeService();
     const studio = await animeService.getAnimesByStudio(params.slug);
-    const user = getUser();
+    const user = await getUser();
     return (
         <div className="pt-16">
             <WallpaperStudio 
                 link={studio.wallpaper} 
                 name={studio.name} 
                 main_color={studio.main_color}/>
-            <ListAnimeBlock animes={studio.anime_list} user={user}/>
+            <ListAnimeBlock animes={studio.anime_list} user={user} isShowStudio={false}/>
         </div>);
 }

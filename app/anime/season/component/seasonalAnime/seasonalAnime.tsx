@@ -10,10 +10,10 @@ export default async function SeasonalAnime(props: Props) {
     const {year , seasonal} = props
     const animeService = new AnimeService
     const animes = await animeService.getAnimesBySeasonalAndYear({year,seasonal})
-    const user = getUser();
+    const user =await getUser();
     return (
         <div>
-            <ListAnimeBlock animes={animes.anime_list} user={user}/>
+            <ListAnimeBlock animes={animes.anime_list} user={user} isShowStudio={true}/>
         </div>
     )
 }

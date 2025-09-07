@@ -7,11 +7,11 @@ export default async function Page(props: any) {
     const params = await props.params;
     const animeService = new AnimeService();
     const category = await animeService.getAnimesByCategory(params.slug);
-    const user = getUser();
+    const user =await getUser();
     return (
         <div className="pt-16">
             <WallpaperAnime link={category.wallpaper} name={category.name}/>
-            <ListAnimeBlock animes={category.anime_list} user={user}/>
+            <ListAnimeBlock animes={category.anime_list} user={user} isShowStudio={true}/>
         </div>
     )
 }

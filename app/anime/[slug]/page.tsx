@@ -123,14 +123,16 @@ export default async function Page(props: any) {
               />
             </div>
             <div className="pt-4">
-              <span className="flex pt-2 text-gray-500">
-                <p className="pr-2">Studio:</p>
-                {anime.studios.map((item,index) => (
-                  <Link key={item.id} href={`/studio/${item.id}`}>
-                    <p className="pl-1 text-white w-full">{item.name} {anime.studios.length-1==index?<></>:<>,</>}</p>
-                  </Link>
-                ))}
-              </span>
+              <div className="flex">
+                        <p className="pr-2 text-gray-500">Studio:</p>
+                        <div>
+                            {anime.studios.map((item,index) => (
+                            <Link key={item.id} href={`/studio/${item.id}`}>
+                                <p className="pl-1 text-white w-full whitespace-nowrap">{item.name} {anime.studios.length-1==index?<></>:<>,</>}</p>
+                            </Link>
+                            ))}
+                        </div>
+                    </div>
               {anime.category_universe?              
               <span className="flex pt-2 text-gray-500">
                 <p className="pr-2">Timeline:</p>

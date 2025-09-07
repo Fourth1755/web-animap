@@ -28,10 +28,11 @@ type AnimeItem = {
 type Props = {
     anime: AnimeItem;
     user:string
+    isShowStudio:boolean;
 }
 
 export default function ListAnimeBlockItem(props :Props) {
-    const { anime , user } = props
+    const { anime , user,isShowStudio } = props
     
     return (
         <div className="flex justify-between m-2 p-1 bg-black">
@@ -46,15 +47,20 @@ export default function ListAnimeBlockItem(props :Props) {
                 <div className="flex flex-col">
                     <h1 className="font-medium">{anime.name}</h1>
                     <span className="text-m font-normal text-gray-600">
-                        {anime.episodes} ep ,{" "}
-                        {anime.duration}</span>
-                    <span className="text-m font-normal text-gray-600">Studio: 
-                    {anime.studios?.map((item) => (
-                  <Link key={item.id} href={`/studio/${item.id}`}>
-                    <p className="pl-1 text-white">{item.name}</p>
-                  </Link>
-                ))}
+                        {anime.episodes} ep 
+                        {anime.duration?<span>,{" "} {anime.duration}</span>:<></>}
                     </span>
+                    {isShowStudio?                    
+                    <div className="flex">
+                        <p className="pr-2 text-gray-600">Studio:</p>
+                        <div>
+                            {anime.studios.map((item,index) => (
+                            <Link key={item.id} href={`/studio/${item.id}`}>
+                                <p className="pl-1 text-gray-500 w-full whitespace-nowrap">{item.name} {anime.studios.length-1==index?<></>:<>,</>}</p>
+                            </Link>
+                            ))}
+                        </div>
+                    </div>:<></>}
                 </div>
                 <div className="flex">
                     <AddAnimeButton name="ADD TO LIST" isEdit={false} anime={anime} user={user}/>

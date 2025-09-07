@@ -28,15 +28,16 @@ type AnimeItem = {
 type Props = {
     animes: AnimeItem[];
     user:string
+    isShowStudio:boolean
 }
 
 export default function ListAnimeBlock(props :Props) {
-    const { animes, user } = props
+    const { animes, user, isShowStudio } = props
     return (
         <div className="container lg:mx-auto pt-10">
             <div className="grid grid-cols-3 gap-2">
                 {animes?.map((item, index)=>(
-                    <ListAnimeBlockItem anime={item} key={index} user={user}/>
+                    <ListAnimeBlockItem anime={item} key={index} user={user} isShowStudio={isShowStudio}/>
                 ))}
             </div>
         </div>

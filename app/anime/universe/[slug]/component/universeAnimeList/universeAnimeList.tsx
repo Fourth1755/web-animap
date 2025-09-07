@@ -62,7 +62,8 @@ export default function UniverseAnimeList(props : Props){
         handleChange(id)
     }
     return(
-        <div className="w-full overflow-y-scroll h-screen pt-16 ">
+        <div className="w-full h-screen pt-16">
+            <div className="overflow-y-scroll h-full">
             <WallpaperAnime link={category.wallpaper} name={category.name}/>
                     <div className='container mx-auto md:px-20 px-5'>
             <div className="py-5">
@@ -118,5 +119,6 @@ export default function UniverseAnimeList(props : Props){
             </div>
         </div>
         </div>
+    </div>
     )
 }
