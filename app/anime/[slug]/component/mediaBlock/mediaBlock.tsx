@@ -9,11 +9,11 @@ import { faCirclePlay} from "@fortawesome/free-solid-svg-icons";
 type GetAnimePictureDataResponse = {
     id:string
     type: string
-    picture_url: string
+    url: string
+    embed_url: string
 }
 
 type MediaBlockProps = {
-    trailer_embed:string
     anime_media: GetAnimePictureDataResponse[]
 }
 
@@ -21,10 +21,11 @@ type MediaSelect = {
     id: string
     url: string
     type: string
+    embed_url: string
 }
 
 export default function MediaBlock(props:MediaBlockProps) {
-    const {trailer_embed , anime_media } = props
+    const { anime_media } = props
     // const [mediaSelect,setMediaSelect] = useState<MediaSelect>({
     //     id:"",
     //     url:trailer_embed,
@@ -36,15 +37,16 @@ export default function MediaBlock(props:MediaBlockProps) {
 
     const initData =()=>{
         let listofMediaData:MediaSelect[] = []
-        listofMediaData.push({
-            id:"",
-            url:trailer_embed,
-            type:"VIDEO"
-        })
+        // listofMediaData.push({
+        //     id:"",
+        //     url:trailer_embed,
+        //     type:"VIDEO"
+        // })
         anime_media.map((item)=>listofMediaData.push({
             id:item.id,
-            url:item.picture_url,
-            type:item.type
+            url:item.url,
+            type:item.type,
+            embed_url:item.embed_url
         }))
         setListofMedia(listofMediaData)
         console.log("Done")
@@ -68,9 +70,9 @@ export default function MediaBlock(props:MediaBlockProps) {
         }
     }, [activeIndex]);
 
-    if (trailer_embed == ""|| trailer_embed == null){
-        return <div></div>
-    }
+    // if (trailer_embed == ""|| trailer_embed == null){
+    //     return <div></div>
+    // }
     
     return (
               <div>
@@ -78,7 +80,7 @@ export default function MediaBlock(props:MediaBlockProps) {
                     {listofMedia[activeIndex]?.type=="VIDEO"?<iframe
                         className="w-full h-full"
                         id="player"
-                        src={`${listofMedia[activeIndex]?.url}`}
+                        src={`${listofMedia[activeIndex]?.embed_url}`}
                         title="YouTube video player"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     ></iframe>:
@@ -102,14 +104,16 @@ export default function MediaBlock(props:MediaBlockProps) {
                 </div>
                     <div className="trailer-slider">
                         {listofMedia.map((item,i)=>(
-                            <div className="w-[133px] h-[77px]" key={i}>
+                            <div key={i}>
                                     {item.type=="VIDEO"?
+                                    <div className="relative inline-block">
                                     <div
-                                        className="w-[133px] h-[77px] bg-cover bg-cente bg-no-repeat"
-                                        style={{backgroundImage:`url(https://img.youtube.com/vi/ie5GcVid_8k/maxresdefault.jpg)`}}
+                                        className="w-[133px] h-[77px] bg-cover bg-center bg-no-repeat"
+                                        style={{backgroundImage:`url(${item?.url})`}}
                                         onClick={() => handleChangeMeia(i)}>
-                                        </div>                              
-                                        // <FontAwesomeIcon icon={faCirclePlay} className="absolute top-0 left-1/2 -translate-x-1/2"/>
+                                            <FontAwesomeIcon icon={faCirclePlay} className="circlePlay"/>
+                                    </div>   
+                                     </div>
                                     :<div 
                                         className="w-[133px] h-[77px] bg-cover bg-cente bg-no-repeat"
                                         style={{backgroundImage:`url(${item?.url})`}}

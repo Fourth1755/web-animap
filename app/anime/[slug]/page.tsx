@@ -146,7 +146,8 @@ export default async function Page(props: any) {
             </div>
           </div>
           <div className="trailer-container">
-            <MediaBlock trailer_embed={anime.trailer_embed} anime_media={animeMedia.data}/>
+            <MediaBlock anime_media={animeMedia.data}/>
+
             <div className="pt-5">
               {anime.categories?.map((item) => (
                 <Link href={`category/${item.id}`} key={item.id} >

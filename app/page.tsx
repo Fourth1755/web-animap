@@ -24,9 +24,10 @@ export default async function Home() {
   // const animeByTagnePiece = await animeSerivce.getAnimesByCategory(4);
   // https://wallpapercave.com/dwp2x/wp13207813.png
   // https://images7.alphacoders.com/737/737400.jpg
+  //https://deadline.com/wp-content/uploads/2025/03/Demon-Slayer_-Kimetsu-no-Yaiba-Infinity-Castle-Theatrical-Date-Poster-US-e1741194118916.jpg
   return (
     <div>
-      <WallpaperAnimeMain name="Welcome To Anime Map" link="https://deadline.com/wp-content/uploads/2025/03/Demon-Slayer_-Kimetsu-no-Yaiba-Infinity-Castle-Theatrical-Date-Poster-US-e1741194118916.jpg"/>
+      <WallpaperAnimeMain name="Welcome To Anime Map" link="https://static0.cbrimages.com/wordpress/wp-content/uploads/2025/07/my-dress-up-darling-season-2-director-opens-up-about-difficult-production-after-3-years.jpg"/>
       {/* <SliderAnime tagAnime="All" animeList={animes} myAnimeListId={myAnimeList}/> */}
       <SliderAnime tagAnime="School" animeList={animeSchool.anime_list} myAnimeListId={myAnimeList}/>
       <SliderAnime tagAnime="Fate" animeList={fate.anime_list} myAnimeListId={myAnimeList}/>

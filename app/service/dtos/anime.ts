@@ -181,7 +181,8 @@ export type GetAnimesByStudioResponse = {
 type GetAnimePictureDataResponse = {
     id:string
     type: string
-    picture_url: string
+    url: string
+    embed_url: string
 }
 export type GetAnimePictureResponse = {
     data: GetAnimePictureDataResponse[]
