@@ -31,7 +31,11 @@ export default function DragAndDropContainer() {
     group3: [],
     group4: [],
     group5: [],
-    group6: ['1', '2', '3','4', '5', '6','7', '8', '9'],
+    group6: [{
+      id:"1",
+      name:"swo",
+      image:""
+    }],
   });
 
   const [activeId, setActiveId] = useState<string | null>(null);
@@ -47,7 +51,7 @@ export default function DragAndDropContainer() {
     if (id in items) {
       return id;
     }
-    return Object.keys(items).find((key) => items[key].includes(id));
+    return Object.keys(items).find((key) => items[key].map(anime=>anime.id).includes(id));
   };
 
   const handleDragStart = (event: DragStartEvent) => {
@@ -72,8 +76,8 @@ export default function DragAndDropContainer() {
     setItems((prev) => {
       const activeItems = prev[activeContainer];
       const overItems = prev[overContainer];
-      const activeIndex = activeItems.indexOf(activeId);
-      const overIndex = overItems.indexOf(overId);
+      const activeIndex = activeItems.findIndex(item=>item.id === activeId);
+      const overIndex = overItems.findIndex(item=>item.id === overId);
 
       let newIndex: number;
       if (overId in prev) {
@@ -93,7 +97,7 @@ export default function DragAndDropContainer() {
       return {
         ...prev,
         [activeContainer]: prev[activeContainer].filter(
-          (item) => item !== activeId
+          (item) => item.id !== activeId
         ),
         [overContainer]: [
           ...prev[overContainer].slice(0, newIndex),
@@ -126,8 +130,8 @@ export default function DragAndDropContainer() {
       return;
     }
 
-    const activeIndex = items[activeContainer].indexOf(activeId);
-    const overIndex = items[overContainer].indexOf(overId);
+    const activeIndex = items[activeContainer].findIndex(item=>item.id === activeId);
+    const overIndex = items[overContainer].findIndex(item=>item.id === overId);
 
     if (activeIndex !== overIndex) {
       setItems((currentItems) => ({
