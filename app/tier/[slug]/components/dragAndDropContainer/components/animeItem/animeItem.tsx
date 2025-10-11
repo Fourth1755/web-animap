@@ -1,5 +1,6 @@
 // Item.tsx
 import React from 'react';
+import { AnimeItemResponse } from '../../types';
 
 const itemStyle: React.CSSProperties = {
   border: '1px solid rgba(0,0,0,0.1)',
@@ -13,9 +14,15 @@ const itemStyle: React.CSSProperties = {
 };
 
 interface ItemProps {
-  id: string;
+  anime: AnimeItemResponse;
 }
 
-export const AnimeItem = ({ id }: ItemProps) => {
-  return <div style={itemStyle}>Item {id}</div>;
+export const AnimeItem = ({ anime }: ItemProps) => {
+  return <img
+            className="rounded-lg shadow-xl shadow-gray-900/50"
+            src={anime.image}     
+            alt="nature image"
+            width={106}
+            height={154}
+            />
 };

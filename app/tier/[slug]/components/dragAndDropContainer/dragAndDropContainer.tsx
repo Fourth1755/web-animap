@@ -1,5 +1,5 @@
 // App.tsx
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import {
   DndContext,
   DragOverlay,
@@ -14,31 +14,54 @@ import {
 } from '@dnd-kit/core';
 import { arrayMove, sortableKeyboardCoordinates } from '@dnd-kit/sortable';
 
-import { Item } from './item';
-import type { Items } from './types';
+import type { AnimeItemResponse, Items } from './types';
 import { AnimeListContainer } from './components/animeListContainer/animeListContainer';
 import { AnimeTierContainer } from './components/animeTierContainer/animeTierContainer';
+import { AnimeService } from '@/app/service/animeService';
+import { AnimeItem } from './components/animeItem/animeItem';
 
 const wrapperStyle: React.CSSProperties = {
   display: 'flex',
   flexDirection: 'row',
 };
 
+const tierList = [
+    {
+        name:"S",
+        color:"#FF807D",
+    },
+    {
+        name:"A",
+        color:"#FFE080",
+    },
+    {
+        name:"B",
+        color:"#FEFE7F",
+    },
+    {
+        name:"C",
+        color:"#BDFF7E",
+    },
+    {
+        name:"ยังไม่เคยดู",
+        color:"#7EFF80",
+    }
+]
+
 export default function DragAndDropContainer() {
   const [items, setItems] = useState<Items>({
-    group1: [],
-    group2: [],
-    group3: [],
-    group4: [],
-    group5: [],
-    group6: [{
-      id:"1",
-      name:"swo",
-      image:""
-    }],
+    S: [],
+    A: [],
+    B: [],
+    C: [],
+    ยังไม่เคยดู: [],
+    group6: [],
   });
+  const [activeId, setActiveId] = useState<AnimeItemResponse | null>(null);
 
-  const [activeId, setActiveId] = useState<string | null>(null);
+  const animeService = new AnimeService()
+  const [animeShow,setAnimeShow] = useState<AnimeItemResponse[]>()
+  const [loading, setLoading] = useState(true);
 
   const sensors = useSensors(
     useSensor(PointerSensor),
@@ -56,7 +79,10 @@ export default function DragAndDropContainer() {
 
   const handleDragStart = (event: DragStartEvent) => {
     const { active } = event;
-    setActiveId(active.id.toString());
+    const activeItem = animeShow?.find((item) =>item.id == active.id.toString());
+    if(activeItem != null){
+      setActiveId(activeItem);
+    }
   };
 
   const handleDragOver = (event: DragOverEvent) => {
@@ -76,17 +102,23 @@ export default function DragAndDropContainer() {
     setItems((prev) => {
       const activeItems = prev[activeContainer];
       const overItems = prev[overContainer];
-      const activeIndex = activeItems.findIndex(item=>item.id === activeId);
-      const overIndex = overItems.findIndex(item=>item.id === overId);
+      const activeIndex = activeItems.findIndex((item) => item.id === activeId);
+      const overIndex = overItems.findIndex((item) => item.id === overId);
+
+      const draggedItem = prev[activeContainer][activeIndex];
+
+      if (!draggedItem) {
+        return prev;
+      }
 
       let newIndex: number;
       if (overId in prev) {
-        newIndex = overItems.length + 1;
+        newIndex = overItems.length;
       } else {
         const isBelowLastItem =
           over &&
           overIndex === overItems.length - 1 &&
-          active.rect.current.translated && // <--- Correct access
+          active.rect.current.translated &&
           over.rect &&
           active.rect.current.translated.top > over.rect.top + over.rect.height;
 
@@ -101,7 +133,7 @@ export default function DragAndDropContainer() {
         ),
         [overContainer]: [
           ...prev[overContainer].slice(0, newIndex),
-          activeId,
+          draggedItem,
           ...prev[overContainer].slice(newIndex),
         ],
       };
@@ -147,6 +179,26 @@ export default function DragAndDropContainer() {
     setActiveId(null);
   };
 
+  const fetchAnime = useCallback(() => {
+      //setLoading(true);
+      const animeResponse =  animeService.getAnimesByCategory('0198dca9-86c6-7df7-ba08-e8b1b1256324')
+      animeResponse.then((res)=>{
+          setAnimeShow(res.anime_list);
+          setItems(prev =>{
+            return {
+              ...prev,
+              group6:res.anime_list
+              };
+          })
+      }).catch((error)=>{
+          console.log('Failed to fetch user info:', error);
+      }).finally(()=>setLoading(false))
+  }, []);
+
+  useEffect(() => {
+      setLoading(true)
+      fetchAnime()
+  },[]);
   return (
     <div style={wrapperStyle}>
       <DndContext
@@ -160,9 +212,9 @@ export default function DragAndDropContainer() {
           <div className="pt-16 pl-8 w-full">
             <h1 className="text-3xl pl-10 p-5">anime ยอมนิยม (300+ anime)</h1>
             <div className='flex flex-col'>
-              {Object.keys(items).map((key) => {
-                if(key != "group6") {
-                  return <AnimeTierContainer id={key} key={key} items={items[key]} />
+              {tierList.map((tier) => {
+                if(tier.name != "group6") {
+                  return <AnimeTierContainer id={tier.name} key={tier.name} items={items[tier.name]} color={tier.color}/>
                 }
               }
               )}
@@ -170,12 +222,11 @@ export default function DragAndDropContainer() {
           </div>
           <div className='w-96 h-screen bg-gray-600'>
             <div className='pt-16 w-full'>
-              
               <AnimeListContainer id={"group6"} key={"group6"} items={items.group6}/>
             </div>
           </div>
         </div>
-        <DragOverlay>{activeId ? <Item id={activeId} /> : null}</DragOverlay>
+        <DragOverlay>{activeId ? <AnimeItem anime={activeId} /> : null}</DragOverlay>
       </DndContext>
     </div>
   );

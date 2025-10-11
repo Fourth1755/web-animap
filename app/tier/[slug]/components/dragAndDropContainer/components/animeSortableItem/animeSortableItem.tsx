@@ -3,12 +3,14 @@ import React from 'react';
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from '@dnd-kit/utilities';
 import { AnimeItem } from '../animeItem/animeItem';
+import { AnimeItemResponse } from '../../types';
 
 interface SortableItemProps {
   id: string;
+  anime: AnimeItemResponse
 }
 
-export const AnimeSortableItem = ({ id }: SortableItemProps) => {
+export const AnimeSortableItem = ({ id,anime }: SortableItemProps) => {
   const {
     attributes,
     listeners,
@@ -26,7 +28,7 @@ export const AnimeSortableItem = ({ id }: SortableItemProps) => {
 
   return (
     <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
-      <AnimeItem id={id} />
+      <AnimeItem anime={anime}/>
     </div>
   );
 };
