@@ -16,7 +16,7 @@ export const AnimeTierContainer = ({ id, items,color }: ContainerProps) => {
   const { setNodeRef } = useDroppable({ id });
 
   return (
-    <div className='bg-gray-800 border border-black flex'>
+    <div className='bg-gray-900 border border-black flex'>
         <div className='w-20 flex flex-col justify-center items-center' style={{backgroundColor:color}}>
             <h1 className='text-2xl text-black'>{id}</h1>
         </div>

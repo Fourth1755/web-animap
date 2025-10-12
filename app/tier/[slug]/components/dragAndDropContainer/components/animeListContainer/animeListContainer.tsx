@@ -16,7 +16,7 @@ export const AnimeListContainer = ({ id, items }: ContainerProps) => {
   return (
     <div className='h-full'>
     <SortableContext id={id} items={items} strategy={rectSortingStrategy}>
-    <div ref={setNodeRef} className="grid grid-cols-4 gap-1 m-2 p-3 rounded-md bg-black">
+    <div ref={setNodeRef} className="grid grid-cols-4 gap-1 m-2 p-3 rounded-md bg-gray-900">
         {items.map((item) => (
         <AnimeSortableItem key={item.id} id={item.id} anime={item} />
         ))}

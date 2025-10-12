@@ -220,7 +220,7 @@ export default function DragAndDropContainer() {
               )}
             </div>
           </div>
-          <div className='w-96 h-screen bg-gray-600'>
+          <div className='w-1/3 h-screen'>
             <div className='pt-16 w-full'>
               <AnimeListContainer id={"group6"} key={"group6"} items={items.group6}/>
             </div>
