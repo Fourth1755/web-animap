@@ -9,7 +9,7 @@ export default function WallpaperAnimeMain(props:Props) {
     const { link,name } = props
     let dropzoneStyle = {
         width: `100%`,
-        height: `410px`,
+        height: `510px`,
         backgroundImage: `url(${link})`,
         backgroundRepeat: `no-repeat`,
         backgroundPosition: `center center`,

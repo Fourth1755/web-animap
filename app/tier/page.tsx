@@ -3,6 +3,8 @@ import Button from "../components/button/button";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import { color } from "framer-motion";
 import Link from "next/link";
+import { TierTemplateService } from "../service/tierTemplateService";
+import { redirect } from "next/navigation";
 
 type TierTemplate = {
     id: string
@@ -14,21 +16,27 @@ type TierTemplate = {
 }
 
 export default async function  Page() {
-    const tierTemplateList:TierTemplate[] = [{
-        id:"1",
-        name: "Anime tier list (300+ anime)",
-        created_by:"Fourth Poolab",
-        is_play:true,
-        played_count:4300,
-        total_item:140
-    },{
-        id:"2",
-        name: "Anime Summer 2025",
-        created_by:"Fourth Poolab",
-        is_play:true,
-        played_count:4300,
-        total_item:140
-    }]
+    // const tierTemplateList:TierTemplate[] = [{
+    //     id:"1",
+    //     name: "Anime tier list (300+ anime)",
+    //     created_by:"Fourth Poolab",
+    //     is_play:true,
+    //     played_count:4300,
+    //     total_item:140
+    // },{
+    //     id:"2",
+    //     name: "Anime Summer 2025",
+    //     created_by:"Fourth Poolab",
+    //     is_play:true,
+    //     played_count:4300,
+    //     total_item:140
+    // }]
+    const tierTemplateService = new TierTemplateService()
+    const tierTemplateList = await tierTemplateService.getTierTemplate()
+
+    const navigateToTierPage=(id:string)=>{
+        redirect(`/tier/${id}`)
+    }
     return (
     <div className="container w-3/4 mx-auto pt-24">
         <div className="flex justify-between items-center">
@@ -60,15 +68,18 @@ export default async function  Page() {
                     </tr>
                 </thead>
                 <tbody>
-                    {tierTemplateList.map((item,index)=>(
+                    {tierTemplateList.data.map((item,index)=>(
                             <tr 
                                 key = {index}
-                                className="border-gray-200 hover:bg-gray-900">
+                                className="border-gray-200 hover:bg-gray-900"
+                                >
                                 <td className="px-4 py-4">
                                     {index+1}
                                 </td>
                                 <td className="pr-6 py-4">
-                                    <h1 className="font-medium text-white">{item.name}</h1>
+                                    <h1 className="font-medium text-white">
+                                        <Link href={`/tier/${item.id}`}>{item.name}</Link>
+                                    </h1>
                                     <h2>{item.created_by}</h2>
                                 </td>
                                 <td className="px-6 py-4">

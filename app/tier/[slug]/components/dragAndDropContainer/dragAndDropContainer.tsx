@@ -1,4 +1,5 @@
 // App.tsx
+"use client"
 import React, { useCallback, useEffect, useState } from 'react';
 import {
   DndContext,
@@ -19,6 +20,8 @@ import { AnimeListContainer } from './components/animeListContainer/animeListCon
 import { AnimeTierContainer } from './components/animeTierContainer/animeTierContainer';
 import { AnimeService } from '@/app/service/animeService';
 import { AnimeItem } from './components/animeItem/animeItem';
+import { TierTemplateService } from '@/app/service/tierTemplateService';
+import { GetTierTemplatePaginatedResponse, GetTierTemplateResponse } from '@/app/service/dtos/tierTemplate';
 
 const wrapperStyle: React.CSSProperties = {
   display: 'flex',
@@ -47,8 +50,12 @@ const tierList = [
         color:"#7EFF80",
     }
 ]
+type DragAndDropContainerProps = {
+  tierTemplateId: string
+}
 
-export default function DragAndDropContainer() {
+export default function DragAndDropContainer(props:DragAndDropContainerProps) {
+  const tierTemplateId = props.tierTemplateId
   const [items, setItems] = useState<Items>({
     S: [],
     A: [],
@@ -60,7 +67,10 @@ export default function DragAndDropContainer() {
   const [activeId, setActiveId] = useState<AnimeItemResponse | null>(null);
 
   const animeService = new AnimeService()
+  const tierTemplateService = new TierTemplateService()
+
   const [animeShow,setAnimeShow] = useState<AnimeItemResponse[]>()
+  const [tierTemplate,setTierTemplate] = useState<GetTierTemplateResponse>()
   const [loading, setLoading] = useState(true);
 
   const sensors = useSensors(
@@ -181,7 +191,7 @@ export default function DragAndDropContainer() {
 
   const fetchAnime = useCallback(() => {
       //setLoading(true);
-      const animeResponse =  animeService.getAnimesByCategory('0198dca9-86c6-7df7-ba08-e8b1b1256324')
+      const animeResponse = animeService.getAnimesByCategoryUniverse('0199de4d-dbd9-797a-b8e8-ce0dcc7e1106')
       animeResponse.then((res)=>{
           setAnimeShow(res.anime_list);
           setItems(prev =>{
@@ -191,13 +201,23 @@ export default function DragAndDropContainer() {
               };
           })
       }).catch((error)=>{
-          console.log('Failed to fetch user info:', error);
+          console.log('Failed to fetch anime:', error);
       }).finally(()=>setLoading(false))
   }, []);
+
+  const fetchTierTemplateData = (id:string) => {
+    const tierTemplateResponse = tierTemplateService.getByIdTierTemplate(id)
+    tierTemplateResponse.then((res)=>{
+      setTierTemplate(res)
+    }).catch((error)=>{
+          console.log('Failed to fetch tier template:', error);
+      })
+  }
 
   useEffect(() => {
       setLoading(true)
       fetchAnime()
+      fetchTierTemplateData(tierTemplateId)
   },[]);
   return (
     <div style={wrapperStyle}>
@@ -210,7 +230,7 @@ export default function DragAndDropContainer() {
       >
         <div className='flex w-screen'>
           <div className="pt-16 pl-8 w-full">
-            <h1 className="text-3xl pl-10 p-5">anime ยอมนิยม (300+ anime)</h1>
+            <h1 className="text-3xl pl-10 p-5">{tierTemplate?.name}</h1>
             <div className='flex flex-col'>
               {tierList.map((tier) => {
                 if(tier.name != "group6") {

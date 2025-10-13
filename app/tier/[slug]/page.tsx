@@ -1,13 +1,9 @@
-"use client";
-import dynamic from "next/dynamic";
+import PageClient from "./components/pageClient/pageClient";
 
-const DragAndDropContainer = dynamic(
-  () => import("./components/dragAndDropContainer/dragAndDropContainer"),
-  { ssr: false } // ❌ ปิดการ SSR
-);
-
-export default function Page() {
-  return (<div>
-    <DragAndDropContainer />
-    </div>);
+export default async function Page(props:any) {
+    const params = await props.params;
+    return (
+        <div>
+            <PageClient id={params.slug}/>
+        </div>);
 }
