@@ -44,16 +44,49 @@ const SliderAnime=({tagAnime,animeList,myAnimeListId}: ISliderAnime)=>{
         <>
             <div className="slide-anime-header">
                 <div className='container mx-auto md:px-5 pt-5 bg'>
-                    <h2 className='font-medium text-xl'>{tagAnime}</h2>
+                    <h2 className='font-medium text-xl text-white'>{tagAnime}</h2>
                 </div>
                 <Swiper
-                    slidesPerView={7}
-                    spaceBetween={20}
-                    slidesPerGroup={7}
+                    slidesPerView={3}
+                    spaceBetween={10}
+                    slidesPerGroup={3}
+                    // กำหนดค่า props ใหม่ตามขนาดหน้าจอ
+                    breakpoints={
+                        {
+                        // เมื่อความกว้างหน้าจอ >= 400px
+                        400: {
+                        slidesPerView: 3,
+                        spaceBetween: 10,
+                        slidesPerGroup: 3,
+                        },
+                        // เมื่อความกว้างหน้าจอ >= 640px
+                        640: {
+                        slidesPerView: 3,
+                        spaceBetween: 10,
+                        slidesPerGroup: 3,
+                        },
+                        // เมื่อความกว้างหน้าจอ >= 768px (iPad)
+                        768: {
+                        slidesPerView: 6,
+                        spaceBetween: 10,
+                        slidesPerGroup: 6,
+                        },
+                        // เมื่อความกว้างหน้าจอ >= 1024px (Desktop)
+                        1024: {
+                        slidesPerView: 6,
+                        spaceBetween: 10,
+                        slidesPerGroup: 6,
+                        },
+                        // เมื่อความกว้างหน้าจอ >= 1024px (Desktop)
+                        1220: {
+                        slidesPerView: 9,
+                        spaceBetween: 10,
+                        slidesPerGroup: 9,
+                        },
+                    }}
                     navigation={{nextEl:'',prevEl:''}}
                     modules={[Pagination, Navigation]}
-                    className="mySwiper"
-                    id="swiper-anime"
+                    className="swiper-anime"
                     >
                     {animeList?.map((item :IAnime)=>
                     <SwiperSlide key={item.id}  onClick={()=>handleOpen(item)}>

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { ConnectAnimapService } from "./builder";
-import { GetTierTemplatePaginatedResponse, GetTierTemplateResponse } from "./dtos/tierTemplate";
+import { GetTierTemplateByIdResponse, GetTierTemplatePaginatedResponse, GetTierTemplateResponse } from "./dtos/tierTemplate";
 
 export class TierTemplateService{
     private url:string
@@ -26,7 +26,7 @@ export class TierTemplateService{
         return response.data
     }
 
-    public async getByIdTierTemplate(tier_template_id:string):Promise<GetTierTemplateResponse> {
+    public async getByIdTierTemplate(tier_template_id:string):Promise<GetTierTemplateByIdResponse> {
         const response = await axios.get(`${this.url}/tier-template/${tier_template_id}`, { 
             headers: this.getConfigHeaders(),
         })

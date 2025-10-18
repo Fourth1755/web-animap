@@ -62,8 +62,8 @@ export default function Sidebar(props: PropsSidebar) {
                 onClick={closeSideBar}
                 className="flex items-center p-2 rounded-lg hover:bg-gray-800 group"
               >
-                <FontAwesomeIcon icon={faNewspaper} size="lg" />
-                <span className="flex-1 ms-3 whitespace-nowrap">Anime</span>
+                <FontAwesomeIcon icon={faNewspaper} size="lg" color="white"/>
+                <span className="flex-1 ms-3 whitespace-nowrap text-white">Anime</span>
               </Link>
             </li>
             <li>
@@ -72,8 +72,8 @@ export default function Sidebar(props: PropsSidebar) {
                 onClick={closeSideBar}
                 className="flex items-center p-2 rounded-lg  hover:bg-gray-800 group"
               >
-                <FontAwesomeIcon icon={faRankingStar} size="lg" />
-                <span className="flex-1 ms-3 whitespace-nowrap">
+                <FontAwesomeIcon icon={faRankingStar} size="lg" color="white"/>
+                <span className="flex-1 ms-3 whitespace-nowrap text-white">
                   Anime Tier
                 </span>
               </Link>
@@ -84,8 +84,8 @@ export default function Sidebar(props: PropsSidebar) {
                 onClick={closeSideBar}
                 className="flex items-center p-2  rounded-lg  hover:bg-gray-800 group"
               >
-                <FontAwesomeIcon icon={faMusic} size="lg" />
-                <span className="flex-1 ms-3 whitespace-nowrap">
+                <FontAwesomeIcon icon={faMusic} size="lg" color="white"/>
+                <span className="flex-1 ms-3 whitespace-nowrap text-white">
                   Anime Song
                 </span>
               </Link>

@@ -83,7 +83,7 @@ export default async function Page(props: any) {
       <div className="container mx-auto md:px-40 px-5 pt-16">
         <div className="flex justify-between py-7">
           <div>
-            <h1 className="mb-3 text-2xl font-extrabold leading-none tracking-tight md:text-2xl lg:text-4xl dark:text-white">
+            <h1 className="mb-3 text-2xl font-extrabold leading-none tracking-tight md:text-2xl lg:text-4xl text-white">
               {anime.name_thai == ""?anime.name:anime.name_thai}
             </h1>
             <p className="mb-3 text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400">
@@ -146,12 +146,11 @@ export default async function Page(props: any) {
             </div>
           </div>
           <div className="trailer-container">
-            <MediaBlock anime_media={animeMedia.data}/>
-
+            {animeMedia?.data!=null?<MediaBlock anime_media={animeMedia.data}/>:<div></div>}
             <div className="pt-5">
               {anime.categories?.map((item) => (
                 <Link href={`category/${item.id}`} key={item.id} >
-                    <button className="px-4 py-0.5 rounded-2xl border-2 border-gray-100 mb-1 ml-1.5 hover:cursor-pointer hover:bg-opacity-80 hover:bg-gray-300">{item.name}</button>
+                    <button className="px-4 py-0.5 rounded-2xl border-2 border-gray-100 mb-1 ml-1.5 hover:cursor-pointer hover:bg-opacity-80 hover:bg-gray-300 text-white">{item.name}</button>
                 </Link>
               ))}
             </div>

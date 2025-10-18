@@ -21,12 +21,7 @@ import { AnimeTierContainer } from './components/animeTierContainer/animeTierCon
 import { AnimeService } from '@/app/service/animeService';
 import { AnimeItem } from './components/animeItem/animeItem';
 import { TierTemplateService } from '@/app/service/tierTemplateService';
-import { GetTierTemplatePaginatedResponse, GetTierTemplateResponse } from '@/app/service/dtos/tierTemplate';
-
-const wrapperStyle: React.CSSProperties = {
-  display: 'flex',
-  flexDirection: 'row',
-};
+import { GetTierTemplateByIdResponse, GetTierTemplatePaginatedResponse, GetTierTemplateResponse } from '@/app/service/dtos/tierTemplate';
 
 const tierList = [
     {
@@ -52,10 +47,12 @@ const tierList = [
 ]
 type DragAndDropContainerProps = {
   tierTemplateId: string
+  getTierTemplateByIdResponse?: GetTierTemplateByIdResponse
 }
 
 export default function DragAndDropContainer(props:DragAndDropContainerProps) {
   const tierTemplateId = props.tierTemplateId
+  const getTierTemplateByIdResponse = props.getTierTemplateByIdResponse
   const [items, setItems] = useState<Items>({
     S: [],
     A: [],
@@ -65,10 +62,6 @@ export default function DragAndDropContainer(props:DragAndDropContainerProps) {
     group6: [],
   });
   const [activeId, setActiveId] = useState<AnimeItemResponse | null>(null);
-
-  const animeService = new AnimeService()
-  const tierTemplateService = new TierTemplateService()
-
   const [animeShow,setAnimeShow] = useState<AnimeItemResponse[]>()
   const [tierTemplate,setTierTemplate] = useState<GetTierTemplateResponse>()
   const [loading, setLoading] = useState(true);
@@ -189,38 +182,42 @@ export default function DragAndDropContainer(props:DragAndDropContainerProps) {
     setActiveId(null);
   };
 
-  const fetchAnime = useCallback(() => {
-      //setLoading(true);
-      const animeResponse = animeService.getAnimesByCategoryUniverse('0199de4d-dbd9-797a-b8e8-ce0dcc7e1106')
-      animeResponse.then((res)=>{
-          setAnimeShow(res.anime_list);
-          setItems(prev =>{
-            return {
-              ...prev,
-              group6:res.anime_list
-              };
-          })
-      }).catch((error)=>{
-          console.log('Failed to fetch anime:', error);
-      }).finally(()=>setLoading(false))
-  }, []);
+  // const fetchAnime = useCallback(() => {
+  //     //setLoading(true)
+  //       setAnimeShow(getTierTemplateByIdResponse.item);
 
-  const fetchTierTemplateData = (id:string) => {
-    const tierTemplateResponse = tierTemplateService.getByIdTierTemplate(id)
-    tierTemplateResponse.then((res)=>{
-      setTierTemplate(res)
-    }).catch((error)=>{
-          console.log('Failed to fetch tier template:', error);
-      })
-  }
+  //     }).catch((error)=>{
+  //         console.log('Failed to fetch anime:', error);
+  //     }).finally(()=>setLoading(false))
+  // }, []);
+
+  // const fetchTierTemplateData = (id:string) => {
+  //   const tierTemplateResponse = tierTemplateService.getByIdTierTemplate(id)
+  //   tierTemplateResponse.then((res)=>{
+  //     setTierTemplate(res)
+  //   }).catch((error)=>{
+  //         console.log('Failed to fetch tier template:', error);
+  //     })
+  // }
 
   useEffect(() => {
       setLoading(true)
-      fetchAnime()
-      fetchTierTemplateData(tierTemplateId)
+      // fetchAnime()
+      // fetchTierTemplateData(tierTemplateId)
+      if(getTierTemplateByIdResponse!=null){
+      setAnimeShow(getTierTemplateByIdResponse.items)
+      setItems(prev =>{
+        return {
+          ...prev,
+          group6:getTierTemplateByIdResponse.items
+          };
+      })
+      setTierTemplate(getTierTemplateByIdResponse)
+      }
+
   },[]);
   return (
-    <div style={wrapperStyle}>
+    <div className='flex flex-row'>
       <DndContext
         sensors={sensors}
         collisionDetection={rectIntersection}
@@ -230,7 +227,7 @@ export default function DragAndDropContainer(props:DragAndDropContainerProps) {
       >
         <div className='flex w-screen'>
           <div className="pt-16 pl-8 w-full">
-            <h1 className="text-3xl pl-10 p-5">{tierTemplate?.name}</h1>
+            <h1 className="text-3xl pl-10 p-5 text-white">{tierTemplate?.name}</h1>
             <div className='flex flex-col'>
               {tierList.map((tier) => {
                 if(tier.name != "group6") {

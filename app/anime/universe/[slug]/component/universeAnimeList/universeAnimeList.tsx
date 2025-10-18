@@ -67,7 +67,7 @@ export default function UniverseAnimeList(props : Props){
             <WallpaperAnime link={category.wallpaper} name={category.name}/>
                     <div className='container mx-auto md:px-20 px-5'>
             <div className="py-5">
-                <button className="bg-pink-500 rounded-md px-3 py-2 text-sm font-medium w-36 hover:bg-pink-600">เรียงลำดับ</button>
+                <button className="bg-pink-500 rounded-md px-3 py-2 text-sm font-medium w-36 hover:bg-pink-600 text-white">เรียงลำดับ</button>
             </div>
             <div>
                 {animes.map((anime,index)=>(
@@ -75,7 +75,7 @@ export default function UniverseAnimeList(props : Props){
                         key={index} 
                         className="flex cursor-pointer hover:bg-black 0 rounded-lg"
                         onClick={()=>onClieckChangeAnime(anime.id)}>
-                        <div className="w-28 pt-4 pl-5">
+                        <div className="w-28 pt-4 pl-5 text-white">
                             <h1>{anime.year}</h1>
                             <h1>{anime.seasonal}</h1>
                         </div>
@@ -99,7 +99,7 @@ export default function UniverseAnimeList(props : Props){
                         </div>
                         <div className="flex flex-col justify-between w-full ml-3">
                             <div className="flex flex-col">
-                                <h1 className="font-medium">{anime.name}</h1>
+                                <h1 className="font-medium text-white">{anime.name}</h1>
                                 <p className="text-m font-normal text-gray-600">
                                     {anime.episodes} ep ,{" "}
                                     {anime.duration}</p>

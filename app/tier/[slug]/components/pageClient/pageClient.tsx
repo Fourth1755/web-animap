@@ -1,4 +1,5 @@
 "use client";
+import { GetTierTemplateByIdResponse } from "@/app/service/dtos/tierTemplate";
 import dynamic from "next/dynamic";
 
 const DragAndDropContainer = dynamic(
@@ -8,12 +9,13 @@ const DragAndDropContainer = dynamic(
 
 type PageClinetProps = {
     id: string
+    getTierTemplateByIdResponse: GetTierTemplateByIdResponse
 }
 
 export default function PageClient(props:PageClinetProps) {
     
     return (
-        <div>
-            <DragAndDropContainer tierTemplateId={props.id}/>
-        </div>);
+
+            <DragAndDropContainer tierTemplateId={props.id} getTierTemplateByIdResponse={props.getTierTemplateByIdResponse}/>
+);
 }

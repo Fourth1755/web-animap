@@ -14,9 +14,9 @@ export const AnimeListContainer = ({ id, items }: ContainerProps) => {
   const { setNodeRef } = useDroppable({ id });
 
   return (
-    <div className='h-full'>
+    <div>
     <SortableContext id={id} items={items} strategy={rectSortingStrategy}>
-    <div ref={setNodeRef} className="grid grid-cols-4 gap-1 m-2 p-3 rounded-md bg-gray-900">
+    <div ref={setNodeRef} className="grid xl:grid-cols-4 sm:grid-cols-3 grid-cols-3 gap-1 m-2 p-3 rounded-md bg-gray-800 xl:h-full lg:h-72 h-96 overflow-y-auto">
         {items.map((item) => (
         <AnimeSortableItem key={item.id} id={item.id} anime={item} />
         ))}

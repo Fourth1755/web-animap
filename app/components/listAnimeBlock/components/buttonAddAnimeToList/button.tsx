@@ -29,7 +29,7 @@ export default function AddAnimeButton(props:PropAddAnimeButton) {
     return (
         <>
             <button 
-                className="bg-pink-500 rounded-md px-3 py-2 text-sm font-medium w-full"
+                className="bg-pink-500 rounded-md px-3 py-2 text-sm font-medium w-full text-white"
                 onClick={handleOpen} 
                 >
                 <span>{props.name}</span>

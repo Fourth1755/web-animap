@@ -45,7 +45,7 @@ export default function ListAnimeBlockItem(props :Props) {
             </div>
             <div className="flex flex-col justify-between w-full ml-3">
                 <div className="flex flex-col">
-                    <h1 className="font-medium">{anime.name}</h1>
+                    <h1 className="font-medium text-white">{anime.name}</h1>
                     <span className="text-m font-normal text-gray-600">
                         {anime.episodes} ep 
                         {anime.duration?<span>,{" "} {anime.duration}</span>:<></>}
