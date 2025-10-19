@@ -8,7 +8,6 @@ import {
   GetSongsByAnimeIdResponseSong,
 } from "@/app/service/dtos/song";
 import { EpisodeService } from "@/app/service/episodeService";
-import Image from "next/image";
 import { CommentService } from "@/app/service/commentService";
 import MediaBlock from "./component/mediaBlock/mediaBlock";
 
@@ -119,8 +118,6 @@ export default async function Page(props: any) {
                 height={384}
               />
               <AddAnimeButton
-                name="Add to List"
-                isEdit={false}
                 anime={anime}
               />
             </div>

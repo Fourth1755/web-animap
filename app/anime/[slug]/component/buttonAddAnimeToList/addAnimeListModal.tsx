@@ -1,37 +1,38 @@
 "use client";
 import {
-  Button,
   Dialog,
-  DialogHeader,
-  DialogBody,
-  DialogFooter,
-  Input,
-  Textarea,
   Select,
   Option,
 } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
 import "./addAnimeListModal.scss";
-import AddAnimeToList from "./action";
-import withReactContent from "sweetalert2-react-content";
-import Swal from "sweetalert2";
-import { CreateAnimeRequest } from "@/app/service/dtos/anime";
 import { AddAnimeToListRequest } from "@/app/service/dtos/myAnime";
 import { MyAnimeService } from "@/app/service/myAnimeService";
-import { useUser } from "@/app/context/userContext";
+import Button from "@/app/components/button/button";
+
+type AnimeDetail = {
+  id: string
+  name: string
+  year: string
+}
+
+type MyAnimeDetail = {
+  is_watched: boolean
+  watched_year_at: string
+  score: number
+}
 
 type PropsAddAnimeModal = {
     open: boolean;
     handler: () => void;
     isEdit: boolean;
-    anime: CreateAnimeRequest;
+    anime: AnimeDetail;
     userId: string;
     handlerResponseMessage: (message:string) => void
+    myAnime?: MyAnimeDetail
 };
 
 type FormData = {
-    user_uuid: string;
-    anime_id: string;
     score: string;
     year: string;
 };
@@ -52,24 +53,11 @@ const scoreList = [
 
 
 export default function AddAnimeModal(prop: PropsAddAnimeModal) {
-  const {open, isEdit, anime, userId } = prop;
+  const {open, isEdit, anime, userId, myAnime } = prop;
   const handleOpen = prop.handler;
   const handlerResponseMessage = prop.handlerResponseMessage
 
-  let dropzoneModalStyle = {
-    width: `100%`,
-    height: `420px`,
-    backgroundImage: `url(${anime?.wallpaper})`,
-    backgroundRepeat: `no-repeat`,
-    backgroundPosition: `center center`,
-    backgroundSize: `cover`,
-    borderTopLeftRadius: `15px`,
-    borderTopRightRadius: `15px`,
-  };
-
   const [formData, setFormData] = useState<FormData>({
-    user_uuid: "",
-    anime_id: "",
     score: "",
     year: "",
   });
@@ -95,8 +83,6 @@ export default function AddAnimeModal(prop: PropsAddAnimeModal) {
   };
 
   const handleSubmit = async () => {
-      const MySwal = withReactContent(Swal);
-
       const request: AddAnimeToListRequest = {
         user_uuid: userId,
         anime_id: anime.id,
@@ -105,19 +91,28 @@ export default function AddAnimeModal(prop: PropsAddAnimeModal) {
         watched_year: formData.year,
       };
     handleOpen();
+    if(isEdit){
+
+    }else {
     const myAnimeService = new MyAnimeService();
     const response = myAnimeService.addAnimeToList(request)
-      response.then((response) => {
-        console.log(response)
+    response.then((response) => {
         handlerResponseMessage("Add anime to list success.")
-      })
+      }).catch((error)=>handlerResponseMessage(error.response.data.message))
+    }
   };
 
   useEffect(() => {
     if (anime?.year) {
       setYearAnimeDropDown(anime?.year);
     }
-  },[]);
+    if(isEdit&&myAnime){
+      setFormData({
+        score:myAnime.score.toString(),
+        year:myAnime.watched_year_at
+      })
+    }
+  },[myAnime]);
   return (
     <>
       <Dialog
@@ -130,18 +125,10 @@ export default function AddAnimeModal(prop: PropsAddAnimeModal) {
         size="sm"
       >
         <div className="modalStyles">
-          <div style={dropzoneModalStyle}></div>
-          <div className="px-16 py-4 justify-between flex">
-            <div>
-              <h1 className="mb-2 text-lg font-extrabold text-pink-500 lg:text-xl ">
-                AniMap Score
-              </h1>
-              <p className="text-xl font-normal text-gray-400 lg:text-xl">
-                10/10
-              </p>
-            </div>
-            <div>
-              <h1 className="mb-2 text-lg font-extrabold text-pink-500 lg:text-xl ">
+          <div className="px-12 py-4 flex-col">
+            <h1 className="text-2xl font-bold text-white">{anime.name}</h1>
+            <div className="pt-3">
+              <h1 className="mb-2 text-xl font-semibold text-gray-500 lg:text-xl ">
                 Score
               </h1>
               <div>
@@ -161,8 +148,8 @@ export default function AddAnimeModal(prop: PropsAddAnimeModal) {
                 </Select>
               </div>
             </div>
-            <div>
-              <h1 className="mb-2 text-lg font-extrabold text-pink-500 lg:text-xl">
+            <div className="pt-3 pb-4">
+              <h1 className="mb-2 text-xl font-semibold text-gray-500 lg:text-xl">
                 Watched
               </h1>
               <Select
@@ -180,18 +167,19 @@ export default function AddAnimeModal(prop: PropsAddAnimeModal) {
                 ))}
               </Select>
             </div>
-            <div>
+            <div className="flex pt-5 justify-center">
               <Button
                 onClick={() => handleSubmit()}
-                className="bg-pink-500 py-4 px-8 mt-8"
+                color="pink"
+                name="Save"
+                width="w-full"
               >
-                Add
               </Button>
             </div>
           </div>
-          <div className="modal-header"></div>
+          {/* <div className="modal-header"></div> */}
         </div>
-        <DialogBody className="space-y-4 pb-6"> </DialogBody>
+        {/* <DialogBody className="space-y-4 pb-6"> </DialogBody> */}
       </Dialog>
     </>
   );

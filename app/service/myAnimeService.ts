@@ -1,6 +1,6 @@
 import axios from "axios";
 import { ConnectAnimapService } from "./builder";
-import { AddAnimeToListRequest, GetMyAnimeByUserUUIDResponse, GetMyAnimeYearByUserUUIDResponse, GetMyTopAnimeByUserUUIDResponse } from "./dtos/myAnime";
+import { AddAnimeToListRequest, GetMyAnimeAnimeDetailByAnimeIdResponse, GetMyAnimeByUserUUIDResponse, GetMyAnimeYearByUserUUIDResponse, GetMyTopAnimeByUserUUIDResponse } from "./dtos/myAnime";
 
 
 
@@ -31,10 +31,15 @@ export class MyAnimeService{
     }
 
     public async addAnimeToList(req: AddAnimeToListRequest) {
-        const response = await axios.post(`${this.url}`,req, {
-            headers: this.getConfigHeaders(),
+        const api = axios.create({
+            withCredentials:true
         })
-        return response.data
+        const response = await api.post(`${this.url}`,req, {
+            headers: {
+                ...this.getConfigHeaders(),
+            },
+        })
+        return response
     }
 
     public async getMyTopAnimeByUserUUID(uuid: string):Promise<GetMyTopAnimeByUserUUIDResponse[]> {
@@ -47,6 +52,18 @@ export class MyAnimeService{
     public async getMyAnimeYearByUserUUID(uuid: string):Promise<GetMyAnimeYearByUserUUIDResponse> {
         const response = await axios.get(`${this.url}/anime-year-list/${uuid}`, {
             headers: this.getConfigHeaders(),
+        })
+        return response.data
+    }
+
+    public async getMyAnimeAnimeDetailByAnimeId(uuid:string):Promise<GetMyAnimeAnimeDetailByAnimeIdResponse> {
+        const api = axios.create({
+            withCredentials:true
+        })
+        const response = await api.get(`${this.url}/anime-detail/${uuid}`, {
+            headers: {
+                ...this.getConfigHeaders(),
+            },
         })
         return response.data
     }

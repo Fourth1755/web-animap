@@ -58,3 +58,9 @@ export type GetMyAnimeYearByUserUUIDResponse = {
     total_year: number;
     total_anime: number;
 }
+
+export type GetMyAnimeAnimeDetailByAnimeIdResponse = {
+    is_watched:boolean
+    watched_year_at:string
+    score:number
+}

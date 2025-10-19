@@ -16,27 +16,9 @@ type TierTemplate = {
 }
 
 export default async function  Page() {
-    // const tierTemplateList:TierTemplate[] = [{
-    //     id:"1",
-    //     name: "Anime tier list (300+ anime)",
-    //     created_by:"Fourth Poolab",
-    //     is_play:true,
-    //     played_count:4300,
-    //     total_item:140
-    // },{
-    //     id:"2",
-    //     name: "Anime Summer 2025",
-    //     created_by:"Fourth Poolab",
-    //     is_play:true,
-    //     played_count:4300,
-    //     total_item:140
-    // }]
     const tierTemplateService = new TierTemplateService()
     const tierTemplateList = await tierTemplateService.getTierTemplate()
 
-    const navigateToTierPage=(id:string)=>{
-        redirect(`/tier/${id}`)
-    }
     return (
     <div className="container w-3/4 mx-auto pt-24">
         <div className="flex justify-between items-center">

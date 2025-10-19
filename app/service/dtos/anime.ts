@@ -70,7 +70,6 @@ export type GetAnimeByIdResponse = {
     trailer_embed: string
     category_universe: GetAnimeByIdResponseUniverse[]
     my_anime_list_score: number
-    source: string   
 }
 
 export type GetAnimesBySeasonalAndYearRequest = {

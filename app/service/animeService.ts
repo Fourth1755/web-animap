@@ -43,8 +43,13 @@ export class AnimeService{
     }
 
     public async getAnime(id:string):Promise<GetAnimeByIdResponse>{
-        const response = await axios.get(`${this.url}/${id}`, {
-            headers: this.getConfigHeaders(),
+        const api = axios.create({
+            withCredentials:true
+        })
+        const response = await api.get(`${this.url}/${id}`, {
+            headers: {
+                ...this.getConfigHeaders(),
+            },
         })
         return response.data
     }
