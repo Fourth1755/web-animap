@@ -14,3 +14,8 @@ export type GetCommentAnimeResponse = {
     data: GetCommentAnimeDataResponse[],
     pagination:PaginationResponse,
 }
+
+export type CreateCommentAnimeRequest = {
+    anime_id: string
+    message: string
+}

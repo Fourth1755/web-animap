@@ -8,21 +8,20 @@ import {
   GetSongsByAnimeIdResponseSong,
 } from "@/app/service/dtos/song";
 import { EpisodeService } from "@/app/service/episodeService";
-import { CommentService } from "@/app/service/commentService";
 import MediaBlock from "./component/mediaBlock/mediaBlock";
+import CommentAnime from "./component/commentAnime/commentAnime";
 
 export default async function Page(props: any) {
   const params = await props.params;
   const animeService = new AnimeService();
   const songSerivce = new SongSerivce();
   const episodeService = new EpisodeService();
-  const commentService = new CommentService();
+
 
   const anime = await animeService.getAnime(params.slug);
   const animeMedia = await animeService.getMediaAnimeByAnimeId(params.slug)
   const songs = await songSerivce.getSongsByAnimeId(anime.id);
   const episodeResponse = await episodeService.getEpisode(anime.id,"FIRST_APPEARANCE");
-  const commentAnime = await commentService.getCommentAnime(anime.id)
 
   const showAnimeSongItem = (
     animeSong: GetSongsByAnimeIdResponseSong[],
@@ -201,29 +200,7 @@ export default async function Page(props: any) {
           </div>
         </div>
         <div className="pt-6">
-          <h1>ความคิดเห็น {commentAnime.pagination.total_items} รายการ</h1>
-          <div className="flex pt-5">
-            <button className="px-5 py-2 bg-white rounded-2xl mr-3 text-black">Comment</button>
-            <button className="px-5 py-2 bg-gray-600 rounded-2xl">Spoiler</button>
-          </div>
-          <div className="flex pt-5">
-            {/* <img/><input/> */}
-            {commentAnime.data.map((item)=>(
-              <div className="flex" key={item.id}>
-                <img
-                  className="w-12 h-12 rounded-full object-cover" 
-                  src={item.author_image}/>
-                <div className="pl-4">
-                  <div className="flex">
-                    <h1 className="font-semibold">{item.author_name}</h1>
-                    <span className="pl-3 text-gray-700">{item.created_at}</span>
-                  </div>
-                  <h2 className="pt-1">{item.message}</h2>
-                  
-                </div>
-              </div>
-            ))}
-          </div>
+          <CommentAnime animeId={params.slug}/>
         </div>
       </div>
     </>

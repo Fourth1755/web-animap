@@ -1,6 +1,6 @@
 import axios from "axios";
 import { ConnectAnimapService } from "./builder";
-import { GetCommentAnimeResponse } from "./dtos/commentAnime";
+import { CreateCommentAnimeRequest, GetCommentAnimeResponse } from "./dtos/commentAnime";
 
 
 export class CommentService{
@@ -25,5 +25,17 @@ export class CommentService{
             headers: this.getConfigHeaders(),
         })
         return response.data
+    }
+
+    public async createCommentAnime(req:CreateCommentAnimeRequest) {
+        const api = axios.create({
+            withCredentials:true
+        })
+        const response = await api.post(`${this.url}/comments/anime`,req, { 
+            headers: {
+                ...this.getConfigHeaders(),
+            },
+        })
+        return response
     }
 }
