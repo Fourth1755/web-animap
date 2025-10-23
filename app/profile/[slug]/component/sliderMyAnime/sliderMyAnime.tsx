@@ -10,63 +10,31 @@ import "swiper/css/navigation";
 import './sliderMyAnime.scss'
 // import AddAnimeModal from "../AddAnimeModal";
 
-import { GetMyAnimeByUserUUIDResponse } from "../../../../service/dtos/myAnime";
+import { GetMyAnimeByUserUUIDResponse, GetMyAnimeYearByUserUUIDResponseAnimeYearAnime } from "../../../../service/dtos/myAnime";
 
 type SliderMyAnime ={
     tag :string
-    animeList: AnimeDataItem[]
-}
-
-type AnimeDataItem = {
-    id: string;
-    name: string;
-    name_english: string;
-    episodes: number;
-    seasonal: string;
-    image: string;
-    description: string;
-    duration: string;
-    year: string;
-    type: number;
-    wallpaper: string;
+    animeList: GetMyAnimeYearByUserUUIDResponseAnimeYearAnime[]
 }
 
 const SliderMyAnime=({tag,animeList}: SliderMyAnime)=>{
-    // const [modalAnime,setModalAnime]=useState({})
-
-    // const [open, setOpen] = useState(false);
-    // const handleOpen = (item :IAnime) => {
-    //     //setModalAnime(item)
-    //     //setOpen(true);
-    // }
-    // const handleClose = () =>setOpen(false);
 
     return(
         <>
-            <div className="slide-anime-header">
-                <h2>{tag}</h2>
-                <Swiper
-                    slidesPerView={7}
-                    spaceBetween={20}
-                    slidesPerGroup={7}
-                    navigation={true}
-                    modules={[Pagination, Navigation]}
-                    className="mySwiper"
-                    id="swiper-anime"
-                    >
-                    {animeList?.map((item :AnimeDataItem)=>
-                    <SwiperSlide 
-                        key={item.id}  
+            <div className="pt-5">
+                <h2 className="py-3">{tag}</h2>
+                <div className="grid xl:grid-cols-7 lg:grid-cols-5 sm:grid-cols-4 grid-cols-6 gap-y-3">
+                    {animeList?.map((item ,index)=>
+                    <div 
+                        key={index}  
                         // onClick={()=>handleOpen(item)}
                         >
-                        <Link href={`anime/${item.id}`}>
+                        <Link href={`/anime/${item.anime_id}`}>
                         <div className='swiper-slide-anime' style={{backgroundImage:`url(${item.image})`}} >
-                            
                         </div>
                         </Link>
-                    </SwiperSlide>
-                    )}
-                </Swiper>
+                    </div>)}
+                </div>
             </div>
         </>
         

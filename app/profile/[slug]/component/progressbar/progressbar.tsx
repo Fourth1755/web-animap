@@ -21,6 +21,7 @@ type PropProgressBar ={
 const ProgressBar = (props:PropProgressBar) => {
     const { totalAnime } = props;
     const [level, setLevel] = useState(0);
+    const [percent, setPercent] = useState(0)
 
     useEffect(()=>{
       let userLevel = 1
@@ -31,6 +32,8 @@ const ProgressBar = (props:PropProgressBar) => {
         }
       }
       setLevel(userLevel)
+      const numberOfItem = 10 - (levelOfGame[userLevel].numberOfAnime - totalAnime)
+      setPercent(numberOfItem)
     },[level])
     return (
       <div className='bg-black w-full rounded-2xl pb-3'>
@@ -39,8 +42,8 @@ const ProgressBar = (props:PropProgressBar) => {
           <h2 className="text-gray-500">Viewed {totalAnime} item</h2>
           <div className="mt-4">
             <div className='bg-gray-900 rounded-3xl'>
-              <div style={{width:`${(totalAnime/10)*100}%`}} className="rounded-3xl text-center w-full h-12 bg-pink-500">
-                <div className='pt-3 font-bold' >{`${ ((totalAnime/10)*100) }%`}</div>
+              <div style={{width:`${(percent/10)*100}%`}} className="rounded-3xl text-center w-full h-12 bg-pink-500">
+                <div className='pt-3 font-bold' >{`${ ((percent/10)*100) }%`}</div>
               </div> 
             </div>
         </div>

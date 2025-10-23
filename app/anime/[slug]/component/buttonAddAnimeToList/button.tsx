@@ -43,7 +43,7 @@ export default function AddAnimeButton(props:PropAddAnimeButton) {
     useEffect(() => {
         setLoadingData(true)
         fetchMyAnimeDetail(props.anime.id)
-    },[props.anime.id]);
+    },[props.anime.id,openModalAlert]);
 
     const { user, loading, logout } = useUser();
     if (loading&&loadingData) {

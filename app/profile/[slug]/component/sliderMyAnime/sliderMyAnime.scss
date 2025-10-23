@@ -39,18 +39,6 @@ $colorGreen: #1EC602;
     &:hover{
       transform: scale(1.1);
     }
-    h5{
-        color: $colorWhite;
-        text-align: center;
-        background-color: $colorGreen;
-        width: 160px;
-        padding: 2px 0px 2px 0px;
-        position: absolute;
-        bottom:0px;
-        border-bottom-left-radius: 15px;
-        border-bottom-right-radius: 15px;
-        font-size: 14px;
-      }
 }
 .slide-anime-header h2{
     padding: 20px 90px 0px 90px;

@@ -35,8 +35,8 @@ export type GetMyTopAnimeByUserUUIDResponse = {
 }
 
 export type GetMyAnimeYearByUserUUIDResponseAnimeYearAnime = {
-    id:string
-    name: string;
+    anime_id:string
+    anime_name: string;
     name_english: string
     episodes: number
     seasonal: string;

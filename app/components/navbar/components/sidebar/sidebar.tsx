@@ -58,7 +58,7 @@ export default function Sidebar(props: PropsSidebar) {
           <ul className="space-y-2 font-medium">
             <li>
               <Link
-                href="#"
+                href="/anime/season/summer/2025"
                 onClick={closeSideBar}
                 className="flex items-center p-2 rounded-lg hover:bg-gray-800 group"
               >

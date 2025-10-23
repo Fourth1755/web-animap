@@ -14,18 +14,18 @@ export default async function Page(props: any) {
         <h1>User Not Found</h1>
         </div>)
     }
-    const animes = await myAnimeService.getMyAnimeByUserUUID(userId)
     const animeYear = await myAnimeService.getMyAnimeYearByUserUUID(userId)
 
     return (
         <div className='pt-16'>
         <Profile user={user}/>
-        <SliderMyAnime tag="My Anime List" animeList={animes} />
+        <div className='container lg:mx-auto pt-5'>
         {
             animeYear.anime_year?.map((item,index)=>{
             return <SliderMyAnime tag={"Watched in "+item.year} animeList={item.anime} key={index}/>
             })
         }
+        </div>
         </div>
     )
 }

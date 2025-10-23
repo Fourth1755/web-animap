@@ -30,14 +30,15 @@ export default function AlertModal(props:PropsAlertModal){
                     unmount: { scale: 0.9, y: -100 },
                 }}
                 size='xs'
+                className="bg-black"
             >
-                <DialogHeader className="grid place-items-center gap-4">
-                    <Typography className="text-center" variant="h3">{type?type:"แจ้งเตือน"}</Typography>
+                <DialogHeader className="grid place-items-center gap-4 ">
+                    <h1 className="text-center text-white">{type?type:""}</h1>
                 </DialogHeader>
                 <DialogBody className="grid place-items-center gap-4">
-                    <Typography className="text-center font-normal">{message}</Typography>
+                    <h2 className="text-center text-white font-medium text-xl">{message}</h2>
                 </DialogBody>
-                <DialogFooter className="space-x-2">
+                <DialogFooter className="flex justify-center">
                     <Button
                         color="pink"
                         onClick={onSubmitButton}
