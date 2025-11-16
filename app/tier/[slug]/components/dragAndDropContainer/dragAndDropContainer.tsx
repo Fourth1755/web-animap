@@ -18,9 +18,7 @@ import { arrayMove, sortableKeyboardCoordinates } from '@dnd-kit/sortable';
 import type { AnimeItemResponse, Items } from './types';
 import { AnimeListContainer } from './components/animeListContainer/animeListContainer';
 import { AnimeTierContainer } from './components/animeTierContainer/animeTierContainer';
-import { AnimeService } from '@/app/service/animeService';
 import { AnimeItem } from './components/animeItem/animeItem';
-import { TierTemplateService } from '@/app/service/tierTemplateService';
 import { GetTierTemplateByIdResponse, GetTierTemplatePaginatedResponse, GetTierTemplateResponse } from '@/app/service/dtos/tierTemplate';
 
 const tierList = [

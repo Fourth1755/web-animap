@@ -1,5 +1,4 @@
-import axios from "axios";
-import { ConnectAnimapService } from "./builder";
+import apiClient from './apiClient';
 import { GetAnimeListResponse, 
     CreateAnimeRequest, 
     GetAnimeByIdResponse, 
@@ -11,88 +10,40 @@ import { GetAnimeListResponse,
     GetAnimesByStudioResponse, 
     GetAnimePictureResponse} from "./dtos/anime";
 
-export class AnimeService{
-    private url:string
-    private authorization: string
+export const animeService={
+    createAnime:(anime: CreateAnimeRequest)=> {        
+        return apiClient.post<CreateAnimeRequest>('/animes', anime);
+    },
+
+    getAnimes:():Promise<GetAnimeListResponse[]>=> {
+        return apiClient.get<any,GetAnimeListResponse[]>('/animes');
+    },
+
+    getAnime:(id:string):Promise<GetAnimeByIdResponse>=> {
+        return apiClient.get<any,GetAnimeByIdResponse>(`/animes/${id}`);
+    },
     
-    constructor(){
-        const connectAnimap = new ConnectAnimapService()
-        this.url = connectAnimap.getAnimesUrl();
-        this.authorization = connectAnimap.getAuthorization()
-    }
+    updateAnime:(anime: UpdateAnimeRequest)=> {
+        return apiClient.put<any,GetAnimeListResponse>(`/animes/${anime.id}`, anime);
+    },
 
-    private getConfigHeaders(){
-        return{
-            "Content-Type": "application/json",
-            "Authorization": this.authorization
-        }
-    }
+    getAnimesByCategory:(id:string):Promise<GetAnimesByCategoryResponse>=> {
+        return apiClient.get<any,GetAnimesByCategoryResponse>(`/animes/category/${id}`);
+    },
 
-    public async createAnime(anime: CreateAnimeRequest) {
-        const response = await axios.post(this.url, anime, { 
-            headers: this.getConfigHeaders(),
-        })
-        return response.data
-    }
+    getAnimesByCategoryUniverse:(id:string):Promise<GetAnimesByCategoryUniverseResponse>=> {
+        return apiClient.get<any,GetAnimesByCategoryUniverseResponse>(`/animes/category-universe/${id}`);
+    },
 
-    public async getAnimes():Promise<GetAnimeListResponse[]> {
-        const response = await axios.get(this.url, {
-            headers: this.getConfigHeaders(),
-        })
-        return response.data
-    }
+    getAnimesBySeasonalAndYear:(request:GetAnimesBySeasonalAndYearRequest):Promise<GetAnimesBySeasonalAndYearResponse>=> {
+        return apiClient.post<GetAnimesBySeasonalAndYearRequest,GetAnimesBySeasonalAndYearResponse>('/animes/seasonal-year',request);
+    },
 
-    public async getAnime(id:string):Promise<GetAnimeByIdResponse>{
-        const api = axios.create({
-            withCredentials:true
-        })
-        const response = await api.get(`${this.url}/${id}`, {
-            headers: {
-                ...this.getConfigHeaders(),
-            },
-        })
-        return response.data
-    }
+    getAnimesByStudio:(id:string):Promise<GetAnimesByStudioResponse>=> {
+        return apiClient.get<any,GetAnimesByStudioResponse>(`/animes/studio/${id}`);
+    },
 
-    public async updateAnime(anime: UpdateAnimeRequest){
-        const response = await axios.put(`${this.url}/${anime.id}`, anime,{
-            headers: this.getConfigHeaders(),
-        })
-        return response.data
-    }
-
-    public async getAnimesByCategory(id:string):Promise<GetAnimesByCategoryResponse> {
-        const response = await axios.get(`${this.url}/category/${id}`, {
-            headers: this.getConfigHeaders(),
-        })
-        return response.data
-    }
-
-        public async getAnimesByCategoryUniverse(id:string):Promise<GetAnimesByCategoryUniverseResponse> {
-        const response = await axios.get(`${this.url}/category-universe/${id}`, {
-            headers: this.getConfigHeaders(),
-        })
-        return response.data
-    }
-
-    public async getAnimesBySeasonalAndYear(request:GetAnimesBySeasonalAndYearRequest):Promise<GetAnimesBySeasonalAndYearResponse> {
-        const response = await axios.post(`${this.url}/seasonal-year`,request , {
-            headers: this.getConfigHeaders(),
-        })
-        return response.data
-    }
-
-    public async getAnimesByStudio(id:string):Promise<GetAnimesByStudioResponse> {
-        const response = await axios.get(`${this.url}/studio/${id}`, {
-            headers: this.getConfigHeaders(),
-        })
-        return response.data
-    }
-
-    public async getMediaAnimeByAnimeId(id:string):Promise<GetAnimePictureResponse> {
-        const response = await axios.get(`${this.url}/media/${id}`, {
-            headers: this.getConfigHeaders(),
-        })
-        return response.data
-    }
+    getMediaAnimeByAnimeId:(id:string):Promise<GetAnimePictureResponse>=> {
+        return apiClient.get<any,GetAnimePictureResponse>(`/animes/media/${id}`);
+    },
 }

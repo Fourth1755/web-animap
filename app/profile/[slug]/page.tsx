@@ -19,13 +19,13 @@ export default async function Page(props: any) {
     return (
         <div className='pt-16'>
         <Profile user={user}/>
-        <div className='container lg:mx-auto pt-5'>
-        {
-            animeYear.anime_year?.map((item,index)=>{
-            return <SliderMyAnime tag={"Watched in "+item.year} animeList={item.anime} key={index}/>
-            })
-        }
-        </div>
+            <div className='container lg:mx-auto pt-5'>
+            {
+                animeYear.anime_year?.map((item,index)=>{
+                return <SliderMyAnime tag={"Watched in "+item.year} animeList={item.anime} key={index}/>
+                })
+            }
+            </div>
         </div>
     )
 }

@@ -1,22 +1,19 @@
 import "./page.scss";
 import AddAnimeButton from "./component/buttonAddAnimeToList/button";
 import Link from "next/link";
-import { AnimeService } from "@/app/service/animeService";
+import { animeService } from "@/app/service/animeService";
 import { SongSerivce } from "@/app/service/songService";
 import {
   GetSongsByAnimeIdResponse,
   GetSongsByAnimeIdResponseSong,
 } from "@/app/service/dtos/song";
-import { EpisodeService } from "@/app/service/episodeService";
+import { episodeService } from "@/app/service/episodeService";
 import MediaBlock from "./component/mediaBlock/mediaBlock";
 import CommentAnime from "./component/commentAnime/commentAnime";
 
 export default async function Page(props: any) {
   const params = await props.params;
-  const animeService = new AnimeService();
   const songSerivce = new SongSerivce();
-  const episodeService = new EpisodeService();
-
 
   const anime = await animeService.getAnime(params.slug);
   const animeMedia = await animeService.getMediaAnimeByAnimeId(params.slug)

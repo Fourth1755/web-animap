@@ -14,8 +14,5 @@ type PageClinetProps = {
 
 export default function PageClient(props:PageClinetProps) {
     
-    return (
-
-            <DragAndDropContainer tierTemplateId={props.id} getTierTemplateByIdResponse={props.getTierTemplateByIdResponse}/>
-);
+    return (<DragAndDropContainer tierTemplateId={props.id} getTierTemplateByIdResponse={props.getTierTemplateByIdResponse}/>);
 }

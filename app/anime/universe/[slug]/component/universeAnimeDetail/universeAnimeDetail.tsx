@@ -1,7 +1,7 @@
 "use client"
 import Link from "next/link"
 import './universeAnimeDetail.scss'
-import { AnimeService } from "@/app/service/animeService"
+import { animeService } from "@/app/service/animeService"
 import { useCallback, useEffect, useState } from "react"
 import { GetAnimeByIdResponse } from "@/app/service/dtos/anime"
 type UserAnime = {
@@ -34,7 +34,6 @@ type Props = {
 }
 
 export default function UniverseAnimeDetail(props : Props) {
-    const animeService = new AnimeService();
     const [animeShow, setAnimeShow] = useState<GetAnimeByIdResponse | null>(null);
     const [loading, setLoading] = useState(true);
     const fetchAnime = useCallback((animeId:string) => {

@@ -1,5 +1,5 @@
 import ListAnimeBlock from "@/app/components/listAnimeBlock/listAnimeBlock"
-import { AnimeService } from "@/app/service/animeService"
+import { animeService } from "@/app/service/animeService"
 import { getUser } from "./action"
 
 type Props = {
@@ -8,7 +8,6 @@ type Props = {
 }
 export default async function SeasonalAnime(props: Props) {
     const {year , seasonal} = props
-    const animeService = new AnimeService
     const animes = await animeService.getAnimesBySeasonalAndYear({year,seasonal})
     const user =await getUser();
     return (

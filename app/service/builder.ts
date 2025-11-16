@@ -25,11 +25,6 @@ export class ConnectAnimapService {
         return url.toString()
     }
 
-    public getAnimesUrl(){
-        const url = new URL("/animes", this.url);
-        return url.toString()
-    }
-
     public getCategoriesUrl(){
         const url = new URL("/category", this.url);
         return url.toString()
@@ -52,16 +47,6 @@ export class ConnectAnimapService {
     
     public getMyAnimeUrl(){
         const url = new URL("/my-anime", this.url);
-        return url.toString()
-    }
-
-    public getCommoneUrl(){
-        const url = new URL("/common", this.url);
-        return url.toString()
-    }
-
-    public getEpisodeUrl(){
-        const url = new URL("/episodes", this.url);
         return url.toString()
     }
 }
